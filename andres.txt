@@ -1,0 +1,1 @@
+Se creó este archivo con el comando touch y se modificó con nano
