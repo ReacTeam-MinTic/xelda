@@ -3,7 +3,7 @@
 <h2><samp>💻 Hola somos el equipo ReacTeam. </samp><img src="https://github.com/souvikguria98/souvikguria98/blob/master/Hi.gif" width="25"></h2>
 <p></p>
 
-<h3> <samp>Tecnologías en las que estamos trabajando</samp><h3>
+<h3> <samp>🛠 Tecnologías en las que estamos trabajando</samp><h3>
 <p>
 <img alt="React" src="https://img.shields.io/badge/-React-45b8d8?style=flat-square&logo=react&logoColor=white" />
 <img alt="TypeScript" src="https://img.shields.io/badge/-TypeScript-007ACC?style=flat-square&logo=typescript&logoColor=white" />
@@ -18,7 +18,7 @@
 <img src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=flat-square&logo=javascript&logoColor=%23F7DF1E"/>
 <p>
   
-<h2><samp>Sobre Nosotros</samp></h2>
+<h2><samp>👨🏻‍💻 Sobre Nosotros</samp></h2>
   
 ```python
 #!/usr/bin/python
