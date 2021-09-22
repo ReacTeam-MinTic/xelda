@@ -18,9 +18,9 @@
 <img src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=flat-square&logo=javascript&logoColor=%23F7DF1E"/>
 <p>
   
- <hr>
+<h2><samp>Sobre Nosotros</samp></h2>
   
-  ```python
+```python
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
@@ -38,7 +38,7 @@ class innovacion:
         print("Crearemos una app web para la industria manufacturera que \n
               controle las ventas de las empresas, nomina, inventarios entre otros.")
   
-    def descripcion_integrantes(self, equipo, mensaje):
+    def descripcion_integrantes(self, equipo[], mensaje):
         print("memsaje")
 
 
