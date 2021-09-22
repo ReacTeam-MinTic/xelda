@@ -1,6 +1,6 @@
 # xelda
 
-#<h2>💻 Hola somos el equipo ReacTeam. <img src="https://github.com/souvikguria98/souvikguria98/blob/master/Hi.gif" width="25"></h2>
+<h2>💻 Hola somos el equipo ReacTeam. <img src="https://github.com/souvikguria98/souvikguria98/blob/master/Hi.gif" width="25"></h2>
 <p></p>
 
 <h3>Tecnologías en las que estamos trabajando<h3>
@@ -17,3 +17,4 @@
 <img src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=flat-square&logo=css3&logoColor=white"/>
 <img src="https://img.shields.io/badge/javascript%20-%23323330.svg?&style=flat-square&logo=javascript&logoColor=%23F7DF1E"/>
 <p>
+![github](https://user-images.githubusercontent.com/47577169/134332396-b018ea5e-48bd-41eb-a831-6998c7874c3e.gif)
