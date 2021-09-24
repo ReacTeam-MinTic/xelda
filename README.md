@@ -24,7 +24,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 
-
 class innovacion:
 
     def __init__(self):
