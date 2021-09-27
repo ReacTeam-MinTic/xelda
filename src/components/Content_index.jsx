@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function Content() {
+export default function ContentIndex() {
   return (
 <div className="main-content" style={{minHeight: 581}}>
   <section className="section">

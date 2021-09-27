@@ -1,6 +1,4 @@
 import React from "react";
-import 'styles/style.css';
-import 'styles/components.css';
 
 export default function Header() {
   return (
@@ -18,7 +16,7 @@ export default function Header() {
               <a
                 href="#"
                 data-toggle="search"
-                classNameName="nav-link nav-link-lg d-sm-none"
+                className="nav-link nav-link-lg d-sm-none"
               >
                 <i className="fas fa-search"></i>
               </a>

@@ -1,17 +1,24 @@
-import Aside from 'components/Aside'
-import Content from 'components/ContentIndex'
-import Footer from 'components/Footer'
-import Header from 'components/Header'
-import React from 'react'
 
-export default function () {
+import React from 'react'
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
+import Index from 'pages/index';
+import Users from 'pages/users';
+
+export default function App() {
   return (
     <div>
-      <Header />
-      <Aside />
-      <Content />
-      <Footer />
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/users">
+           <Users />
+        </Route>
+        <Route path='/'>
+           <Index />
+        </Route>
+      </Switch>
+    </Router>
+  </div>
+  
   )
 }
 
