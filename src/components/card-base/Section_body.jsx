@@ -1,13 +1,13 @@
 import React from 'react'
 
-export default function Section_body() {
+export default function Section_body({titleListUsers}) {
     return (
         <div class="section-body">
-            <h2 class="section-title">This is Example Page</h2>
-            <p class="section-lead">This page is just an example for you to create your own page.</p>
+            <h2 class="section-title">{titleListUsers}</h2>
+            {/* <p class="section-lead">This page is just an example for you to create your own page.</p> */}
             <div class="card">
               <div class="card-header">
-                <h4>Example Card</h4>
+                {/* <h4>Example Card</h4> */}
               </div>
               <div class="card-body">
                 <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod

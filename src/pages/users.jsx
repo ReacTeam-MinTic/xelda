@@ -12,8 +12,8 @@ export default function Users() {
       <Aside />
       <div class="main-content" style={{minHeight: 581}}>
       <section class="section">
-      <Section_header />
-      <Section_body />
+      <Section_header titleUsers="Usuarios" />
+      <Section_body titleListUsers="Listado de Usuarios"/>
       </section>
       </div>
       <Footer />
