@@ -14,10 +14,10 @@ const Aside = () => {
           <ul className="sidebar-menu">
             <li className="menu-header">Dashboard</li>
             <li className="nav-item dropdown active">
-              <a href="#" className="nav-link has-dropdown">
+              <Link to="/">
                 <i className="fas fa-fire" />
                 <span>Inicio</span>
-              </a>
+              </Link>
             </li>
             <li className="menu-header">Módulos</li>
             <li className="nav-item dropdown">
