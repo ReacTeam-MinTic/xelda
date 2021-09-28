@@ -1,30 +1,35 @@
 import { Link } from "react-router-dom";
 
-const LayoutsCard = ({children, titulo, subtitulo}) => {
+const LayoutsCard = ({children, titulo, subtitulo, tituloCardHeader, nombreBoton}) => {
   return (
-    <div class="main-content" style={{ minHeight: 581 }}>
-      <section class="section">
-        <div class="section-header">
+    <div className="main-content" style={{ minHeight: 581 }}>
+      <section className="section">
+        <div className="section-header">
           <h1>{titulo}</h1>
-          <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active">
+          <div className="section-header-breadcrumb">
+            <div className="breadcrumb-item active">
               <Link to="#">Dashboard</Link>
             </div>
-            <div class="breadcrumb-item">
+            <div className="breadcrumb-item">
               <Link to="#">Layout</Link>
             </div>
-            <div class="breadcrumb-item">Default Layout</div>
+            <div className="breadcrumb-item">Default Layout</div>
           </div>
         </div>
-        <div class="section-body">
-          <h2 class="section-title">{subtitulo}</h2>
-          {/* <p class="section-lead">This page is just an example for you to create your own page.</p> */}
-          <div class="card">
-            <div class="card-header">{/* <h4>Example Card</h4> */}</div>
-            <div class="card-body">
+        <div className="section-body">
+          <h2 className="section-title">{subtitulo}</h2>
+          {/* <p className="section-lead">This page is just an example for you to create your own page.</p> */}
+          <div className="card">
+            <div className="d-flex justify-content-between card-header">
+              <h3>{tituloCardHeader}</h3>
+              <div className="d-flex justify-content-end">
+                <button className="btn btn-success p-2 "><h6 className="m-0">{nombreBoton}</h6></button>
+            </div>
+            </div>
+            <div className="card-body">
               <main>{children}</main>
             </div>
-            <div class="card-footer bg-whitesmoke">This is card footer</div>
+            <div className="card-footer bg-whitesmoke">This is card footer</div>
           </div>
         </div>
       </section>
