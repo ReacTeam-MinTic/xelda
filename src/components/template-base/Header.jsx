@@ -23,7 +23,7 @@ const Header = () =>{
           </li>
         </ul>
       </form>
-      <ul className="navbar-nav navbar-right">
+      {/* <ul className="navbar-nav navbar-right">
         <li className="dropdown dropdown-list-toggle">
           <a
             href="#"
@@ -230,7 +230,7 @@ const Header = () =>{
             </a>
           </div>
         </li>
-      </ul>
+      </ul> */}
     </nav>
   </>
 

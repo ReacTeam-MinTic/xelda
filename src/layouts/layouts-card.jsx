@@ -6,7 +6,7 @@ const LayoutsCard = ({children, titulo, subtitulo, tituloCardHeader, nombreBoton
       <section className="section">
         <div className="section-header">
           <h1>{titulo}</h1>
-          <div className="section-header-breadcrumb">
+          {/* <div className="section-header-breadcrumb">
             <div className="breadcrumb-item active">
               <Link to="#">Dashboard</Link>
             </div>
@@ -14,7 +14,7 @@ const LayoutsCard = ({children, titulo, subtitulo, tituloCardHeader, nombreBoton
               <Link to="#">Layout</Link>
             </div>
             <div className="breadcrumb-item">Default Layout</div>
-          </div>
+          </div> */}
         </div>
         <div className="section-body">
           <h2 className="section-title">{subtitulo}</h2>
