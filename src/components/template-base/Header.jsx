@@ -2,7 +2,7 @@ import React from "react";
 
 const Header = () =>{
   return(
-    <div>
+    <>
     <div className="navbar-bg"></div>
     <nav className="navbar navbar-expand-lg main-navbar">
       <form className="form-inline mr-auto">
@@ -232,7 +232,7 @@ const Header = () =>{
         </li>
       </ul>
     </nav>
-  </div>
+  </>
 
   )
 }

@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 
 const Aside = () => {
   return (
-    <div>
       <div className="main-sidebar">
         <aside id="sidebar-wrapper">
           <div className="sidebar-brand">
@@ -75,7 +74,6 @@ const Aside = () => {
           </ul>
         </aside>
       </div>
-    </div>
   );
 }
 

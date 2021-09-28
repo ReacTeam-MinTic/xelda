@@ -1,19 +1,11 @@
-import Section_header from "components/card-base/Section_header";
-import Section_body from "components/card-base/Section_body";
-import Layouts from "layouts/layouts";
+import LayoutsCard from "layouts/layouts-card";
 
 const Users = () => {
   return (
-    <>
-      <Layouts>
-        <div class="main-content" style={{ minHeight: 581 }}>
-          <section class="section">
-            <Section_header titleUsers="Usuarios" />
-            <Section_body titleListUsers="Listado de Usuarios" />
-          </section>
-        </div>
-      </Layouts>
-    </>
+      <LayoutsCard >
+        <h1>Aqui va el contenido</h1>
+      </LayoutsCard>
   );
 };
+
 export default Users;

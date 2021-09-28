@@ -1,7 +1,6 @@
-import Aside from 'components/template-base/Aside'
-import Footer from 'components/template-base/Footer'
-import Header from 'components/template-base/Header'
-import React, { Children } from 'react'
+import Aside from 'components/template-base/Aside';
+import Footer from 'components/template-base/Footer';
+import Header from 'components/template-base/Header';
 
 const Layouts = ({children}) => {
     return (
