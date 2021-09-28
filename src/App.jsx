@@ -6,7 +6,7 @@ import Users from 'pages/users';
 
 const App = () => {
   return (
-    <div>
+    <>
     <Router>
       <Switch>
         <Route path="/users">
@@ -17,7 +17,7 @@ const App = () => {
         </Route>
       </Switch>
     </Router>
-  </div>
+  </>
   
   )
 }
