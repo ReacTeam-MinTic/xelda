@@ -29,7 +29,7 @@ const LayoutsCard = ({children, titulo, subtitulo, tituloCardHeader, nombreBoton
             <div className="card-body">
               <main>{children}</main>
             </div>
-            <div className="card-footer bg-whitesmoke">This is card footer</div>
+{/*             <div className="card-footer bg-whitesmoke">This is card footer</div> */}
           </div>
         </div>
       </section>
