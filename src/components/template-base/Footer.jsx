@@ -1,9 +1,10 @@
 import React from "react";
 
-export default function Footer() {
+const Footer = () => {
   return (
     <div>
       <footer className="main-footer" />
     </div>
   );
 }
+export default Footer;

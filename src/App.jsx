@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 import Index from 'pages/index';
 import Users from 'pages/users';
 
-export default function App() {
+const App = () => {
   return (
     <div>
     <Router>
@@ -21,4 +21,6 @@ export default function App() {
   
   )
 }
+
+export default App;
 

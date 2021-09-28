@@ -5,7 +5,7 @@ import Footer from "components/template-base/Footer";
 import Section_header from "components/card-base/Section_header";
 import Section_body from "components/card-base/Section_body";
 
-export default function Users() {
+const Users = () => {
   return (
     <div>
       <Header />
@@ -20,3 +20,4 @@ export default function Users() {
     </div>
   );
 }
+export default Users;

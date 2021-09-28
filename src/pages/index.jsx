@@ -4,7 +4,7 @@ import ContentIndex from "components/Content_index";
 import Footer from "components/template-base/Footer";
 import Header from "components/template-base/Header";
 
-function Index() {
+const Index = () => {
   return (
     <div>
       <Header />

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Section_header({titleUsers}) {
+const Section_header = ({titleUsers}) => {
   return (
     
         <div class="section-header">
@@ -19,3 +19,5 @@ export default function Section_header({titleUsers}) {
     
   );
 }
+
+export default Section_header;

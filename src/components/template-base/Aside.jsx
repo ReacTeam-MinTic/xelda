@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export default function Aside() {
+const Aside = () => {
   return (
     <div>
       <div className="main-sidebar">
@@ -78,3 +78,5 @@ export default function Aside() {
     </div>
   );
 }
+
+export default Aside;

@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Section_body({titleListUsers}) {
+const Section_body = ({titleListUsers}) => {
     return (
         <div class="section-body">
             <h2 class="section-title">{titleListUsers}</h2>
@@ -24,3 +24,5 @@ export default function Section_body({titleListUsers}) {
           </div>
     )
 }
+
+export default Section_body;
