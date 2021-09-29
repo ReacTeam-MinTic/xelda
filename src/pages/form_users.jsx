@@ -4,56 +4,38 @@ import LayoutsCard from "layouts/layouts-card";
 const Form_users = () => {
   return (
     <>
-    <LayoutsCard >
-      
-        <div className="card-header">
-          <h4>Input Group Text</h4>
-        </div>
-        <div className="card-body">
-          <div className="form-group">
-            <div className="input-group mb-2">
-              <div className="input-group-prepend">
-                <div className="input-group-text">@</div>
-              </div>
-              <input
-                type="text"
-                className="form-control"
-                id="inlineFormInputGroup"
-                placeholder="Username"
-              />
+      <LayoutsCard titulo="Usuarios" subtitulo="Agregar usuarios">
+        <form className="needs-validation" noValidate>
+          <div className="card-header">
+            <h4>JavaScript Validation</h4>
+          </div>
+          <div className="card-body">
+            <div className="form-group">
+              <label>Your Name</label>
+              <input type="text" className="form-control" required />
+              <div className="invalid-feedback">What's your name?</div>
+            </div>
+            <div className="form-group">
+              <label>Email</label>
+              <input type="email" className="form-control" required />
+              <div className="invalid-feedback">Oh no! Email is invalid.</div>
+            </div>
+            <div className="form-group">
+              <label>Subject</label>
+              <input type="email" className="form-control" />
+              <div className="valid-feedback">Good job!</div>
+            </div>
+            <div className="form-group mb-0">
+              <label>Message</label>
+              <textarea className="form-control" required defaultValue={""} />
+              <div className="invalid-feedback">What do you wanna say?</div>
             </div>
           </div>
-          <div className="form-group">
-            <div className="input-group mb-2">
-              <input
-                type="text"
-                className="form-control text-right"
-                id="inlineFormInputGroup2"
-                placeholder="Your URL"
-              />
-              <div className="input-group-append">
-                <div className="input-group-text">.com</div>
-              </div>
-            </div>
+          <div className="card-footer text-right">
+            <button className="btn btn-primary">Guardar</button>
           </div>
-          <div className="form-group">
-            <div className="input-group mb-3">
-              <div className="input-group-prepend">
-                <span className="input-group-text">$</span>
-              </div>
-              <input
-                type="text"
-                className="form-control"
-                aria-label="Amount (to the nearest dollar)"
-              />
-              <div className="input-group-append">
-                <span className="input-group-text">.00</span>
-              </div>
-            </div>
-          </div>
-        </div>
-        </LayoutsCard>
-      
+        </form>
+      </LayoutsCard>
     </>
   );
 };
