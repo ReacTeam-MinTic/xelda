@@ -2,7 +2,7 @@ import LayoutsCard from "layouts/layouts-card";
 import React from "react";
 
 
-const Users = () => {
+const ListUsers = () => {
   return (
     <LayoutsCard titulo="Módulo de Usuarios" subtitulo="Listado de usuarios" ruta1="Inicio" ruta2="Usuarios" ruta3="Lista de usuarios" boton="Nuevo Usuario">
       <div className="table-responsive">
@@ -52,4 +52,4 @@ const Users = () => {
   );
 };
 
-export default Users;
+export default ListUsers;

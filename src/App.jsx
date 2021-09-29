@@ -1,7 +1,8 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Index from "pages/index";
-import Users from "pages/users";
+import ListUsers from "pages/list_users";
+import ListProducts from "pages/list_products";
 import Layouts from "layouts/layouts";
 import Form_users from "pages/form_users";
 
@@ -11,8 +12,11 @@ const App = () => {
       <Router>
       <Layouts>
         <Switch>
-            <Route path="/users" exact>
-              <Users />
+            <Route path="/list_users" exact>
+              <ListUsers />
+            </Route>
+            <Route path="/list_products" exact>
+              <ListProducts />
             </Route>
             <Route path="/form_users" exact>
               < Form_users/>

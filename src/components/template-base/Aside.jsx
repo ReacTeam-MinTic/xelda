@@ -12,7 +12,7 @@ const Aside = () => {
             <a href="index.html">Xd</a>
           </div>
           <ul className="sidebar-menu">
-            <li className="menu-header">Dashboard</li>
+            <li className="menu-header">Inicio</li>
             <li className="nav-item dropdown active">
               <a href="#" className="nav-link has-dropdown">
                 <i className="fas fa-fire" />
@@ -30,27 +30,10 @@ const Aside = () => {
               </a>
               <ul className="dropdown-menu" style={{ display: "none" }}>
                 <li>
-                  <Link to="#">Listado</Link>
+                  <Link to="#">Listado de ventas</Link>
                 </li>
                 <li>
-                  <Link to="#">Crud</Link>
-                </li>
-              </ul>
-            </li>
-            <li className="nav-item dropdown">
-              <a
-                href="#"
-                className="nav-link has-dropdown"
-                data-toggle="dropdown"
-              >
-                <i className="fas fa-users-cog" /> <span>Vendedores</span>
-              </a>
-              <ul className="dropdown-menu" style={{ display: "none" }}>
-                <li>
-                  <Link to="#">Listado</Link>
-                </li>
-                <li>
-                  <Link to="#">Crud</Link>
+                  <Link to="#">Registar ventas</Link>
                 </li>
               </ul>
             </li>
@@ -60,14 +43,31 @@ const Aside = () => {
                 className="nav-link has-dropdown"
                 data-toggle="dropdown"
               >
-                <i className="fas fa-users" /> <span>Usuarios</span>
+                <i className="fas fa-briefcase"></i> <span>Productos</span>
               </a>
               <ul className="dropdown-menu" style={{ display: "none" }}>
                 <li>
-                  <Link to="/users">Listado</Link>
+                  <Link to="#">Listado de productos</Link>
                 </li>
                 <li>
-                  <Link to="#">Crud</Link>
+                  <Link to="#">Agregar productos</Link>
+                </li>
+              </ul>
+            </li>
+            <li className="nav-item dropdown">
+              <a
+                href="#"
+                className="nav-link has-dropdown"
+                data-toggle="dropdown"
+              >
+                <i className="fas fa-users-cog" /> <span>Usuarios</span>
+              </a>
+              <ul className="dropdown-menu" style={{ display: "none" }}>
+                <li>
+                  <Link to="/users">Listado de usuarios</Link>
+                </li>
+                <li>
+                  <Link to="#">Agregar usuarios</Link>
                 </li>
               </ul>
             </li>
