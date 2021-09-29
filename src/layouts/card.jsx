@@ -1,4 +1,4 @@
-/* import { Link } from "react-router-dom"; */
+import { Link } from "react-router-dom"; 
 
 const LayoutsCard = ({children, titulo, subtitulo, ruta1, ruta2, ruta3, boton}) => {
   return (

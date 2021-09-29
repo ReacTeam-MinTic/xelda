@@ -17,9 +17,6 @@ const App = () => {
             <Router path="/ventas" exact>
               <Ventas/>
             </Router>
-            <Route path="/users" exact>
-              <Users />
-            </Route> 
             <Route path="/borrar" exact>
               <Borrar />
             </Route>
