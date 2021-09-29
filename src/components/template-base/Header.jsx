@@ -23,7 +23,7 @@ const Header = () =>{
           </li>
         </ul>
       </form>
-      {/* <ul className="navbar-nav navbar-right">
+      <ul className="navbar-nav navbar-right">
         <li className="dropdown dropdown-list-toggle">
           <a
             href="#"
@@ -200,6 +200,8 @@ const Header = () =>{
             </div>
           </div>
         </li>
+      </ul>
+      <ul className="navbar-nav navbar-right">
         <li className="dropdown">
           <a
             href="#"
@@ -211,26 +213,17 @@ const Header = () =>{
               src="../assets/img/avatar/avatar-1.png"
               className="rounded-circle mr-1"
             />
-            <div className="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div>
+            <div className="d-sm-none d-lg-inline-block">Hi, User</div>
           </a>
           <div className="dropdown-menu dropdown-menu-right">
             <div className="dropdown-title">Logged in 5 min ago</div>
-            <a href="features-profile.html" className="dropdown-item has-icon">
-              <i className="far fa-user"></i> Profile
-            </a>
-            <a href="features-activities.html" className="dropdown-item has-icon">
-              <i className="fas fa-bolt"></i> Activities
-            </a>
-            <a href="features-settings.html" className="dropdown-item has-icon">
-              <i className="fas fa-cog"></i> Settings
-            </a>
             <div className="dropdown-divider"></div>
             <a href="#" className="dropdown-item has-icon text-danger">
-              <i className="fas fa-sign-out-alt"></i> Logout
+              <i className="fas fa-sign-out-alt"></i> Salir
             </a>
           </div>
         </li>
-      </ul> */}
+      </ul>
     </nav>
   </>
 

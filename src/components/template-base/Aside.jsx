@@ -12,7 +12,7 @@ const Aside = () => {
             <a href="index.html">Xd</a>
           </div>
           <ul className="sidebar-menu">
-            <li className="menu-header">Dashboard</li>
+            <li className="menu-header">Inicio</li>
             <li className="nav-item dropdown active">
               <Link to="/">
                 <i className="fas fa-fire" />
@@ -43,14 +43,14 @@ const Aside = () => {
                 className="nav-link has-dropdown"
                 data-toggle="dropdown"
               >
-                <i className="fas fa-users-cog" /> <span>Vendedores</span>
+                <i className="fas fa-briefcase"></i> <span>Productos</span>
               </a>
               <ul className="dropdown-menu" style={{ display: "none" }}>
                 <li>
-                  <Link to="#">Listado</Link>
+                  <a href="/listproducts">Listado de productos</a>
                 </li>
                 <li>
-                  <Link to="#">Crud</Link>
+                  <a href="#">Agregar productos</a>
                 </li>
               </ul>
             </li>
@@ -60,14 +60,14 @@ const Aside = () => {
                 className="nav-link has-dropdown"
                 data-toggle="dropdown"
               >
-                <i className="fas fa-users" /> <span>Usuarios</span>
+                <i className="fas fa-users-cog" /> <span>Usuarios</span>
               </a>
               <ul className="dropdown-menu" style={{ display: "none" }}>
                 <li>
-                  <Link to="/users">Listado</Link>
+                  <a href="/listusers">Listado de usuarios</a>
                 </li>
                 <li>
-                  <Link to="#">Crud</Link>
+                  <a href="/formusers">Agregar usuarios</a>
                 </li>
               </ul>
             </li>
