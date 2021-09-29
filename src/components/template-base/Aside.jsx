@@ -30,10 +30,10 @@ const Aside = () => {
               </a>
               <ul className="dropdown-menu" style={{ display: "none" }}>
                 <li>
-                  <Link to="#">Listado de ventas</Link>
+                  <a href="#">Listado de ventas</a>
                 </li>
                 <li>
-                  <Link to="#">Registar ventas</Link>
+                  <a href="#">Registar ventas</a>
                 </li>
               </ul>
             </li>
@@ -47,10 +47,10 @@ const Aside = () => {
               </a>
               <ul className="dropdown-menu" style={{ display: "none" }}>
                 <li>
-                  <Link to="/listproducts">Listado de productos</Link>
+                  <a href="/listproducts">Listado de productos</a>
                 </li>
                 <li>
-                  <Link to="#">Agregar productos</Link>
+                  <a href="#">Agregar productos</a>
                 </li>
               </ul>
             </li>
@@ -64,10 +64,10 @@ const Aside = () => {
               </a>
               <ul className="dropdown-menu" style={{ display: "none" }}>
                 <li>
-                  <Link to="/listusers">Listado de usuarios</Link>
+                  <a href="/listusers">Listado de usuarios</a>
                 </li>
                 <li>
-                  <Link to="/formusers">Agregar usuarios</Link>
+                  <a href="/formusers">Agregar usuarios</a>
                 </li>
               </ul>
             </li>

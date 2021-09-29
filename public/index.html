@@ -7,8 +7,8 @@
     <meta name="theme-color" content="#000000" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.css"/>
+   
 
     <!-- General CSS Files -->
     <link
@@ -27,7 +27,7 @@
     <!-- Template CSS -->
     <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/style.css">
     <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/components.css">
-    <link rel="stylesheet" href="iziToast.min.css">
+  
 
 
     <title>Xelda App</title>
@@ -48,6 +48,9 @@
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"
   ></script>
+  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.js"></script>
+  
+
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
@@ -68,42 +71,40 @@
 
   <!-- Page Specific JS File -->
   <script src="%PUBLIC_URL%/assets/js/page/index.js"></script>
-  <script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script>
-  
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
-<script src="iziToast.min.js" type="text/javascript"></script> 
-<script>
-  $(document).ready(function () {
-  $("#example").DataTable({
-    language: {
-      searchBuilder: {
-        button: "Filter",
+
+  <script>
+    $(document).ready(function () {
+    $("#example").DataTable({
+      buttons: ["searchBuilder"],
+      language: {
+        searchBuilder: {
+          button: "Filter",
+        },
+          "decimal": "",
+          "emptyTable": "No hay información",
+          "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+          "infoPostFix": "",
+          "thousands": ",",
+          "lengthMenu": "Mostrar _MENU_ Entradas",
+          "loadingRecords": "Cargando...",
+          "processing": "Procesando...",
+          "search": "Buscar:",
+          "zeroRecords": "Sin resultados encontrados",
+          "paginate": {
+              "first": "Primero",
+              "last": "Ultimo",
+              "next": "Siguiente",
+              "previous": "Anterior"
+          }
       },
-        "decimal": "",
-        "emptyTable": "No hay información",
-        "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-        "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-        "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-        "infoPostFix": "",
-        "thousands": ",",
-        "lengthMenu": "Mostrar _MENU_ Entradas",
-        "loadingRecords": "Cargando...",
-        "processing": "Procesando...",
-        "search": "Buscar:",
-        "zeroRecords": "Sin resultados encontrados",
-        "paginate": {
-            "first": "Primero",
-            "last": "Ultimo",
-            "next": "Siguiente",
-            "previous": "Anterior"
-        }
-    },
-    buttons: ["searchBuilder"],
-    dom: "Bfrtip",
-    responsive: true,
+      dom: "Bfrtip",
+      responsive: true,
+    });
   });
-});
-</script>
+  </script>
+  
 </html>
 
 
