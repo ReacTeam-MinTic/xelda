@@ -50,6 +50,9 @@ const Aside = () => {
                   <Link to="/listproducts">Listado de productos</Link>
                 </li>
                 <li>
+                  <Link to="/borrar">Borrar</Link>
+                </li>
+                <li>
                   <Link to="#">Agregar productos</Link>
                 </li>
               </ul>

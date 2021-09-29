@@ -5,6 +5,7 @@ import ListUsers from "pages/listusers";
 import ListProducts from "pages/listproducts";
 import Layouts from "layouts/layouts";
 import Form_users from "pages/formusers";
+import Borrar from "pages/borrar";
 
 const App = () => {
   return (
@@ -12,6 +13,9 @@ const App = () => {
       <Router>
       <Layouts>
         <Switch>
+            <Route path="/borrar" exact>
+              <Borrar />
+            </Route>
             <Route path="/listusers" exact>
               <ListUsers />
             </Route>
