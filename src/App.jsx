@@ -1,10 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Index from "pages/index";
-import ListUsers from "pages/list_users";
-import ListProducts from "pages/list_products";
+import ListUsers from "pages/listusers";
+import ListProducts from "pages/listproducts";
 import Layouts from "layouts/layouts";
-import Form_users from "pages/form_users";
+import Form_users from "pages/formusers";
 
 const App = () => {
   return (
@@ -12,13 +12,13 @@ const App = () => {
       <Router>
       <Layouts>
         <Switch>
-            <Route path="/list_users" exact>
+            <Route path="/listusers" exact>
               <ListUsers />
             </Route>
-            <Route path="/list_products" exact>
+            <Route path="/listproducts" exact>
               <ListProducts />
             </Route>
-            <Route path="/form_users" exact>
+            <Route path="/formusers" exact>
               < Form_users/>
             </Route>
             <Route path="/" exact>

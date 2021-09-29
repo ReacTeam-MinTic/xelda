@@ -1,4 +1,4 @@
-import LayoutsCard from 'layouts/layouts-card'
+import LayoutsCard from 'layouts/card'
 
 const ListProducts = () => {
     return (
@@ -34,7 +34,7 @@ const ListProducts = () => {
                 <td>Samsung GAlaxy A30</td>
                 <td>Procesador x10 con cámara de 10 mpx</td>
                 <td>$1000000</td>
-                <td><div class="badge badge-success">Disponible</div></td>
+                <td><div class="badge badge-danger"> No Disponible</div></td>
                 <td>
                   <div class="row justify-content-md-center">
                     <a href=""><i class="fas fa-edit"></i></a>
@@ -42,7 +42,6 @@ const ListProducts = () => {
                   </div>
                   </td>
               </tr>
-              
             </tbody>
           </table>
         </div>

@@ -1,4 +1,4 @@
-import LayoutsCard from "layouts/layouts-card";
+import LayoutsCard from "layouts/card";
 import React from "react";
 
 
@@ -12,6 +12,7 @@ const ListUsers = () => {
               <th>#</th>
               <th>Nombres</th>
               <th>Apellidos</th>
+              <th>Estado</th>
               <th>Rol</th>
               <th>Email</th>
               <th>Opciones</th>
@@ -22,7 +23,8 @@ const ListUsers = () => {
               <td>0001</td>
               <td>Gustavo Adolfo</td>
               <td>De Armas Nuñez</td>
-              <td><div class="badge badge-success">Vendedor</div></td>
+              <td><div class="badge badge-success">Activo</div></td>
+              <td><div class="badge badge-warning">Vendedor</div></td>
               <td>gustavo@hotmail.com</td>
               <td>
                 <div class="row justify-content-md-center">
@@ -35,7 +37,8 @@ const ListUsers = () => {
               <td>0001</td>
               <td>Gustavo Adolfo</td>
               <td>De Armas Nuñez</td>
-              <td><div class="badge badge-success">Vendedor</div></td>
+              <td><div class="badge badge-danger">Inactivo</div></td>
+              <td><div class="badge badge-primary">Admin</div></td>
               <td>gustavo@hotmail.com</td>
               <td>
                 <div class="row justify-content-md-center">

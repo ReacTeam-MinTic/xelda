@@ -1,5 +1,5 @@
 import React from "react";
-import LayoutsCard from "layouts/layouts-card";
+import LayoutsCard from "layouts/card";
 
 const Form_users = () => {
   return (
