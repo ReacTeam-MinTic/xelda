@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+/* import { Link } from "react-router-dom"; */
 
 const LayoutsCard = ({children, titulo, subtitulo, tituloCardHeader, nombreBoton}) => {
   return (
@@ -22,9 +22,9 @@ const LayoutsCard = ({children, titulo, subtitulo, tituloCardHeader, nombreBoton
           <div className="card">
             <div className="d-flex justify-content-between card-header">
               <h3>{tituloCardHeader}</h3>
-              <div className="d-flex justify-content-end">
-                <button className="btn btn-success p-2 "><h6 className="m-0">{nombreBoton}</h6></button>
-            </div>
+              <div>
+                <button className="btn btn-primary p-3"><h6 className="m-0">{nombreBoton}</h6></button>
+              </div>
             </div>
             <div className="card-body">
               <main>{children}</main>
