@@ -23,7 +23,7 @@ const LayoutsCard = ({children, titulo, subtitulo, tituloCardHeader, nombreBoton
             <div className="d-flex justify-content-between card-header">
               <h3>{tituloCardHeader}</h3>
               <div>
-                <button className="btn btn-primary p-3"><h6 className="m-0">{nombreBoton}</h6></button>
+                <button className="btn btn-lg btn-icon icon-left btn-primary"><p className="m-0">{nombreBoton}</p></button>
               </div>
             </div>
             <div className="card-body">
