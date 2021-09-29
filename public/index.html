@@ -7,6 +7,8 @@
     <meta name="theme-color" content="#000000" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.css">
 
     <!-- General CSS Files -->
     <link
@@ -63,4 +65,23 @@
 
   <!-- Page Specific JS File -->
   <script src="%PUBLIC_URL%/assets/js/page/index.js"></script>
+  <script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script>
+  
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.js"></script>
+<script>
+  $(document).ready(function () {
+  $("#example").DataTable({
+    language: {
+      searchBuilder: {
+        button: "Filter",
+      },
+    },
+    buttons: ["searchBuilder"],
+    dom: "Bfrtip",
+    responsive: true,
+  });
+});
+</script>
 </html>
+
+
