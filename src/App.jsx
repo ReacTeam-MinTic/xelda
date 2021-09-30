@@ -8,7 +8,7 @@ import FormUsers from "pages/formusers";
 import Borrar from "pages/borrar";
 
 // Un Route por cada Layouts - Ver los layouts como pages-templante (NO como componentes)
-//Agreagr otro Toute para Login
+//Agreagr otro Toute para Login.
 
 const App = () => {
   return (
