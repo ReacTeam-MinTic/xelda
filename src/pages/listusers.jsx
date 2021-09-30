@@ -1,10 +1,9 @@
-import LayoutsCard from "layouts/card";
-import React from "react";
+import Card from "components/Card";
 
 
 const ListUsers = () => {
   return (
-    <LayoutsCard titulo="Módulo de Usuarios" subtitulo="Listado de usuarios" ruta1="Inicio" ruta2="Usuarios" ruta3="Lista de usuarios" boton="Nuevo Usuario" icon="far fa-user">
+    <Card titulo="Módulo de Usuarios" subtitulo="Listado de usuarios" ruta1="Inicio" ruta2="Usuarios" ruta3="Lista de usuarios" boton="Nuevo Usuario" icon="far fa-user">
       <div className="table-responsive">
         <table id="example" className="table table-striped">
           <thead>
@@ -51,7 +50,7 @@ const ListUsers = () => {
           </tbody>
         </table>
       </div>
-    </LayoutsCard>
+    </Card>
   );
 };
 

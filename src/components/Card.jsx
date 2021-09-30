@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const LayoutsCard = ({children, titulo, subtitulo, ruta1, ruta2, ruta3, boton, icon}) => {
+const Card = ({children, titulo, subtitulo, ruta1, ruta2, ruta3, boton, icon}) => {
   return (
     <div class="main-content" style={{ minHeight: 581 }}>
       <section class="section">
@@ -37,4 +37,4 @@ const LayoutsCard = ({children, titulo, subtitulo, ruta1, ruta2, ruta3, boton, i
   );
 };
 
-export default LayoutsCard;
+export default Card;

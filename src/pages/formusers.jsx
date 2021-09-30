@@ -1,11 +1,11 @@
 import React from "react";
-import LayoutsCard from "layouts/card";
+import Card from "components/Card";
 import alertSucees from "styles/js/alerts";
 
 const FormUsers = () => {
   return (
     <>
-      <LayoutsCard titulo="Módulo de Usuarios" subtitulo="Agregar usuarios"  boton="Mostrar todos" icon="fas fa-list">
+      <Card titulo="Módulo de Usuarios" subtitulo="Agregar usuarios"  boton="Mostrar todos" icon="fas fa-list">
         <form className="needs-validation" noValidate>
           <div className="card-header">
             <h4>JavaScript Validation</h4>
@@ -36,7 +36,7 @@ const FormUsers = () => {
             <button onClick={() => alertSucees()} className="btn btn-primary">Guardar</button>
           </div>
         </form>
-      </LayoutsCard>
+      </Card>
     </>
   );
 };

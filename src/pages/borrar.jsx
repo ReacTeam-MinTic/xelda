@@ -1,9 +1,9 @@
-import LayoutsCard from "layouts/card";
+import Card from "components/Card";
 import React from "react";
 
 const Borrar = () => {
   return (
-    <LayoutsCard>
+    <Card>
       <table
         id="example"
         className="table table-striped"
@@ -488,7 +488,7 @@ const Borrar = () => {
           </tr>
         </tfoot>
       </table>
-    </LayoutsCard>
+    </Card>
   );
 };
 
