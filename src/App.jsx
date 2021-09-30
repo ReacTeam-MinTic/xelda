@@ -4,8 +4,8 @@ import Index from "pages/index";
 import ListUsers from "pages/listusers";
 import ListProducts from "pages/listproducts";
 import Layouts from "layouts/layouts";
-import Form_users from "pages/formusers";
-import Borrar from "pages/borrar";
+import FormUsers from "pages/formusers";
+import Edad from "pages/edad";
 
 const App = () => {
   return (
@@ -13,8 +13,8 @@ const App = () => {
       <Router>
       <Layouts>
         <Switch>
-            <Route path="/borrar" exact>
-              <Borrar />
+            <Route path="/edad" exact>
+              <Edad />
             </Route>
             <Route path="/listusers" exact>
               <ListUsers />
@@ -24,7 +24,7 @@ const App = () => {
               <ListProducts />
             </Route>
             <Route path="/formusers" exact>
-              < Form_users/>
+              < FormUsers/>
             </Route>
             <Route path="/" exact>
               <Index />

@@ -1,4 +1,4 @@
-import ContentIndex from "components/Content_index";
+import ContentIndex from "components/ContentIndex";
 
 
 const Index = () => {

@@ -1,7 +1,7 @@
 import React from "react";
 import LayoutsCard from "layouts/card";
 
-const Form_users = () => {
+const FormUsers = () => {
   return (
     <>
       <LayoutsCard titulo="Usuarios" subtitulo="Agregar usuarios">
@@ -40,4 +40,4 @@ const Form_users = () => {
   );
 };
 
-export default Form_users;
+export default FormUsers;
