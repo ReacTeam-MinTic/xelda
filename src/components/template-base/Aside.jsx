@@ -13,8 +13,8 @@ const Aside = () => {
           </div>
           <ul className="sidebar-menu">
             <li className="menu-header">Inicio</li>
-            <li className="nav-item dropdown active">
-              <a href="#" className="nav-link has-dropdown">
+            <li className="active">
+              <a href="/" className="nav-link">
                 <i className="fas fa-fire" />
                 <span>Inicio</span>
               </a>

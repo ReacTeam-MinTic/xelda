@@ -1,10 +1,11 @@
 import React from "react";
 import LayoutsCard from "layouts/card";
+import alertSucees from "styles/js/alerts";
 
-const Form_users = () => {
+const FormUsers = () => {
   return (
     <>
-      <LayoutsCard titulo="Usuarios" subtitulo="Agregar usuarios">
+      <LayoutsCard titulo="Módulo de Usuarios" subtitulo="Agregar usuarios"  boton="Mostrar todos" icon="fas fa-list">
         <form className="needs-validation" noValidate>
           <div className="card-header">
             <h4>JavaScript Validation</h4>
@@ -32,7 +33,7 @@ const Form_users = () => {
             </div>
           </div>
           <div className="card-footer text-right">
-            <button className="btn btn-primary">Guardar</button>
+            <button onClick={() => alertSucees()} className="btn btn-primary">Guardar</button>
           </div>
         </form>
       </LayoutsCard>
@@ -40,4 +41,4 @@ const Form_users = () => {
   );
 };
 
-export default Form_users;
+export default FormUsers;

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const LayoutsCard = ({children, titulo, subtitulo, ruta1, ruta2, ruta3, boton}) => {
+const LayoutsCard = ({children, titulo, subtitulo, ruta1, ruta2, ruta3, boton, icon}) => {
   return (
     <div class="main-content" style={{ minHeight: 581 }}>
       <section class="section">
@@ -23,7 +23,7 @@ const LayoutsCard = ({children, titulo, subtitulo, ruta1, ruta2, ruta3, boton}) 
           <div class="card">
             <div class="card-header">{/* <h4>Example Card</h4> */}
             <div style={{marginLeft: 'auto'}}>
-            <a href="#" class="btn btn-lg btn-icon icon-left btn-primary"><i class="far fa-user"></i> {boton}</a>
+            <a href="#" class="btn btn-lg btn-icon icon-left btn-primary"><i class={icon}></i> {boton}</a>
             </div>
             </div>
             <div class="card-body">
