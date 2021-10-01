@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import alertSucees from 'styles/js/alerts'
 
 const RegistrarVenta = () => {
 
@@ -44,7 +45,7 @@ const RegistrarVenta = () => {
                         <h5>Estado de la venta: {estadoVenta}</h5>
                     </div>
 
-                    <button onClick={ aumentarIdVentas } className="btn btn-primary rounded mx-3 p-2 my-2" type="button">Guardar la venta</button>
+                    <button onClick={ () => alertSucees() } className="btn btn-primary rounded mx-3 p-2 my-2" type="button">Guardar la venta</button>
                     <button className="btn btn-danger rounded p-2 my-2" type="reset">Eliminar la venta</button>
                 </div>
                 
