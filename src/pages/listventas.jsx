@@ -1,5 +1,5 @@
 import React from 'react'
-import LayoutsCard from 'layouts/card'
+import LayoutsCard from 'components/Card'
 
 const listventas = () => {
     return (

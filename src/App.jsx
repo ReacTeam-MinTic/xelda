@@ -6,7 +6,7 @@ import ListVentas from "pages/listventas";
 import ListProducts from "pages/listproducts";
 import Layouts from "layouts/layouts";
 import Ventas from "pages/Ventas";
-import Form_users from "pages/formusers";
+import FormUsers from "pages/formusers";
 import Borrar from "pages/borrar";
 
 // Un Route por cada Layouts - Ver los layouts como pages-templante (NO como componentes)

@@ -1,4 +1,4 @@
-import Card from "layouts/card";
+import Card from "components/Card";
 import RegistrarVenta from 'components/RegistrarVenta';
 
 const Ventas = () => {  
