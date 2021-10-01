@@ -1,8 +1,8 @@
-import LayoutsCard from 'layouts/card'
+import Card from "components/Card"
 
 const ListProducts = () => {
     return (
-        <LayoutsCard titulo="Módulo de Productos" subtitulo="Listado de productos" ruta1="Inicio" ruta2="Productos" ruta3="Lista de productos" boton="Nuevo producto">
+        <Card titulo="Módulo de Productos" subtitulo="Listado de productos" ruta1="Inicio" ruta2="Productos" ruta3="Lista de productos" boton="Nuevo producto" icon="fas fa-briefcase">
         <div className="table-responsive">
           <table id="example" className="table table-striped">
             <thead>
@@ -45,7 +45,7 @@ const ListProducts = () => {
             </tbody>
           </table>
         </div>
-      </LayoutsCard>
+      </Card>
     )
 }
 

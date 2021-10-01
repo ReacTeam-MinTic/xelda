@@ -7,10 +7,17 @@
     <meta name="theme-color" content="#000000" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.css"/>
-   
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.css"
+    />
 
     <!-- General CSS Files -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css"
+    />
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -25,10 +32,8 @@
     />
 
     <!-- Template CSS -->
-    <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/style.css">
-    <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/components.css">
-  
-
+    <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/style.css" />
+    <link rel="stylesheet" href="%PUBLIC_URL%/assets/css/components.css" />
 
     <title>Xelda App</title>
   </head>
@@ -41,7 +46,9 @@
   </body>
 
   <!-- General JS Scripts -->
-  
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/js/iziToast.min.js"></script>
+
   <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
   <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
 
@@ -50,8 +57,10 @@
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"
   ></script>
-  <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.js"></script>
-  
+  <script
+    type="text/javascript"
+    src="https://cdn.datatables.net/v/dt/dt-1.11.3/datatables.min.js"
+  ></script>
 
   <script
     src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -76,35 +85,34 @@
 
   <script>
     $(document).ready(function () {
-    $("#example").DataTable({
-      buttons: ["searchBuilder"],
-      language: {
-        searchBuilder: {
-          button: "Filter",
+      $("#example").DataTable({
+        buttons: ["searchBuilder"],
+        language: {
+          searchBuilder: {
+            button: "Filter",
+          },
+          decimal: "",
+          emptyTable: "No hay información",
+          info: "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
+          infoEmpty: "Mostrando 0 to 0 of 0 Entradas",
+          infoFiltered: "(Filtrado de _MAX_ total entradas)",
+          infoPostFix: "",
+          thousands: ",",
+          lengthMenu: "Mostrar _MENU_ Entradas",
+          loadingRecords: "Cargando...",
+          processing: "Procesando...",
+          search: "Buscar:",
+          zeroRecords: "Sin resultados encontrados",
+          paginate: {
+            first: "Primero",
+            last: "Ultimo",
+            next: "Siguiente",
+            previous: "Anterior",
+          },
         },
-          "decimal": "",
-          "emptyTable": "No hay información",
-          "info": "Mostrando _START_ a _END_ de _TOTAL_ Entradas",
-          "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
-          "infoFiltered": "(Filtrado de _MAX_ total entradas)",
-          "infoPostFix": "",
-          "thousands": ",",
-          "lengthMenu": "Mostrar _MENU_ Entradas",
-          "loadingRecords": "Cargando...",
-          "processing": "Procesando...",
-          "search": "Buscar:",
-          "zeroRecords": "Sin resultados encontrados",
-          "paginate": {
-              "first": "Primero",
-              "last": "Ultimo",
-              "next": "Siguiente",
-              "previous": "Anterior"
-          }
-      },
-      dom: "Bfrtip",
-      responsive: true,
+        dom: "Bfrtip",
+        responsive: true,
+      });
     });
-  });
   </script>
-  
 </html>
