@@ -2,6 +2,7 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Index from "pages/index";
 import ListUsers from "pages/listusers";
+import ListVentas from "pages/listventas";
 import ListProducts from "pages/listproducts";
 import Layouts from "layouts/layouts";
 import Ventas from "pages/Ventas";
@@ -12,18 +13,21 @@ const App = () => {
   return (
     <>
       <Router>
-      <Layouts>
-        <Switch>
-            <Router path="/ventas" exact>
+        <Layouts>
+          <Switch>
+            <Route path="/ventas" exact>
               <Ventas/>
-            </Router>
+            </Route>
+            <Route path="/listventas" exact>
+              <ListVentas />
+            </Route>
             <Route path="/borrar" exact>
               <Borrar />
             </Route>
             <Route path="/listusers" exact>
               <ListUsers />
             </Route>
-           
+            
             <Route path="/listproducts" exact>
               <ListProducts />
             </Route>
@@ -33,7 +37,7 @@ const App = () => {
             <Route path="/" exact>
               <Index />
             </Route>
-        </Switch>
+          </Switch>
         </Layouts>
       </Router>
     </>
