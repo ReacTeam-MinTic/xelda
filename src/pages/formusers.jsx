@@ -5,35 +5,57 @@ import alertSucees from "styles/js/alerts";
 const FormUsers = () => {
   return (
     <>
-      <Card titulo="Módulo de Usuarios" subtitulo="Agregar usuarios"  boton="Mostrar todos" icon="fas fa-list">
+      <Card
+        titulo="Módulo de Usuarios"
+        subtitulo="Agregar usuarios"
+        boton="Mostrar todos"
+        icon="fas fa-list"
+        rutaheadercard='/listusers'
+      >
         <form className="needs-validation" noValidate>
           <div className="card-header">
-            <h4>JavaScript Validation</h4>
+            <h4>Formulario de registro</h4>
           </div>
           <div className="card-body">
-            <div className="form-group">
-              <label>Your Name</label>
-              <input type="text" className="form-control" required />
-              <div className="invalid-feedback">What's your name?</div>
-            </div>
-            <div className="form-group">
-              <label>Email</label>
-              <input type="email" className="form-control" required />
-              <div className="invalid-feedback">Ingrese un email válido</div>
-            </div>
-            <div className="form-group">
-              <label>Subject</label>
-              <input type="email" className="form-control" />
-              <div className="valid-feedback">Good job!</div>
-            </div>
-            <div className="form-group mb-0">
-              <label>Message</label>
-              <textarea className="form-control" required defaultValue={""} />
-              <div className="invalid-feedback">What do you wanna say?</div>
+            <div class="card-body">
+              <div className="form-group">
+                <label>Nombres</label>
+                <input
+                  type="text"
+                  className="form-control is-valid"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Apellidos</label>
+                <input
+                  type="text"
+                  className="form-control is-valid"
+                  required
+                />
+              </div>
+              <div className="form-group">
+                <label>Email</label>
+                <input
+                  type="email"
+                  className="form-control is-invalid"
+                  required
+                />
+                <div className="invalid-feedback">Por favor, ingrese un email válido.</div>
+              </div>
+              <div class="form-group">
+                      <label>Rol</label>
+                      <select class="form-control select2">
+                        <option>Vendedor</option>
+                        <option>Administrador</option>
+                      </select>
+                    </div>
             </div>
           </div>
           <div className="card-footer text-right">
-            <button onClick={() => alertSucees()} className="btn btn-primary">Guardar</button>
+            <button onClick={() => alertSucees()} className="btn btn-primary">
+              Guardar
+            </button>
           </div>
         </form>
       </Card>
