@@ -19,7 +19,7 @@ const FormUsers = () => {
             <div className="form-group">
               <label>Email</label>
               <input type="email" className="form-control" required />
-              <div className="invalid-feedback">Oh no! Email is invalid.</div>
+              <div className="invalid-feedback">Ingrese un email válido</div>
             </div>
             <div className="form-group">
               <label>Subject</label>
