@@ -1,10 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router-dom"; 
 
 const Card = ({children, titulo, subtitulo, ruta1, ruta2, ruta3, boton, icon, rutaheadercard}) => {
   return (
-    <div class="main-content" style={{ minHeight: 581 }}>
-      <section class="section">
-        <div class="section-header">
+    <div className="main-content" style={{ minHeight: 581 }}>
+      <section className="section">
+        <div className="section-header">
           <h1>{titulo}</h1>
           
           <div class="section-header-breadcrumb">
@@ -29,7 +29,7 @@ const Card = ({children, titulo, subtitulo, ruta1, ruta2, ruta3, boton, icon, ru
             <div class="card-body">
               <main>{children}</main>
             </div>
-            <div class="card-footer bg-whitesmoke">This is card footer</div>
+            <div className="d-flex justify-content-end card-footer bg-whitesmoke">© 2021 - Xelda™</div>
           </div>
         </div>
       </section>

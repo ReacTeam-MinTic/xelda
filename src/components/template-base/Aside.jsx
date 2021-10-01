@@ -30,10 +30,10 @@ const Aside = () => {
               </a>
               <ul className="dropdown-menu" style={{ display: "none" }}>
                 <li>
-                  <a href="#">Listado de ventas</a>
+                  <a href="/listventas">Listado de ventas</a>
                 </li>
                 <li>
-                  <a href="#">Registar ventas</a>
+                  <a href="/ventas">Registrar ventas</a>
                 </li>
               </ul>
             </li>
