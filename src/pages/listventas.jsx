@@ -3,7 +3,7 @@ import LayoutsCard from 'components/Card'
 
 const listventas = () => {
     return (
-      <LayoutsCard titulo="Módulo de ventas" subtitulo="Listado de ventas" ruta1="Inicio" ruta2="Ventas" ruta3="Lista de ventas" boton="Nueva venta">
+      <LayoutsCard titulo="Módulo de ventas" subtitulo="Listado de ventas" ruta1="Inicio" ruta2="Ventas" ruta3="Lista de ventas" boton="Nueva venta" icon="far fa-user">
         <div className="table-responsive">
           <table id="example" className="table table-striped">
             <thead>
