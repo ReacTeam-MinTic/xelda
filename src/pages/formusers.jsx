@@ -5,7 +5,7 @@ import alertSucees from "styles/js/alerts";
 const FormUsers = () => {
   return (
     <>
-      <Card titulo="Módulo de Usuarios" subtitulo="Agregar usuarios"  boton="Mostrar todos" icon="fas fa-list">
+      
         <form className="needs-validation" noValidate>
           <div className="card-header">
             <h4>JavaScript Validation</h4>
@@ -36,7 +36,7 @@ const FormUsers = () => {
             <button onClick={() => alertSucees()} className="btn btn-primary">Guardar</button>
           </div>
         </form>
-      </Card>
+      
     </>
   );
 };

@@ -5,7 +5,7 @@ import ListUsers from "pages/listusers";
 import ListProducts from "pages/listproducts";
 import Layouts from "layouts/layouts";
 import FormUsers from "pages/formusers";
-import Borrar from "pages/borrar";
+import AdminUser from "pages/borrar";
 
 // Un Route por cada Layouts - Ver los layouts como pages-templante (NO como componentes)
 //Agreagr otro Toute para Login.
@@ -19,7 +19,7 @@ const App = () => {
           <Layouts>
             <Switch>
               <Route path="/borrar" exact>
-                <Borrar />
+                <AdminUser />
               </Route>
               <Route path="/listusers" exact>
                 <ListUsers />

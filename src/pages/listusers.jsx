@@ -1,9 +1,9 @@
-import Card from "components/Card";
+import listUsers from "datesLists";
+import { useEffect } from "react";
 
-
-const ListUsers = () => {
+const ListUsers = ({lista}) => {
+    
   return (
-    <Card titulo="Módulo de Usuarios" subtitulo="Listado de usuarios" ruta1="Inicio" ruta2="Usuarios" ruta3="Lista de usuarios" boton="Nuevo Usuario" icon="far fa-user">
       <div className="table-responsive">
         <table id="example" className="table table-striped">
           <thead>
@@ -18,11 +18,12 @@ const ListUsers = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>0001</td>
-              <td>Gustavo Adolfo</td>
-              <td>De Armas Nuñez</td>
-              <td><div class="badge badge-success">Activo</div></td>
+            {lista.map((listUsers) =>(
+              <tr>
+              <td>002</td>
+              <td>{listUsers.name}</td>
+              <td>{listUsers.lastName}</td>
+              <td> <div class="badge badge-success">{listUsers.role}</div></td>
               <td><div class="badge badge-warning">Vendedor</div></td>
               <td>gustavo@hotmail.com</td>
               <td>
@@ -32,25 +33,12 @@ const ListUsers = () => {
                 </div>
                 </td>
             </tr>
-            <tr>
-              <td>0001</td>
-              <td>Gustavo Adolfo</td>
-              <td>De Armas Nuñez</td>
-              <td><div class="badge badge-danger">Inactivo</div></td>
-              <td><div class="badge badge-primary">Admin</div></td>
-              <td>gustavo@hotmail.com</td>
-              <td>
-                <div class="row justify-content-md-center">
-                  <a href=""><i class="fas fa-edit"></i></a>
-                  <a href=""><i class="fas fa-trash-alt"></i></a>
-                </div>
-                </td>
-            </tr>
-            
+            ))}
           </tbody>
         </table>
       </div>
-    </Card>
+     
+    
   );
 };
 
