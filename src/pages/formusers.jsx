@@ -56,7 +56,7 @@ const FormUsers = () => {
             </div>
           </div>
           <div className="card-footer text-right">
-            <button onClick={() => alertSucees()} className="btn btn-primary">
+            <button onClick={() => alertSucees()} className="btn btn-primary" >
               Guardar
             </button>
           </div>

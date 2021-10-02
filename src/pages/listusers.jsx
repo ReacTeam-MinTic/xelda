@@ -1,4 +1,5 @@
 import Card from "components/Card";
+import Alerts from "styles/js/alerts";
 
 const ListUsers = () => {
   return (
@@ -42,7 +43,7 @@ const ListUsers = () => {
                   <a href="">
                     <i class="fas fa-edit"></i>
                   </a>
-                  <a href="">
+                  <a onClick={Alerts[1]}>
                     <i class="fas fa-trash-alt"></i>
                   </a>
                 </div>
@@ -64,7 +65,7 @@ const ListUsers = () => {
                   <a href="">
                     <i class="fas fa-edit"></i>
                   </a>
-                  <a href="">
+                  <a onClick={Alerts[1]}>
                     <i class="fas fa-trash-alt"></i>
                   </a>
                 </div>
