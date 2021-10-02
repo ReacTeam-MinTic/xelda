@@ -18,7 +18,7 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path={["/listusers", "/listproducts", "/formusers"]}>
+        <Route path={["/ventas", "/listventas", "/formusers", "/listusers", "/formproducts", "/listproducts"]}>
           <Layouts>
             <Switch>
               <Route path="/ventas" exact>
@@ -27,17 +27,17 @@ const App = () => {
               <Route path="/listventas" exact>
                 <ListVentas />
               </Route>
-              <Route path="/listusers" exact>
-                <ListUsers />
-              </Route>
-              <Route path="/listproducts" exact>
-                <ListProducts />
-              </Route>
               <Route path="/formusers" exact>
                 <FormUsers />
               </Route>
+              <Route path="/listusers" exact>
+                <ListUsers />
+              </Route>
               <Route path="/formproducts" exact>
                 <FormProducsts />
+              </Route>
+              <Route path="/listproducts" exact>
+                <ListProducts />
               </Route>
             </Switch>
           </Layouts>
