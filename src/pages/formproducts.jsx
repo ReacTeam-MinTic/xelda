@@ -2,18 +2,18 @@ import React from "react";
 import Card from "components/Card";
 import alertSucees from "styles/js/alerts";
 
-const FormUsers = () => {
+const FormProducsts = () => {
   return (
     <>
       <Card
-        titulo="Módulo de Usuarios"
-        subtitulo="Agregar usuarios"
+        titulo="Módulo de Productos"
+        subtitulo="Agregar producto"
         ruta1="Inicio"
-        ruta2="Usuarios"
-        ruta3="Formulario de usuarios"
+        ruta2="Productos"
+        ruta3="Formulario de productos"
         boton="Mostrar todos"
         icon="fas fa-list"
-        rutaheadercard='/listusers'
+        rutaheadercard="/listproducts"
       >
         <form className="needs-validation" noValidate>
           <div className="card-header">
@@ -22,37 +22,33 @@ const FormUsers = () => {
           <div className="card-body">
             <div class="card-body">
               <div className="form-group">
-                <label>Nombres</label>
+                <label>Id</label>
                 <input
-                  type="text"
+                  type="number"
                   className="form-control is-valid"
                   required
                 />
               </div>
               <div className="form-group">
-                <label>Apellidos</label>
-                <input
-                  type="text"
-                  className="form-control is-valid"
-                  required
-                />
+                <label>Nombre</label>
+                <input type="text" className="form-control is-valid" required />
               </div>
               <div className="form-group">
-                <label>Email</label>
-                <input
-                  type="email"
-                  className="form-control is-invalid"
-                  required
-                />
-                <div className="invalid-feedback">Por favor, ingrese un email válido.</div>
+                <label>Valor Unitario</label>
+                <input type="number" className="form-control" required />
               </div>
               <div class="form-group">
-                      <label>Rol</label>
-                      <select class="form-control select2">
-                        <option>Vendedor</option>
-                        <option>Administrador</option>
-                      </select>
-                    </div>
+                <label>Estado</label>
+                <select class="form-control select2">
+                  <option>Disponible</option>
+                  <option>Sin Existencias</option>
+                </select>
+              </div>
+              <div class="form-group mb-0">
+                <label>Message</label>
+                <textarea class="form-control" required=""></textarea>
+              </div>
+              
             </div>
           </div>
           <div className="card-footer text-right">
@@ -66,4 +62,4 @@ const FormUsers = () => {
   );
 };
 
-export default FormUsers;
+export default FormProducsts;
