@@ -1,5 +1,4 @@
 import listUsers from "datesLists";
-import { useEffect } from "react";
 
 const ListUsers = ({lista}) => {
     
