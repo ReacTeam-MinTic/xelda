@@ -10,6 +10,7 @@ import Login from "layouts/login";
 import LoginUser from "pages/loginUser";
 import Ventas from "pages/Ventas";
 import ListVentas from "pages/listventas";
+import AuthRegister from "pages/auth-register";
 
 // Un Route por cada Layouts - Ver los layouts como pages-templante (NO como componentes)
 // Agreagr otro Toute para Login
@@ -42,11 +43,14 @@ const App = () => {
             </Switch>
           </Layouts>
         </Route>
-        <Route path={["/login"]}>
+        <Route path={["/login", "/auth-register"]}>
           <Login>
             <Switch>
               <Route path="/login" exact>
                 <LoginUser />
+              </Route>
+              <Route path="/auth-register" exact>
+                <AuthRegister />
               </Route>
             </Switch>
           </Login>

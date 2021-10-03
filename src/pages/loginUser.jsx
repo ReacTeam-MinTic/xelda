@@ -11,10 +11,10 @@ function LoginUser() {
               <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                 <div className="login-brand">
                   <img
-                    src="../assets/img/Logo-xelda.svg"
+                    src="../assets/img/logo.svg"
                     alt="logo"
-                    width={200}
-                    className="shadow-light"
+                    width={100}
+                    className="shadow-light rounded-circle"
                   />
                 </div>
                 <div className="card card-primary">
@@ -86,15 +86,38 @@ function LoginUser() {
                           </label>
                         </div>
                       </div>
-                      <div className="form-group">
-                        <button
-                          type="submit"
-                          className="btn btn-primary btn-lg btn-block"
-                          tabIndex={4}
-                        >
-                          Ingreso
-                        </button>
+                      <div class="container">
+                      <div class="row">
+                        
+                          <button
+                            type="submit"
+                            className="btn btn-primary btn-lg btn-block"
+                          >
+                            Iniciar sesión
+                          </button>
+                      
                       </div>
+                      <br></br>
+                      
+                      <div class="row">
+                        
+                          <button
+                            type="submit"
+                            className="btn btn-dark2 btn-lg btn-block"
+                          > <img src="../assets/img/logo-google.svg"
+                          alt="logo"
+                          width={17}/> <br />
+                             Incia sesión conGoogle
+                          </button>
+                        
+                      </div>
+                    </div>
+
+
+
+
+
+
                     </form>
                     <div className="row sm-gutters">
                     </div>

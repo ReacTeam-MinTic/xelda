@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "components/Card";
-import alertSucees from "styles/js/alerts";
+import Alerts from "styles/js/alerts";
 
 const FormUsers = () => {
   return (
@@ -56,7 +56,7 @@ const FormUsers = () => {
             </div>
           </div>
           <div className="card-footer text-right">
-            <button onClick={() => alertSucees()} className="btn btn-primary" >
+            <button onClick={Alerts[0]} className="btn btn-primary" >
               Guardar
             </button>
           </div>
