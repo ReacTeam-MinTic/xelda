@@ -71,6 +71,23 @@ const Aside = () => {
                 </li>
               </ul>
             </li>
+            <li className="nav-item dropdown">
+              <a
+                href="#"
+                className="nav-link has-dropdown"
+                data-toggle="dropdown"
+              >
+                <i className="fas fa-sign-in-alt"></i> <span>Autenticación</span>
+              </a>
+              <ul className="dropdown-menu" style={{ display: "none" }}>
+                <li>
+                  <a href="/login">Login</a>
+                </li>
+                <li>
+                  <a href="/auth-register">Registro</a>
+                </li>
+              </ul>
+            </li>
           </ul>
         </aside>
       </div>
