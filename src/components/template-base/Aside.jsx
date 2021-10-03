@@ -50,7 +50,7 @@ const Aside = () => {
                   <a href="/listproducts">Listado de productos</a>
                 </li>
                 <li>
-                  <a href="#">Agregar productos</a>
+                  <a href="/formproducts">Agregar productos</a>
                 </li>
               </ul>
             </li>

@@ -47,8 +47,8 @@ const RegistrarVenta = () => {
                             <p className="form-control font-weight-bold"><strong>Estado de la venta: {estadoVenta}</strong></p>
                         </div>
                         <div className=" d-flex justify-content-end flex-wrap my-2">
-                            <button onClick={ Alerts[0] } className="btn btn-primary rounded mx-3 p-2 my-2 font-weight-bold" type="button">Guardar</button>
-                            <button className="btn btn-danger rounded p-2 my-2 font-weight-bold" type="reset">Eliminar</button>
+                            <button onClick={ Alerts[0] } className="btn btn-primary btn-lg rounded mx-2 my-2" type="button">Guardar</button>
+                            <button onClick={ Alerts[1] }className="btn btn-danger btn-lg  rounded mx-2 my-2" type="reset">Eliminar</button>
                         </div>
                     </div>
                     

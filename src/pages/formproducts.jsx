@@ -48,12 +48,22 @@ const FormProducsts = () => {
                 <label>Message</label>
                 <textarea class="form-control" required=""></textarea>
               </div>
-              
             </div>
           </div>
-          <div className="card-footer text-right">
-            <button onClick={Alerts[0]} className="btn btn-primary">
+          <div className=" d-flex justify-content-end flex-wrap my-2">
+            <button
+              onClick={Alerts[0]}
+              className="btn btn-primary btn-lg rounded mx-2 my-2"
+              type="button"
+            >
               Guardar
+            </button>
+            <button
+              onClick={Alerts[1]}
+              className="btn btn-danger btn-lg  rounded mx-2 my-2"
+              type="reset"
+            >
+              Eliminar
             </button>
           </div>
         </form>
