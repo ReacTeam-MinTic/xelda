@@ -6,22 +6,37 @@ import listUsers from "datesLists";
 
 const AdminUser = () => {
   const [mostrarDatos, setMostrarDatos] = useState(true);
-  const [txtBoton, setTxtBoton]= useState("Nuevo Usuario");
-  
+  const [user, setUser] = useState([]);
+  const [txtBoton, setTxtBoton] = useState("Nuevo Usuario");
+
   useEffect(() => {
-    if(mostrarDatos){
+    setUser(listUsers);
+  }, []);
+
+  useEffect(() => {
+    if (mostrarDatos) {
       setTxtBoton("Nuevo Usuario");
-    } else{
-      setTxtBoton("Listado de Usuarios"); 
+    } else {
+      setTxtBoton("Listado de Usuarios");
     }
   }, [mostrarDatos]);
-  
 
   return (
     <>
-    <Card titulo="Módulo de Usuarios" subtitulo="Listado de usuarios" ruta1="Inicio" ruta2="Usuarios" ruta3="Lista de usuarios"  icon="far fa-user" fun={() => {setMostrarDatos(!mostrarDatos);}} boton={txtBoton}>
-    {mostrarDatos ? <ListUsers lista={listUsers} /> : <FormUsers/>}
-    </Card>
+      <Card
+        titulo="Módulo de Usuarios"
+        subtitulo="Listado de usuarios"
+        ruta1="Inicio"
+        ruta2="Usuarios"
+        ruta3="Lista de usuarios"
+        icon="far fa-user"
+        fun={() => {
+          setMostrarDatos(!mostrarDatos);
+        }}
+        boton={txtBoton}
+      >
+        {mostrarDatos ? <ListUsers lista={user} /> : <FormUsers />}
+      </Card>
     </>
   );
 };

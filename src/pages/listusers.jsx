@@ -1,5 +1,3 @@
-import listUsers from "datesLists";
-
 const ListUsers = ({lista}) => {
     
   return (
@@ -17,12 +15,12 @@ const ListUsers = ({lista}) => {
             </tr>
           </thead>
           <tbody>
-            {lista.map((listUsers) =>(
+            {lista.map((user) =>(
               <tr>
               <td>002</td>
-              <td>{listUsers.name}</td>
-              <td>{listUsers.lastName}</td>
-              <td> <div class="badge badge-success">{listUsers.role}</div></td>
+              <td>{user.name}</td>
+              <td>{user.lastName}</td>
+              <td> <div class="badge badge-success">{user.role}</div></td>
               <td><div class="badge badge-warning">Vendedor</div></td>
               <td>gustavo@hotmail.com</td>
               <td>
