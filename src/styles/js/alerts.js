@@ -57,6 +57,9 @@ const alertWarning = () => {
   });
 };
 
-const Alerts = [alertSucees, alertWarning];
+const Alerts = {
+  "alertSucees":alertSucees, 
+  "alertWarning":alertWarning
+};
 
 export default Alerts;
