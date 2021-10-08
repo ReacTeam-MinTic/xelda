@@ -2,6 +2,7 @@ import React from 'react'
 import Card from 'components/Card'
 
 const listventas = () => {
+
     return (
       <Card titulo="Módulo de ventas" subtitulo="Listado de ventas" ruta1="Inicio" ruta2="Ventas" ruta3="Lista de ventas" boton="Nueva venta" rutaBoton="/ventas" icon="far fa-user">
         <div className="table-responsive">
