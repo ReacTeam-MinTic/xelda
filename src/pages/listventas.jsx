@@ -1,9 +1,9 @@
 import React from 'react'
-import LayoutsCard from 'components/Card'
+import Card from 'components/Card'
 
 const listventas = () => {
     return (
-      <LayoutsCard titulo="Módulo de ventas" subtitulo="Listado de ventas" ruta1="Inicio" ruta2="Ventas" ruta3="Lista de ventas" boton="Nueva venta" icon="far fa-user">
+      <Card titulo="Módulo de ventas" subtitulo="Listado de ventas" ruta1="Inicio" ruta2="Ventas" ruta3="Lista de ventas" boton="Nueva venta" rutaBoton="/ventas" icon="far fa-user">
         <div className="table-responsive">
           <table id="example" className="table table-striped">
             <thead>
@@ -46,7 +46,7 @@ const listventas = () => {
             </tbody>
           </table>
         </div>
-      </LayoutsCard>
+      </Card>
     )
 }
 
