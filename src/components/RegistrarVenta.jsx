@@ -19,7 +19,6 @@ const RegistrarVenta = () => {
     /* useState - Estados: son todas las variables que necesitan cambiar dinámicamente.
        sintaxis: const [nomVariable, setterVariable] = useState(valor inicial para la variable) 
     */
-    const form = useRef(null)
 
     const [cantItems, setCantItems] = useState(0)
     const [valorUnitario, setValorUnitario] = useState(0)
@@ -50,19 +49,27 @@ const RegistrarVenta = () => {
         return cantItems * valorUnitario
     }
 
+    const form = useRef(null)
+
     const submitForm = (e)=>{
-        e.preventDefault()
-        console.log('Datos del formulario', form.current)
-    }
+        e.preventDefault();
+        const fd = new FormData(form.current);
+
+        const nuevaVariable = {};
+        fd.forEach((value, key) => {
+            nuevaVariable[key] = value;
+        });
+        console.log('Datos del formulario', fd);
+    };
 
     return (
         <>       
-            <form onSubmit={submitForm} className="d-flex justify-content-center align-items-center">
+            <form ref={form} onSubmit={submitForm} className="d-flex justify-content-center align-items-center">
                 <div className="d-flex flex-wrap m-0 m-sm-2 m-md-3 p-0 p-sm-2 p-md-3 justify-content-center">
                     <input type="number" placeholder="ID de la venta" className="form-control my-3 mx-2" required/>
                     <input type="number" placeholder="ID del vendedor" className="form-control my-3 mx-2" required/>
-                    <input onChange={(e) => {setNombreVendedor(e.target.value)}} type="text" placeholder="Nombre del vendedor" className="form-control my-3 mx-2" required/>
-                    <input onChange={(e) => {setIdProducto(e.target.value)}} type="number" placeholder="ID del producto" className="form-control my-3 mx-2" required/>
+                    <input onChange={(e) => {setNombreVendedor(e.target.value)}}  type="text" placeholder="Nombre del vendedor" className="form-control my-3 mx-2" required/>
+                    <input onChange={(e) => {setIdProducto(e.target.value)}}  type="number" placeholder="ID del producto" className="form-control my-3 mx-2" required/>
                     <input onChange={(e) => {setNombreProducto(e.target.value)}} type="text" placeholder="Nombre del producto" className="form-control my-3 mx-2" required/>
                     <input type="number" onChange={(e)=> {setCantItems(e.target.value)}} placeholder="Cantidad de items" className="form-control my-3 mx-2"/>
                     <input type="number" onChange={(e)=> {setValorUnitario(e.target.value)}} placeholder="Valor unitario del producto" className="form-control my-3 mx-2" required/>
@@ -81,12 +88,14 @@ const RegistrarVenta = () => {
                 <div className=" d-flex justify-content-center align-items-center border rounded flex-column my-2">
                     <p className="font-weight-bold">
 
-                    Total de la venta: {totalVenta()} <br />
                     Nombre del vendedor: {nombreVendedor} <br />
-                    Nombre del producto: {nombreProducto} <br />
-                    ID del producto: {idProducto} <br />
                     Nombre del cliente: {nombreCliente} <br />
-                    Documento del cliente: {documentoCliente} 
+                    Documento del cliente: {documentoCliente} <br />
+                    ID del producto: {idProducto} <br />
+                    Nombre del producto: {nombreProducto} <br />
+                    Cantidad de items: {cantItems} <br />
+                    Valor unitario: {valorUnitario} <br />
+                    <strong>Total de la venta: {totalVenta()}</strong> <br />
 
                     </p>
                 </div>
