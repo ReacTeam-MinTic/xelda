@@ -29,7 +29,7 @@ const RegistrarVenta = () => {
 
         <>
             
-            <form className="d-flex justify-content-center align-items-center">
+            <form className="needs-validation" noValidate>
                 <div className="d-flex flex-wrap m-0 m-sm-2 m-md-3 p-0 p-sm-2 p-md-3 justify-content-center">
                     <input type="number" placeholder="ID de la venta" className="form-control my-3 mx-2"/>
                     <input type="number" placeholder="ID del vendedor" className="form-control my-3 mx-2"/>

@@ -1,19 +1,19 @@
 import React from "react";
-import LayoutsCard from "components/Card";
+import Card from "components/Card";
 import Alerts from "styles/js/alerts";
 
 
 const ListVentas = () => {
   return (
-    <LayoutsCard
+    <Card
       titulo="Módulo de ventas"
       subtitulo="Listado de ventas"
-      ruta1="Inicio"
+      ruta1="inicio"
       ruta2="Ventas"
       ruta3="Lista de ventas"
       boton="Nueva venta"
       icon="far fa-user"
-      rutaheadercard="/ventas"
+      rutaheadercard="/formventas"
     
     >
       <div className="table-responsive">
@@ -70,7 +70,7 @@ const ListVentas = () => {
           </tbody>
         </table>
       </div>
-    </LayoutsCard>
+    </Card>
   );
 };
 

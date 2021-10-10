@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const Aside = () => {
   return (
@@ -33,7 +32,7 @@ const Aside = () => {
                   <a href="/listventas">Listado de ventas</a>
                 </li>
                 <li>
-                  <a href="/ventas">Registrar ventas</a>
+                  <a href="formventas">Registrar ventas</a>
                 </li>
               </ul>
             </li>

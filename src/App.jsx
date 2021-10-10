@@ -1,16 +1,16 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Index from "pages/index";
-import ListUsers from "pages/listusers";
-import ListProducts from "pages/listproducts";
 import Layouts from "layouts/layouts";
-import FormUsers from "pages/formusers";
-import FormProducsts from "pages/formproducts";
 import Login from "layouts/login";
-import LoginUser from "pages/loginUser";
-import Ventas from "pages/Ventas";
-import ListVentas from "pages/listventas";
-import AuthRegister from "pages/auth-register";
+import Index from "pages/index";
+import ListUsers from "pages/Usuarios/listusers";
+import ListProducts from "pages/Productos/listproducts";
+import FormUsers from "pages/Usuarios/formusers";
+import FormProducsts from "pages/Productos/formproducts";
+import LoginUser from "pages/Registro/loginUser";
+import AuthRegister from "pages/Registro/auth-register";
+import FormVentas from "pages/Ventas/formventas";
+import ListVentas from "pages/Ventas/listventas";
 
 // Un Route por cada Layouts - Ver los layouts como pages-templante (NO como componentes)
 // Agreagr otro Toute para Login
@@ -19,25 +19,25 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path={["/ventas", "/listventas", "/formusers", "/listusers", "/formproducts", "/listproducts"]}>
+        <Route path={["/formventas", "/listventas", "/formusers", "/listusers", "/formproducts", "/listproducts"]}>
           <Layouts>
             <Switch>
-              <Route path="/ventas" exact>
-                <Ventas />
+              <Route path="/formventas">
+                <FormVentas />
               </Route>
-              <Route path="/listventas" exact>
+              <Route path="/listventas">
                 <ListVentas />
               </Route>
-              <Route path="/formusers" exact>
+              <Route path="/formusers">
                 <FormUsers />
               </Route>
-              <Route path="/listusers" exact>
+              <Route path="/listusers" >
                 <ListUsers />
               </Route>
-              <Route path="/formproducts" exact>
+              <Route path="/formproducts" >
                 <FormProducsts />
               </Route>
-              <Route path="/listproducts" exact>
+              <Route path="/listproducts" >
                 <ListProducts />
               </Route>
             </Switch>
@@ -46,10 +46,10 @@ const App = () => {
         <Route path={["/login", "/auth-register"]}>
           <Login>
             <Switch>
-              <Route path="/login" exact>
+              <Route path="/login">
                 <LoginUser />
               </Route>
-              <Route path="/auth-register" exact>
+              <Route path="/auth-register">
                 <AuthRegister />
               </Route>
             </Switch>
@@ -58,7 +58,7 @@ const App = () => {
         <Route path={["/"]}>
           <Layouts>
             <Switch>
-              <Route path="/" exact>
+              <Route path="/">
                 <Index />
               </Route>
             </Switch>
