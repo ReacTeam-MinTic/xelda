@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const Aside = () => {
   return (
@@ -30,10 +29,10 @@ const Aside = () => {
               </a>
               <ul className="dropdown-menu" style={{ display: "none" }}>
                 <li>
-                  <Link to="/listventas">Listado de ventas</Link>
+                  <a href="/listventas">Listado de ventas</a>
                 </li>
                 <li>
-                  <Link to="/ventas">Registrar ventas</Link>
+                  <a href="formventas">Registrar ventas</a>
                 </li>
               </ul>
             </li>
@@ -50,7 +49,7 @@ const Aside = () => {
                   <a href="/listproducts">Listado de productos</a>
                 </li>
                 <li>
-                  <a href="#">Agregar productos</a>
+                  <a href="/formproducts">Agregar productos</a>
                 </li>
               </ul>
             </li>
@@ -68,6 +67,23 @@ const Aside = () => {
                 </li>
                 <li>
                   <a href="/formusers">Agregar usuarios</a>
+                </li>
+              </ul>
+            </li>
+            <li className="nav-item dropdown">
+              <a
+                href="#"
+                className="nav-link has-dropdown"
+                data-toggle="dropdown"
+              >
+                <i className="fas fa-sign-in-alt"></i> <span>Autenticación</span>
+              </a>
+              <ul className="dropdown-menu" style={{ display: "none" }}>
+                <li>
+                  <a href="/login">Login</a>
+                </li>
+                <li>
+                  <a href="/auth-register">Registro</a>
                 </li>
               </ul>
             </li>

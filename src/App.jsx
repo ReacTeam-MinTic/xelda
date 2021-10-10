@@ -1,44 +1,64 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import Index from "pages/index";
-import ListUsers from "pages/listusers";
-import ListVentas from "pages/listventas";
-import ListProducts from "pages/listproducts";
 import Layouts from "layouts/layouts";
-import Ventas from "pages/Ventas";
-import FormUsers from "pages/formusers";
-import Borrar from "pages/borrar";
+import Login from "layouts/login";
+import Index from "pages/index";
+import ListUsers from "pages/Usuarios/listusers";
+import ListProducts from "pages/Productos/listproducts";
+import FormUsers from "pages/Usuarios/formusers";
+import FormProducsts from "pages/Productos/formproducts";
+import LoginUser from "pages/Registro/loginUser";
+import AuthRegister from "pages/Registro/auth-register";
+import FormVentas from "pages/Ventas/formventas";
+import ListVentas from "pages/Ventas/listventas";
 
 // Un Route por cada Layouts - Ver los layouts como pages-templante (NO como componentes)
-//Agreagr otro Toute para Login
+// Agreagr otro Toute para Login
 
 const App = () => {
   return (
     <Router>
       <Switch>
-        <Route
-          path={["/listusers", "/listproducts", "/formusers", "/borrar", "/ventas", "/listventas", "/"]}> 
+        <Route path={["/formventas", "/listventas", "/formusers", "/listusers", "/formproducts", "/listproducts"]}>
           <Layouts>
             <Switch>
-              <Route path="/borrar" exact>
-                <Borrar />
+              <Route path="/formventas">
+                <FormVentas />
               </Route>
-              <Route path="/ventas" exact>
-                <Ventas/>
-              </Route>
-              <Route path="/listventas" exact>
+              <Route path="/listventas">
                 <ListVentas />
               </Route>
-              <Route path="/listusers" exact>
-                <ListUsers />
-              </Route>
-              <Route path="/listproducts" exact>
-                <ListProducts />
-              </Route>
-              <Route path="/formusers" exact>
+              <Route path="/formusers">
                 <FormUsers />
               </Route>
-              <Route path="/" exact>
+              <Route path="/listusers" >
+                <ListUsers />
+              </Route>
+              <Route path="/formproducts" >
+                <FormProducsts />
+              </Route>
+              <Route path="/listproducts" >
+                <ListProducts />
+              </Route>
+            </Switch>
+          </Layouts>
+        </Route>
+        <Route path={["/login", "/auth-register"]}>
+          <Login>
+            <Switch>
+              <Route path="/login">
+                <LoginUser />
+              </Route>
+              <Route path="/auth-register">
+                <AuthRegister />
+              </Route>
+            </Switch>
+          </Login>
+        </Route>
+        <Route path={["/"]}>
+          <Layouts>
+            <Switch>
+              <Route path="/">
                 <Index />
               </Route>
             </Switch>
