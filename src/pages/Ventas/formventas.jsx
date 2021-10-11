@@ -9,28 +9,28 @@ const ventasQuemadas = [
   {
     id: '1',
     nomVendedor: 'Carlos',
-    nomProducto: 'Tenis',
-    valor: 300000,
-    total: 0,
-    cantidad: 1,
+    nomProducto: 'medias',
+    valor: 5000,
+    total: 30000,
+    cantidad: 6,
     estado: 'En proceso'
   },
   {
     id: '2',
     nomVendedor: 'Raul',
     nomProducto: 'Chaqueta',
-    valor: 300000,
-    total: 0,
+    valor: 400000,
+    total: 400000,
     cantidad: 1,
-    estado: 'En proceso'
+    estado: 'Finalizada'
   },
   {
     id: '3',
     nomVendedor: 'Andrés',
     nomProducto: 'Pantalon',
-    valor: 300000,
-    total: 0,
-    cantidad: 1,
+    valor: 85000,
+    total: 170000,
+    cantidad: 2,
     estado: 'En proceso'
   },
 ];
@@ -90,8 +90,14 @@ const FormVentas = () => {
 };
 
 const TablaVentas = ({ listaVentas }) => {
+  const [colorEstado, setColorEstado] = useState('warning')
+
   useEffect(() => {
-    console.log('este es el listado de ventas en el componente de tabla', listaVentas);
+    if(listaVentas.estado == 'Finalizada'){
+      setColorEstado('success')
+    }else{
+      setColorEstado('warning')
+    }
   }, [listaVentas]);
 
   return (
@@ -119,7 +125,7 @@ const TablaVentas = ({ listaVentas }) => {
                 <td>{venta.cantidad}</td>
                 <td>{venta.valor}</td>
                 <td>{venta.total}</td>
-                <td>{venta.estado}</td>
+                <td><div class={venta.estado == "Finalizada" ? ('badge badge-success'): ('badge badge-warning')}>{venta.estado}</div></td>
               </tr>
             );
           })}
@@ -148,7 +154,6 @@ const FormularioCreacionVentas = ({ setMostrarTabla, listaVentas, setVentas }) =
   const submitForm = (e) => {
     e.preventDefault();
     const fd = new FormData(form.current);
-    console.log(estado)
     
     const nuevaVenta = {};
     fd.forEach((value, key) => {
@@ -214,7 +219,7 @@ const FormularioCreacionVentas = ({ setMostrarTabla, listaVentas, setVentas }) =
           </div>
           <div className="form-group">
             <label>Estado de la venta</label>
-            <input value={estado} type="text" name='estado' className="form-control" />
+            <input value={estado} type="text" name='estado' className="form-control" readOnly/>
           </div>
         </div>
       </div>
