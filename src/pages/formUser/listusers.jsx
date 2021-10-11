@@ -1,9 +1,9 @@
 
 import Alerts from "styles/js/alerts";
 import { nanoid } from "nanoid";
-import { useEffect, useState } from "react";
 
-const ListUsers = () => {
+
+const ListUsers = ({usuarios}) => {
   return (
       <div className="table-responsive">
         <table id="example" className="table table-striped">
