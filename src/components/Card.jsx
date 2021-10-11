@@ -17,11 +17,11 @@ const Card = ({children, titulo, subtitulo, ruta1, ruta2, ruta3}) => {
             <div className="breadcrumb-item">{ruta3}</div>
           </div>
         </div>
-        <div class="section-body">
-          <h2 class="section-title">{subtitulo}</h2>
+        <div className="section-body">
+          <h2 className="section-title">{subtitulo}</h2>
           {/* <p class="section-lead">This page is just an example for you to create your own page.</p> */}
-          <div class="card">
-            <div class="card-body">
+          <div className="card">
+            <div className="card-body">
               <main>{children}</main>
             </div>
             <div className="d-flex justify-content-end card-footer bg-whitesmoke">© 2021 - Xelda™</div>

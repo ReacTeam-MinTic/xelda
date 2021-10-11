@@ -3,6 +3,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import Card from "components/Card";
 import Alerts from "styles/js/alerts";
 import 'react-toastify/dist/ReactToastify.css'
+import { nanoid } from 'nanoid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const ventasQuemadas = [
@@ -13,7 +15,7 @@ const ventasQuemadas = [
     valor: 5000,
     total: 30000,
     cantidad: 6,
-    estado: 'En proceso'
+    estado: 'Entregada'
   },
   {
     id: '2',
@@ -22,7 +24,7 @@ const ventasQuemadas = [
     valor: 400000,
     total: 400000,
     cantidad: 1,
-    estado: 'Finalizada'
+    estado: 'Entregada'
   },
   {
     id: '3',
@@ -31,7 +33,7 @@ const ventasQuemadas = [
     valor: 85000,
     total: 170000,
     cantidad: 2,
-    estado: 'En proceso'
+    estado: 'Cancelada'
   },
 ];
 
@@ -109,14 +111,23 @@ const TablaVentas = ({ listaVentas }) => {
           <tbody>
           {listaVentas.map((venta) => {
             return (
-              <tr>
+              <tr key={ nanoid() }>
                 <td>{venta.id}</td>
                 <td>{venta.nomVendedor}</td>
                 <td>{venta.nomProducto}</td>
                 <td>{venta.cantidad}</td>
                 <td>{venta.valor}</td>
                 <td>{venta.total}</td>
-                <td><div class={venta.estado === "Finalizada" ? ('badge badge-success'): ('badge badge-warning')}>{venta.estado}</div></td>
+                <td>
+                  <div className="d-flex bg-dark">
+                    <i className="fa-solid fa-pen-to-square">hola</i>
+                  </div>
+                </td>
+                <td>
+                  <div className={venta.estado === "Entregada" ? ('badge badge-success'): ('badge badge-danger')}>
+                    {venta.estado}
+                  </div>
+                </td>
               </tr>
             );
           })}
@@ -152,7 +163,6 @@ const FormularioCreacionVentas = ({ setMostrarTabla, listaVentas, setVentas }) =
     });
 
     setMostrarTabla(true);
-    
     setVentas([...listaVentas, nuevaVenta]);
     // identificar el caso de éxito y mostrar un toast de éxito
     toast.success('Venta agrega con éxito');
@@ -216,7 +226,7 @@ const FormularioCreacionVentas = ({ setMostrarTabla, listaVentas, setVentas }) =
       </div>
       <div className=" d-flex justify-content-end flex-wrap my-2">
         <button
-          onClick={()=>{setEstado('Finalizada')}}
+          onClick={()=>{setEstado('Entregada')}}
           className="btn btn-primary btn-lg rounded mx-2 my-2"
           type="submit"
         >
@@ -224,7 +234,7 @@ const FormularioCreacionVentas = ({ setMostrarTabla, listaVentas, setVentas }) =
         </button>
         <button
           onClick={Alerts[1]}
-          className="btn btn-danger btn-lg  rounded mx-2 my-2"
+          className="btn btn-danger btn-lg rounded mx-2 my-2"
           type="reset"
         >
           Eliminar
