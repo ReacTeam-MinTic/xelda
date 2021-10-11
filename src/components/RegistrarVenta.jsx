@@ -8,6 +8,13 @@ const RegistrarVenta = () => {
     const [valorUnitario, setValorUnitario] = useState(0)
     const [estadoVenta, setEstadoVenta] = useState('En proceso')
 
+    const aumentarIdVentas = () =>{
+        return setIdVenta(idVenta + 1)
+    }
+
+    const totalVenta = ()=>{
+        return cantItems * valorUnitario
+    }
 
     useEffect(()=>{
         aumentarIdVentas()
@@ -17,13 +24,9 @@ const RegistrarVenta = () => {
         totalVenta()
     }, [cantItems, valorUnitario]);
 
-    const aumentarIdVentas = () =>{
-        return setIdVenta(idVenta + 1)
-    }
+   
 
-    const totalVenta = ()=>{
-        return cantItems * valorUnitario
-    }
+   
 
     return (
 

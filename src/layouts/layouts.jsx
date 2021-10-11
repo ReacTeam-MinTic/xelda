@@ -1,13 +1,14 @@
 import Aside from 'components/template-base/Aside';
+import Content from 'components/template-base/Content';
 import Footer from 'components/template-base/Footer';
 import Header from 'components/template-base/Header';
 
-const Layouts = ({children}) => {
+const Layouts = () => {
     return (
         <>
             <Header />
             <Aside />
-            <main>{children}</main>
+            <Content />
             <Footer />
         </>
     )

@@ -1,40 +1,22 @@
-import { Link } from "react-router-dom"; 
+// import { Link } from "react-router-dom";
 
-const Card = ({children, titulo, subtitulo, ruta1, ruta2, ruta3, boton, icon, rutaheadercard}) => {
-  return (
-    <div className="main-content" style={{ minHeight: 581 }}>
-      <section className="section">
-        <div className="section-header">
-          <h1>{titulo}</h1>
-          
-          <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active">
-              <Link to="#">{ruta1}</Link>
-            </div>
-            <div class="breadcrumb-item">
-              <Link to="#">{ruta2}</Link>
-            </div>
-            <div class="breadcrumb-item">{ruta3}</div>
-          </div>
-        </div>
-        <div class="section-body">
-          <h2 class="section-title">{subtitulo}</h2>
-          {/* <p class="section-lead">This page is just an example for you to create your own page.</p> */}
-          <div class="card">
-            <div class="card-header">{/* <h4>Example Card</h4> */}
-            <div style={{marginLeft: 'auto'}}>
-            <a href={rutaheadercard} class="btn btn-lg btn-icon icon-left btn-primary"><i class={icon}></i> {boton}</a>
-            </div>
-            </div>
-            <div class="card-body">
-              <main>{children}</main>
-            </div>
-            <div className="d-flex justify-content-end card-footer bg-whitesmoke">© 2021 - Xelda™</div>
-          </div>
-        </div>
-      </section>
-    </div>
-  );
-};
+// const Card = ({
+//   children,
+//   titulo,
+//   subtitulo,
+//   ruta1,
+//   ruta2,
+//   ruta3,
+//   icon,
+  
+// }) => {
+//   return (
+//     <div className="main-content" style={{ minHeight: 581 }}>
+//       <section className="section">
+     
+//          </section>
+//     </div>
+//   );
+// };
 
-export default Card;
+// export default Card;

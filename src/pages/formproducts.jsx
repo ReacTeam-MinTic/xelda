@@ -24,6 +24,7 @@ const FormProducsts = () => {
               <div className="form-group">
                 <label>Id</label>
                 <input
+                  
                   type="number"
                   className="form-control is-valid"
                   required

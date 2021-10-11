@@ -10,12 +10,22 @@ const alertSucees = () => {
   });
 };
 
+const alertError = () => {
+  iziToast.show({
+    title: "¡ATENCiÓN!",
+    message: "Ha ocurrido un error",
+    color: "red",
+    position: "topRight",
+    icon: "far fa-check-circle",
+  });
+};
+
 const alertWarning = () => {
   iziToast.show({
     title: "¡Cuidado!",
     message: "¿Está a punto de elimanar el siguiente registro: ",
     color: "red",
-    position: 'center',
+    position: 'topRight',
     icon: "far fa-check-circle",
     timeout: 0,
     buttons: [
@@ -59,7 +69,8 @@ const alertWarning = () => {
 
 const Alerts = {
   "alertSucees":alertSucees, 
-  "alertWarning":alertWarning
+  "alertWarning":alertWarning, 
+  "alertError": alertError
 };
 
 export default Alerts;

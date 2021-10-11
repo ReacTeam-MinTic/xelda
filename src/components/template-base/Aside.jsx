@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 
 const Aside = () => {
   return (
@@ -64,11 +63,9 @@ const Aside = () => {
               </a>
               <ul className="dropdown-menu" style={{ display: "none" }}>
                 <li>
-                  <a href="/listusers">Listado de usuarios</a>
+                  <a href="/users">Usuarios</a>
                 </li>
-                <li>
-                  <a href="/formusers">Agregar usuarios</a>
-                </li>
+               
               </ul>
             </li>
             <li className="nav-item dropdown">
