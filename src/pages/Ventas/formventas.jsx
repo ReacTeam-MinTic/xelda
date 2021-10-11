@@ -90,15 +90,6 @@ const FormVentas = () => {
 };
 
 const TablaVentas = ({ listaVentas }) => {
-  const [colorEstado, setColorEstado] = useState('warning')
-
-  useEffect(() => {
-    if(listaVentas.estado == 'Finalizada'){
-      setColorEstado('success')
-    }else{
-      setColorEstado('warning')
-    }
-  }, [listaVentas]);
 
   return (
     <div className="table-responsive">
@@ -125,7 +116,7 @@ const TablaVentas = ({ listaVentas }) => {
                 <td>{venta.cantidad}</td>
                 <td>{venta.valor}</td>
                 <td>{venta.total}</td>
-                <td><div class={venta.estado == "Finalizada" ? ('badge badge-success'): ('badge badge-warning')}>{venta.estado}</div></td>
+                <td><div class={venta.estado === "Finalizada" ? ('badge badge-success'): ('badge badge-warning')}>{venta.estado}</div></td>
               </tr>
             );
           })}
