@@ -2,46 +2,52 @@ import React, { useEffect, useState, useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import Card from "components/Card";
 import Alerts from "styles/js/alerts";
+import 'react-toastify/dist/ReactToastify.css'
 
 
-const vehiculosBackend = [
+const ventasQuemadas = [
   {
     id: '1',
-    vendedor: 'Carlos',
-    descripcion: 'Tenis',
-    total: 300000,
+    nomVendedor: 'Carlos',
+    nomProducto: 'Tenis',
+    valor: 300000,
+    total: 0,
+    cantidad: 1,
     estado: 'En proceso'
   },
   {
     id: '2',
-    vendedor: 'Raul',
-    descripcion: 'Chaqueta',
-    total: 300000,
+    nomVendedor: 'Raul',
+    nomProducto: 'Chaqueta',
+    valor: 300000,
+    total: 0,
+    cantidad: 1,
     estado: 'En proceso'
   },
   {
     id: '3',
-    vendedor: 'Andrés',
-    descripcion: 'Pantalon',
-    total: 300000,
+    nomVendedor: 'Andrés',
+    nomProducto: 'Pantalon',
+    valor: 300000,
+    total: 0,
+    cantidad: 1,
     estado: 'En proceso'
   },
 ];
 
 const FormVentas = () => {
   const [mostrarTabla, setMostrarTabla] = useState(true);
-  const [vehiculos, setVehiculos] = useState([]);
-  const [textoBoton, setTextoBoton] = useState('Crear Nuevo Vehículo');
+  const [ventas, setVentas] = useState([]);
+  const [textoBoton, setTextoBoton] = useState('Registrar una nueva venta');
   const [colorBoton, setColorBoton] = useState('primary');
 
   useEffect(() => {
-    
-    setVehiculos(vehiculosBackend);
+    setVentas(ventasQuemadas);
   }, []);
 
   useEffect(() => {
     if (mostrarTabla) {
-      setTextoBoton('Crear una nueva venta');
+      setTextoBoton('Registrar una nueva venta');
       setColorBoton('primary');
     } else {
       setTextoBoton('Mostrar listado de ventas');
@@ -54,7 +60,7 @@ const FormVentas = () => {
       titulo="Módulo de Ventas"
       subtitulo="Administrar Ventas"
       ruta1="Inicio"
-      ruta2="Productos"
+      ruta2="Ventas"
       ruta3="Formulario de ventas">
         <div className='d-flex flex-column justify-content-start p-2'>
           <div className='d-flex justify-content-end p-2'>
@@ -63,19 +69,19 @@ const FormVentas = () => {
                 setMostrarTabla(!mostrarTabla);
               }}
               className={`text-white btn btn-lg btn-icon icon-left btn-${colorBoton}`}
-            >
-              {textoBoton}
+              >{textoBoton}
             </button>
           </div>
           {mostrarTabla ? (
-            <TablaVehiculos listaVehiculos={vehiculos} />
+            <TablaVentas listaVentas={ventas} />
           ) : (
-            <FormularioCreacionVehiculos
+            <FormularioCreacionVentas
               setMostrarTabla={setMostrarTabla}
-              listaVehiculos={vehiculos}
-              setVehiculos={setVehiculos}
+              listaVentas={ventas}
+              setVentas={setVentas}
             />
           )}
+
           <ToastContainer position='bottom-center' autoClose={5000} />
         </div>
       </Card> 
@@ -83,12 +89,12 @@ const FormVentas = () => {
   );
 };
 
-const TablaVehiculos = ({ listaVehiculos }) => {
+const TablaVentas = ({ listaVentas }) => {
   useEffect(() => {
-    console.log('este es el listado de vehiculos en el componente de tabla', listaVehiculos);
-  }, [listaVehiculos]);
-  return (
+    console.log('este es el listado de ventas en el componente de tabla', listaVentas);
+  }, [listaVentas]);
 
+  return (
     <div className="table-responsive">
         <table id="example" className="table table-striped">
           <thead>
@@ -96,20 +102,24 @@ const TablaVehiculos = ({ listaVehiculos }) => {
               <th>#</th>
               <th>Nombre del vendedor</th>
               <th>Descripción de la venta</th>
+              <th>Cantidad</th>
+              <th>Valor unitario</th>
               <th>Valor total</th>
               <th>Estado</th>
               <th>Opciones</th>
             </tr>
           </thead>
           <tbody>
-          {listaVehiculos.map((vehiculo) => {
+          {listaVentas.map((venta) => {
             return (
               <tr>
-                <td>{vehiculo.id}</td>
-                <td>{vehiculo.vendedor}</td>
-                <td>{vehiculo.descripcion}</td>
-                <td>{vehiculo.total}</td>
-                <td>{vehiculo.estado}</td>
+                <td>{venta.id}</td>
+                <td>{venta.nomVendedor}</td>
+                <td>{venta.nomProducto}</td>
+                <td>{venta.cantidad}</td>
+                <td>{venta.valor}</td>
+                <td>{venta.total}</td>
+                <td>{venta.estado}</td>
               </tr>
             );
           })}
@@ -119,24 +129,39 @@ const TablaVehiculos = ({ listaVehiculos }) => {
   );
 };
 
-const FormularioCreacionVehiculos = ({ setMostrarTabla, listaVehiculos, setVehiculos }) => {
+const FormularioCreacionVentas = ({ setMostrarTabla, listaVentas, setVentas }) => {
+
+  const [cantItems, setCantItems] = useState(0)
+  const [valorUnitario, setValorUnitario] = useState(0)
+  const [estado, setEstado] = useState('En proceso')
+
+  useEffect(()=>{
+    totalVenta()
+  }, [cantItems, valorUnitario]);
+
+  const totalVenta = ()=>{
+      return cantItems * valorUnitario
+  }
+
   const form = useRef(null);
 
   const submitForm = (e) => {
     e.preventDefault();
     const fd = new FormData(form.current);
+    console.log(estado)
     
-    const nuevoVehiculo = {};
+    const nuevaVenta = {};
     fd.forEach((value, key) => {
-      nuevoVehiculo[key] = value;
+      nuevaVenta[key] = value;
     });
 
     setMostrarTabla(true);
-    setVehiculos([...listaVehiculos, nuevoVehiculo]);
+    
+    setVentas([...listaVentas, nuevaVenta]);
     // identificar el caso de éxito y mostrar un toast de éxito
-    toast.success('Vehículo agregado con éxito');
+    toast.success('Venta agrega con éxito');
     // identificar el caso de error y mostrar un toast de error
-    // toast.error('Error creando un vehículo');
+    // toast.error('Error creando un Venta');
   };
 
   return (
@@ -148,41 +173,54 @@ const FormularioCreacionVehiculos = ({ setMostrarTabla, listaVehiculos, setVehic
       <div className="card-body">
         <div class="card-body">
           <div className="form-group">
-            <label>Id</label>
-            <input
-              type="number"
-              className="form-control is-valid"
-              name='id'
-              required
-            />
+            <label htmlFor="id">Id de la venta</label>
+            <input type="number" className="form-control" name='id' required />
           </div>
           <div className="form-group">
-            <label>Nombre</label>
-            <input type="text" name='nombre' className="form-control is-valid" required />
+            <label>ID del vendedor</label>
+            <input type="number" name='idVendedor' className="form-control" required />
           </div>
           <div className="form-group">
-            <label>Valor Unitario</label>
-            <input type="number" name='valor'className="form-control" required />
+            <label>Nombre del vendedor</label>
+            <input type="text" name='nomVendedor' className="form-control" required />
           </div>
-          <div class="form-group">
-            <label>Estado</label>
-            <select name='estado' class="form-control select2" defaultValue={0} required>
-            <option disabled value={0}>
-              Seleccione una opción
-            </option>
-              <option>Disponible</option>
-              <option>Sin Existencias</option>
-            </select>
+          <div className="form-group">
+            <label>Documento de identidad del cliente</label>
+            <input type="number" name='diCliente' className="form-control" required />
           </div>
-          <div class="form-group mb-0">
-            <label>Message</label>
-            <textarea class="form-control" required=""></textarea>
+          <div className="form-group">
+            <label>Nombre del cliente</label>
+            <input type="text" name='nomCliente'className="form-control" required />
+          </div>
+          <div className="form-group">
+            <label>ID del producto</label>
+            <input type="number" name='idProducto'className="form-control" required />
+          </div>
+          <div className="form-group">
+            <label>Nombre del producto</label>
+            <input type="text" name='nomProducto' className="form-control" required />
+          </div>
+          <div className="form-group">
+            <label>Valor unitario</label>
+            <input onChange={(e)=> {setCantItems(e.target.value)}} type="number" name='valor'className="form-control" required />
+          </div>
+          <div className="form-group">
+            <label>Cantidad de items</label>
+            <input onChange={(e)=> {setValorUnitario(e.target.value)}} type="number" name='cantidad'className="form-control" required />
+          </div>
+          <div className="form-group">
+            <label>Total de la venta</label>
+            <input value={totalVenta()} type="number" name='total' className="form-control" readOnly/>
+          </div>
+          <div className="form-group">
+            <label>Estado de la venta</label>
+            <input value={estado} type="text" name='estado' className="form-control" />
           </div>
         </div>
       </div>
       <div className=" d-flex justify-content-end flex-wrap my-2">
         <button
-          onClick={Alerts[0]}
+          onClick={()=>{setEstado('Finalizada')}}
           className="btn btn-primary btn-lg rounded mx-2 my-2"
           type="submit"
         >
