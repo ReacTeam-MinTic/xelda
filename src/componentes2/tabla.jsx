@@ -1,13 +1,14 @@
 import React from "react";
 
-const Tabla = ({title}) => {
+const Tabla = () => {
   return (
     <>
+    
     <div className="row">
       <div className="col-12 col-md-12 col-lg-12">
         <div className="card">
           <div className="card-header">
-            <h4>{title}</h4>
+            <h4>ooo</h4>
           </div>
           <div className="card-body">
             <div className="table-responsive">
@@ -110,7 +111,7 @@ const Tabla = ({title}) => {
         </div>
       </div>
     </div>
-   
+    
     </>
   );
 };
