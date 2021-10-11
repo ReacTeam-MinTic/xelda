@@ -18,27 +18,22 @@ const ListUsers = ({usuarios}) => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>hh</td>
-              <td>gg</td>
-              <td>
-                <div class="badge badge-success">gg</div>
-              </td>
-              <td>
-                <div class="badge badge-warning">gg</div>
-              </td>
-              <td>gg</td>
+          {usuarios.map((user) =>(
+              <tr>
+              <td>002</td>
+              <td>{user.name}</td>
+              <td>{user.lastName}</td>
+              <td> <div class="badge badge-success">{user.role}</div></td>
+              <td><div class="badge badge-warning">Vendedor</div></td>
+              <td>gustavo@hotmail.com</td>
               <td>
                 <div class="row justify-content-md-center">
-                  <a onClick="{}">
-                    <i class="fas fa-edit"></i>
-                  </a>
-                  <a onClick={() => Alerts.alertWarning()}>
-                    <i class="fas fa-trash-alt"></i>
-                  </a>
+                  <a href=""><i class="fas fa-edit"></i></a>
+                  <a href=""><i class="fas fa-trash-alt"></i></a>
                 </div>
-              </td>
+                </td>
             </tr>
+            ))}
           </tbody>
         </table>
       </div>
