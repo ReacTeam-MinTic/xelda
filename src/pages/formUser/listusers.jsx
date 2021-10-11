@@ -3,7 +3,7 @@ import Alerts from "styles/js/alerts";
 import { nanoid } from "nanoid";
 
 
-const ListUsers = ({usuarios}) => {
+const ListUsers = ({usersDb}) => {
   return (
       <div className="table-responsive">
         <table id="example" className="table table-striped">
@@ -18,11 +18,11 @@ const ListUsers = ({usuarios}) => {
             </tr>
           </thead>
           <tbody>
-          {usuarios.map((user) =>(
+          {usersDb.map((user) =>(
               <tr>
-              <td>002</td>
+              
               <td>{user.name}</td>
-              <td>{user.lastName}</td>
+              <td>{user.lastname}</td>
               <td> <div class="badge badge-success">{user.role}</div></td>
               <td><div class="badge badge-warning">Vendedor</div></td>
               <td>gustavo@hotmail.com</td>
