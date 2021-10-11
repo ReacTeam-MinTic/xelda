@@ -2,9 +2,9 @@ import React, { useEffect, useState, useRef } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import Card from "components/Card";
 import Alerts from "styles/js/alerts";
+import 'styles/styles.css'
 import 'react-toastify/dist/ReactToastify.css'
 import { nanoid } from 'nanoid';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 const ventasQuemadas = [
@@ -15,7 +15,8 @@ const ventasQuemadas = [
     valor: 5000,
     total: 30000,
     cantidad: 6,
-    estado: 'Entregada'
+    estado: 'Entregada',
+    opciones: <i className="fa-solid fa-pen-to-square"></i>
   },
   {
     id: '2',
@@ -42,6 +43,17 @@ const FormVentas = () => {
   const [ventas, setVentas] = useState([]);
   const [textoBoton, setTextoBoton] = useState('Registrar una nueva venta');
   const [colorBoton, setColorBoton] = useState('primary');
+  const [ejecutarConsulta, setEjecutarConsulta] = useState(true)
+
+  useEffect(() => {
+    /* funcion get del axios obtenerVentas = async ()=>{}*/
+
+    if(ejecutarConsulta){
+      /* obtenerVentas() */
+      /* setEjecutarConsulta(false) */
+    }
+   
+  }, [ejecutarConsulta])
 
   useEffect(() => {
     setVentas(ventasQuemadas);
@@ -93,49 +105,108 @@ const FormVentas = () => {
 
 const TablaVentas = ({ listaVentas }) => {
 
+  const form = useRef(null)
+
   return (
     <div className="table-responsive">
-        <table id="example" className="table table-striped">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Nombre del vendedor</th>
-              <th>Descripción de la venta</th>
-              <th>Cantidad</th>
-              <th>Valor unitario</th>
-              <th>Valor total</th>
-              <th>Estado</th>
-              <th>Opciones</th>
-            </tr>
-          </thead>
-          <tbody>
-          {listaVentas.map((venta) => {
-            return (
-              <tr key={ nanoid() }>
-                <td>{venta.id}</td>
-                <td>{venta.nomVendedor}</td>
-                <td>{venta.nomProducto}</td>
-                <td>{venta.cantidad}</td>
-                <td>{venta.valor}</td>
-                <td>{venta.total}</td>
-                <td>
-                  <div className="d-flex bg-dark">
-                    <i className="fa-solid fa-pen-to-square">hola</i>
-                  </div>
-                </td>
-                <td>
-                  <div className={venta.estado === "Entregada" ? ('badge badge-success'): ('badge badge-danger')}>
-                    {venta.estado}
-                  </div>
-                </td>
-              </tr>
-            );
-          })}
-          </tbody>
-        </table>
-      </div>
+      <table id="example" className="table table-striped table-hover">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Nombre del vendedor</th>
+            <th>Descripción de la venta</th>
+            <th>Cantidad</th>
+            <th>Valor unitario</th>
+            <th>Valor total</th>
+            <th>Estado</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+        {listaVentas.map((venta) => {
+          return (
+            <FilaVenta key={ nanoid() } venta = {venta}/>
+          );
+        })}
+        </tbody>
+      </table>
+    </div>
   );
 };
+
+const FilaVenta = ( {venta} )=>{
+
+  const [edit, setEdit] = useState(false)
+  const [infoNuevaVenta, setInforNuevaVenta] = useState({
+    id: venta.id,
+    nomVendedor: venta.nomVendedor,
+    nomProducto: venta.nomProducto,
+    cantidad: venta.cantidad
+  }) 
+  const actualizarVenta = ()=>{
+    /* con axios traer el metodo patch y cambiar el icono de editar con setEdit(false) */
+
+  }
+
+  const eliminarVenta = ()=>{
+    /* Traer la operación de tipo delete desde axios */
+  }
+
+  return(
+    <tr>
+      { edit ? 
+      (
+        <>
+          <td><input className="border rounded" type="text" 
+          value={infoNuevaVenta.id}
+          onChange={e=>setInforNuevaVenta({...setInforNuevaVenta, id: e.target.value})}
+          /></td>
+          <td><input className="border rounded" type="text" 
+          value={infoNuevaVenta.nomVendedor}
+          onChange={e=>setInforNuevaVenta({...setInforNuevaVenta, nomVendedor: e.target.value})}
+          /></td>
+          <td><input className="border rounded" type="text" 
+          value={infoNuevaVenta.nomProducto}
+          onChange={e=>setInforNuevaVenta({...setInforNuevaVenta, nomProducto: e.target.value})}
+          /></td>
+          <td><input className="border rounded" type="text" 
+          value={infoNuevaVenta.cantidad}
+          onChange={e=>setInforNuevaVenta({...setInforNuevaVenta, cantidad: e.target.value})}
+          /></td>
+        </>
+      )
+      :
+      (
+        <>
+          <td>{venta.id}</td>
+          <td>{venta.nomVendedor}</td>
+          <td>{venta.nomProducto}</td>
+          <td>{venta.cantidad}</td>
+        </>
+      )}
+      <td>{venta.valor}</td>
+      <td>{venta.total}</td>
+      <td>
+        <div className={venta.estado === "Entregada" ? ('badge badge-success'): ('badge badge-danger')}>
+          {venta.estado}
+        </div>
+      </td>
+      <td>
+        <div className="d-flex justify-content-around">
+          { edit ? 
+            ( 
+              <i onClick={()=> setEdit(!edit)/* actualizarVenta */} class="fas fa-check" />
+            )
+            : 
+            (
+              <i onClick={()=> setEdit(!edit)} className="fas fa-pen pointer"></i>
+            )}
+          <i onClick={eliminarVenta} className="fas fa-trash-alt eliminar"></i>
+        </div>
+      </td>
+    </tr>
+  )
+}
 
 const FormularioCreacionVentas = ({ setMostrarTabla, listaVentas, setVentas }) => {
 
