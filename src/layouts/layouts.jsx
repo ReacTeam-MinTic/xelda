@@ -1,7 +1,7 @@
 import Footer from "components/template-base/Footer";
-import MainSidebar from "components/MainSidebar";
-import NavBar from "components/NavBar";
-import SectionBody from "components/SectionBody";
+import MainSidebar from "components/template-base/MainSidebar";
+import NavBar from "components/template-base/NavBar";
+
 
 const Layouts = ({ children }) => {
   return (
@@ -9,11 +9,7 @@ const Layouts = ({ children }) => {
       <MainSidebar />
       <NavBar />
       <div class="main-content">
-        <section class="section">
-          <SectionBody>
-            {children}
-          </SectionBody>
-        </section>
+        <section class="section">{children}</section>
       </div>
       <Footer />
     </>

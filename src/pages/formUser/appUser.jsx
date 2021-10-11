@@ -3,42 +3,23 @@ import Card from "components/Card";
 import ListUsers from "./listusers";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import SectionBody from "components/SectionBody";
+import SectionTitle from "components/template-base/content/SectionTitle";
+import CardHeader from "components/template-base/content/CardHeader";
+import SectionHeader from "components/template-base/content/SectionHeader";
 
 const AppUser = () => {
   const [viewTable, setWiewTable] = useState(true);
-  //const [textButton, setTextButton] = useState("Nuevo Usuario");
-  //const [user, setListUser] = useState([]);
-
-  // useEffect(() => {
-  //   if (viewTable) {
-  //   } else {
-  //     setTextButton("Ver Todos");
-  //   }
-  // }, [viewTable]);
-
+ 
   return (
     <>
-    {/* <Card
-      titulo="Módulo de Usuarios"
-      subtitulo="Listado de usuarios"
-      ruta1="Inicio"
-      ruta2="Usuarios"
-      ruta3="Lista de usuarios"
-      boton="Nuevo Usuario"
-      icon="far fa-user"
-      rutaheadercard="/formusers"
-      setWiewTable = {setWiewTable}
-      viewTable = {viewTable} 
-    > */}
-   
-      {viewTable ? (
-        <ListUsers />
-      ) : (
-        <FormUsers />
-      )}
-      {/* </Card> */}
-     
+      <SectionHeader/>
+      <SectionTitle />
+      <div className="card">
+        <CardHeader />
+        <div className="card-body">
+          {viewTable ? <ListUsers /> : <FormUsers />}
+        </div>
+      </div>
     </>
   );
 };
