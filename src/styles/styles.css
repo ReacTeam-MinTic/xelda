@@ -1,0 +1,8 @@
+.fa-check:hover, .fa-pen:hover{
+    cursor: pointer;
+    color:rgb(71,195,99);
+}
+
+.eliminar:hover{
+    color: rgb(252,84,75);
+}
