@@ -6,7 +6,7 @@ import Alerts from "styles/js/alerts";
 import ButtonSerarch from "components/utilsComponent/buttonSerarch";
 
 
-const FileTableUsers = ({ user, setRunQuery }) => {
+const FileTableUsers = ({ user, setRunQuery}) => {
   const [edit, setEdit] = useState(false);
   const [infoNewUser, setInfoNewUser] = useState({
     name:user.name,
@@ -21,25 +21,26 @@ const FileTableUsers = ({ user, setRunQuery }) => {
     setEdit(false);
     const options = {
       method: 'PATCH',
-      url: '/',
+      url: 'http://localhost:5000/editar/usuarios',
       headers: {'Content-Type': 'application/json'},
       data: {...infoNewUser, id: user._id}
     };
     
     await axios.request(options).then(function (response) {
       console.log(response.data);
-      Alerts.sualertSucees();
-      //setEdit(false);
+      Alerts.alertSucees();
+      setRunQuery(true);
+      setEdit(false);
     }).catch(function (error) {
       Alerts.alertError();
-      console.error(error);
+      console.error("_____dd",error);
     });
   };
   
   const deleteUser = async () => {
     const options = {
       method: 'DELETE',
-      url: 'http://localhost:5000/users',
+      url: 'http://localhost:5000/eliminar/usuarios',
       headers: {'Content-Type': 'application/json'},
       data: {_id: user._id}
     };
@@ -69,7 +70,7 @@ const FileTableUsers = ({ user, setRunQuery }) => {
           "<button>OK</button>",
           function (instance, toast) {
             
-            alert("Aqui se ejecutará la función de eliminar");
+            deleteUser();
             instance.hide(
               {
                 transitionOut: "fadeOutUp",
@@ -192,19 +193,17 @@ const FileTableUsers = ({ user, setRunQuery }) => {
   );
 };
 
-const ListUsers = ({ usersDb, setRunQuery }) => {
+const ListUsers = ({ usersDb, setRunQuery}) => {
   const [busqueda, setBusqueda] =useState('');
   const[usersFitred, setUsersFitred] = useState(usersDb);
+
   useEffect(() => {
    setUsersFitred(
      usersDb.filter((elemento)=>{
        return JSON.stringify(elemento).toLowerCase().includes(busqueda.toLowerCase());
      })
    );
-  }, [busqueda])
-
-  useEffect(() => {
-  }, [usersDb, usersDb])
+  }, [busqueda, usersDb])
   
 
   return (
@@ -227,7 +226,7 @@ const ListUsers = ({ usersDb, setRunQuery }) => {
         </thead>
         <tbody>
           {usersFitred.map((user) => {
-            return <FileTableUsers key={nanoid()} user={user} setRunQuery={setRunQuery} />;
+            return <FileTableUsers key={nanoid()} user={user} setRunQuery={setRunQuery}/>;
           })}
         </tbody>
       </table>

@@ -1,10 +1,10 @@
 import FormUsers from "./formusers";
 import ListUsers from "./listusers";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import SectionTitle from "components/template-base/content/SectionTitle";
 import CardHeader from "components/template-base/content/CardHeader";
 import SectionHeader from "components/template-base/content/SectionHeader";
+import { getUsersBackend } from "utils/api";
 
 
 const AppUser = () => {
@@ -15,20 +15,8 @@ const AppUser = () => {
   
 
   useEffect(() => {
-    const getUsersBackend = async () => {
-      const options = { method: "GET", url: "http://localhost:5000/users" };
-      await axios
-        .request(options)
-        .then(function (response) {
-          setUsersDb(response.data);
-        })
-        .catch(function (error) {
-          console.error(error);
-        });
-    };
     if(runQuery){
-      getUsersBackend();
-      setRunQuery(false);
+      getUsersBackend(setUsersDb, setRunQuery);
     }
   }, [runQuery])
 
@@ -51,7 +39,7 @@ const AppUser = () => {
      
       <SectionHeader />
       <SectionTitle />
-     
+       
       <div className="card">
         <CardHeader
           setWiewTable={setWiewTable}
