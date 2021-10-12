@@ -19,7 +19,6 @@ const App = () => {
         <Route path={["/test", "/ventas", "/listventas", "/formproducts", "/listproducts", "/users"]}>
           <Layouts>
             <Switch>
-           
               <Route path="/ventas" exact>
                 <Ventas />
               </Route>

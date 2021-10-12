@@ -3,9 +3,13 @@ import MainSidebar from "components/template-base/MainSidebar";
 import NavBar from "components/template-base/NavBar";
 
 
+
 const Layouts = ({ children }) => {
+
+
   return (
     <>
+     
       <MainSidebar />
       <NavBar />
       <div class="main-content">

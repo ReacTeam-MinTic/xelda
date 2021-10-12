@@ -1,9 +1,9 @@
 import iziToast from "izitoast";
 
-const alertSucees = () => {
+const alertSucees = (mensaje="Operación exitosa", bodyAlert="¡Guardado!") => {
   iziToast.show({
-    title: "¡Guardado!",
-    message: "Operación exitosa",
+    title: bodyAlert,
+    message: mensaje,
     color: "green",
     position: "topRight",
     icon: "far fa-check-circle",
@@ -20,7 +20,7 @@ const alertError = () => {
   });
 };
 
-const alertWarning = () => {
+const alertWarning = (d) => {
   iziToast.show({
     title: "¡Cuidado!",
     message: "¿Está a punto de elimanar el siguiente registro: ",
@@ -32,6 +32,7 @@ const alertWarning = () => {
       [
         "<button>OK</button>",
         function (instance, toast) {
+          d();
           alert("Hello world!");
           instance.hide(
             {
