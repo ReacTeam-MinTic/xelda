@@ -32,16 +32,12 @@ const ListProducts = () => {
               <td>Procesador x10 con cámara de 10 mpx</td>
               <td>$4000000</td>
               <td>
-                <div class="badge badge-success">Disponible</div>
+                <div className="badge badge-success">Disponible</div>
               </td>
               <td>
-                <div class="row justify-content-md-center">
-                  <a href="">
-                    <i class="fas fa-edit"></i>
-                  </a>
-                  <a onClick={Alerts[1]}>
-                    <i class="fas fa-trash-alt"></i>
-                  </a>
+                <div className="row justify-content-md-center">
+                  <i className="fas fa-edit"></i>
+                  <i onClick={Alerts[1]} className="fas fa-trash-alt"></i>
                 </div>
               </td>
             </tr>
@@ -51,16 +47,12 @@ const ListProducts = () => {
               <td>Procesador x10 con cámara de 10 mpx</td>
               <td>$1000000</td>
               <td>
-                <div class="badge badge-danger"> No Disponible</div>
+                <div className="badge badge-danger"> No Disponible</div>
               </td>
               <td>
-                <div class="row justify-content-md-center">
-                  <a href="">
-                    <i class="fas fa-edit"></i>
-                  </a>
-                  <a onClick={Alerts[1]}>
-                    <i class="fas fa-trash-alt"></i>
-                  </a>
+                <div className="row justify-content-md-center">
+                  <i className="fas fa-edit"></i>
+                  <i className="fas fa-trash-alt"></i>
                 </div>
               </td>
             </tr>

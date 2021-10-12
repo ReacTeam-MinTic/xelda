@@ -21,7 +21,7 @@ const Aside = () => {
             <li className="menu-header">Módulos</li>
             <li className="nav-item dropdown">
               <a
-                href="#"
+                href="/"
                 className="nav-link has-dropdown"
                 data-toggle="dropdown"
               >
@@ -29,16 +29,13 @@ const Aside = () => {
               </a>
               <ul className="dropdown-menu" style={{ display: "none" }}>
                 <li>
-                  <a href="/listventas">Listado de ventas</a>
-                </li>
-                <li>
-                  <a href="formventas">Registrar ventas</a>
+                  <a href="/ventas">Registrar ventas</a>
                 </li>
               </ul>
             </li>
             <li className="nav-item dropdown">
               <a
-                href="#"
+                href="/"
                 className="nav-link has-dropdown"
                 data-toggle="dropdown"
               >
@@ -55,7 +52,7 @@ const Aside = () => {
             </li>
             <li className="nav-item dropdown">
               <a
-                href="#"
+                href="/"
                 className="nav-link has-dropdown"
                 data-toggle="dropdown"
               >
@@ -72,7 +69,7 @@ const Aside = () => {
             </li>
             <li className="nav-item dropdown">
               <a
-                href="#"
+                href="/"
                 className="nav-link has-dropdown"
                 data-toggle="dropdown"
               >

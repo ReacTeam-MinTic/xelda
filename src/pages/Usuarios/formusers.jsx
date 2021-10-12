@@ -20,7 +20,7 @@ const FormUsers = () => {
             <h4>Formulario de registro</h4>
           </div>
           <div className="card-body">
-            <div class="card-body">
+            <div className="card-body">
               <div className="form-group">
                 <label>Nombres</label>
                 <input type="text" className="form-control is-valid" required />
@@ -40,9 +40,9 @@ const FormUsers = () => {
                   Por favor, ingrese un email válido.
                 </div>
               </div>
-              <div class="form-group">
+              <div className="form-group">
                 <label>Rol</label>
-                <select class="form-control select2">
+                <select className="form-control select2">
                   <option>Vendedor</option>
                   <option>Administrador</option>
                 </select>

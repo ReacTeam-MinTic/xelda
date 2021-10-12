@@ -9,8 +9,7 @@ import FormUsers from "pages/Usuarios/formusers";
 import FormProducsts from "pages/Productos/formproducts";
 import LoginUser from "pages/Registro/loginUser";
 import AuthRegister from "pages/Registro/auth-register";
-import FormVentas from "pages/Ventas/formventas";
-import ListVentas from "pages/Ventas/listventas";
+import Ventas from "pages/Ventas/ventas";
 
 // Un Route por cada Layouts - Ver los layouts como pages-templante (NO como componentes)
 // Agreagr otro Toute para Login
@@ -19,14 +18,11 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path={["/formventas", "/listventas", "/formusers", "/listusers", "/formproducts", "/listproducts"]}>
+        <Route path={["/ventas", "/formusers", "/listusers", "/formproducts", "/listproducts"]}>
           <Layouts>
             <Switch>
-              <Route path="/formventas">
-                <FormVentas />
-              </Route>
-              <Route path="/listventas">
-                <ListVentas />
+              <Route path="/ventas">
+                <Ventas />
               </Route>
               <Route path="/formusers">
                 <FormUsers />

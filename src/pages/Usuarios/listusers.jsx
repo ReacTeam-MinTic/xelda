@@ -32,20 +32,16 @@ const ListUsers = () => {
               <td>Gustavo Adolfo</td>
               <td>De Armas Nuñez</td>
               <td>
-                <div class="badge badge-success">Activo</div>
+                <div className="badge badge-success">Activo</div>
               </td>
               <td>
-                <div class="badge badge-warning">Vendedor</div>
+                <div className="badge badge-warning">Vendedor</div>
               </td>
               <td>gustavo@hotmail.com</td>
               <td>
-                <div class="row justify-content-md-center">
-                  <a href="">
-                    <i class="fas fa-edit"></i>
-                  </a>
-                  <a onClick={Alerts[1]}>
-                    <i class="fas fa-trash-alt"></i>
-                  </a>
+                <div className="row justify-content-md-center justify-content-around">
+                  <i className="fas fa-edit"></i>
+                  <i onClick={Alerts[1]} className="fas fa-trash-alt"></i>
                 </div>
               </td>
             </tr>
@@ -54,20 +50,16 @@ const ListUsers = () => {
               <td>Gustavo Adolfo</td>
               <td>De Armas Nuñez</td>
               <td>
-                <div class="badge badge-danger">Inactivo</div>
+                <div className="badge badge-danger">Inactivo</div>
               </td>
               <td>
-                <div class="badge badge-primary">Admin</div>
+                <div className="badge badge-primary">Admin</div>
               </td>
               <td>gustavo@hotmail.com</td>
               <td>
-                <div class="row justify-content-md-center">
-                  <a href="">
-                    <i class="fas fa-edit"></i>
-                  </a>
-                  <a onClick={Alerts[1]}>
-                    <i class="fas fa-trash-alt"></i>
-                  </a>
+                <div className="row justify-content-md-center justify-content-around">
+                  <i className="fas fa-edit"></i>
+                  <i onClick={Alerts[1]} className="fas fa-trash-alt"></i>
                 </div>
               </td>
             </tr>

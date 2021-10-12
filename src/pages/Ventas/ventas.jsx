@@ -7,39 +7,9 @@ import 'react-toastify/dist/ReactToastify.css'
 import { nanoid } from 'nanoid';
 import axios from "axios";
 import { obtenerVentas } from 'utils/api'
+import { data } from 'jquery';
 
-
-const ventasQuemadas = [
-  {
-    id: '1',
-    nomVendedor: 'Carlos',
-    nomProducto: 'medias',
-    valor: 5000,
-    total: 30000,
-    cantidad: 6,
-    estado: 'Entregada',
-  },
-  {
-    id: '2',
-    nomVendedor: 'Raul',
-    nomProducto: 'Chaqueta',
-    valor: 400000,
-    total: 400000,
-    cantidad: 1,
-    estado: 'Entregada'
-  },
-  {
-    id: '3',
-    nomVendedor: 'Andrés',
-    nomProducto: 'Pantalon',
-    valor: 85000,
-    total: 170000,
-    cantidad: 2,
-    estado: 'Cancelada'
-  },
-];
-
-const FormVentas = () => {
+const Ventas = () => {
   const [mostrarTabla, setMostrarTabla] = useState(true);
   const [ventas, setVentas] = useState([]);
   const [textoBoton, setTextoBoton] = useState('Registrar una nueva venta');
@@ -106,8 +76,6 @@ const FormVentas = () => {
 
 const TablaVentas = ({ listaVentas, setEjecutarConsulta }) => {
 
-  const form = useRef(null)
-
   return (
     <div className="table-responsive">
       <table id="example" className="table table-striped table-hover">
@@ -151,7 +119,7 @@ const FilaVenta = ( {venta, setEjecutarConsulta} )=>{
     //enviar la info al backend
     const options = {
       method: 'PATCH',
-      url: 'http://localhost:5000/formventas/actualizarventa',
+      url: 'http://localhost:5000/ventas/actualizarventa',
       headers: { 'Content-Type': 'application/json' },
       data: { ...infoNuevaVenta, id: venta._id },
     };
@@ -173,7 +141,7 @@ const FilaVenta = ( {venta, setEjecutarConsulta} )=>{
   const eliminarVenta = async () => {
     const options = {
       method: 'DELETE',
-      url: 'http://localhost:5000/formventas/eliminarventa',
+      url: 'http://localhost:5000/ventas/eliminarventa',
       headers: { 'Content-Type': 'application/json' },
       data: { id: venta._id },
     };
@@ -247,7 +215,7 @@ const FilaVenta = ( {venta, setEjecutarConsulta} )=>{
   )
 }
 
-const FormularioCreacionVentas = ({ setMostrarTabla, listaVentas, setVentas }) => {
+const FormularioCreacionVentas = ({ setMostrarTabla }) => {
 
   const [cantItems, setCantItems] = useState(0)
   const [valorUnitario, setValorUnitario] = useState(0)
@@ -263,7 +231,7 @@ const FormularioCreacionVentas = ({ setMostrarTabla, listaVentas, setVentas }) =
 
   const form = useRef(null);
 
-  const submitForm = (e) => {
+  const submitForm = async (e) => {
     e.preventDefault();
     const fd = new FormData(form.current);
     
@@ -272,12 +240,28 @@ const FormularioCreacionVentas = ({ setMostrarTabla, listaVentas, setVentas }) =
       nuevaVenta[key] = value;
     });
 
+    console.log("nueva venta: ", nuevaVenta)
+    const options = {
+      method: 'POST',
+      url: 'http://localhost:5000/ventas/nuevaventa',
+      headers: { 'Content-Type': 'application/json' },
+      data: { id: nuevaVenta.id, nomVendedor: nuevaVenta.nomVendedor, nomProducto: nuevaVenta.nomProducto, cantidad: nuevaVenta.cantidad }
+      
+    };
+    console.log(options.data)
+    
+    await axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success('Venta agregado con éxito');
+      })
+      .catch(function (error) {
+        console.error(error);
+        toast.error('Error creando la venta');
+      });
+
     setMostrarTabla(true);
-    setVentas([...listaVentas, nuevaVenta]);
-    // identificar el caso de éxito y mostrar un toast de éxito
-    toast.success('Venta agrega con éxito');
-    // identificar el caso de error y mostrar un toast de error
-    // toast.error('Error creando un Venta');
   };
 
   return (
@@ -355,4 +339,4 @@ const FormularioCreacionVentas = ({ setMostrarTabla, listaVentas, setVentas }) =
   );
 };
 
-export default FormVentas;
+export default Ventas;
