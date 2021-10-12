@@ -5,6 +5,8 @@ import Alerts from "styles/js/alerts";
 import 'styles/styles.css'
 import 'react-toastify/dist/ReactToastify.css'
 import { nanoid } from 'nanoid';
+import axios from "axios";
+import { obtenerVentas } from 'utils/api'
 
 
 const ventasQuemadas = [
@@ -16,7 +18,6 @@ const ventasQuemadas = [
     total: 30000,
     cantidad: 6,
     estado: 'Entregada',
-    opciones: <i className="fa-solid fa-pen-to-square"></i>
   },
   {
     id: '2',
@@ -43,21 +44,21 @@ const FormVentas = () => {
   const [ventas, setVentas] = useState([]);
   const [textoBoton, setTextoBoton] = useState('Registrar una nueva venta');
   const [colorBoton, setColorBoton] = useState('primary');
-  const [ejecutarConsulta, setEjecutarConsulta] = useState(true)
+  const [ejecutarConsulta, setEjecutarConsulta] = useState(true);
 
   useEffect(() => {
-    /* funcion get del axios obtenerVentas = async ()=>{}*/
-
-    if(ejecutarConsulta){
-      /* obtenerVentas() */
-      /* setEjecutarConsulta(false) */
+    console.log('consulta', ejecutarConsulta);
+    if (ejecutarConsulta) {
+      obtenerVentas(setVentas, setEjecutarConsulta);
     }
-   
-  }, [ejecutarConsulta])
+  }, [ejecutarConsulta]);
 
   useEffect(() => {
-    setVentas(ventasQuemadas);
-  }, []);
+    //obtener lista de vehículos desde el backend
+    if (mostrarTabla) {
+      setEjecutarConsulta(true);
+    }
+  }, [mostrarTabla]);
 
   useEffect(() => {
     if (mostrarTabla) {
@@ -87,7 +88,7 @@ const FormVentas = () => {
             </button>
           </div>
           {mostrarTabla ? (
-            <TablaVentas listaVentas={ventas} />
+            <TablaVentas listaVentas={ventas} setEjecutarConsulta={setEjecutarConsulta}/>
           ) : (
             <FormularioCreacionVentas
               setMostrarTabla={setMostrarTabla}
@@ -103,7 +104,7 @@ const FormVentas = () => {
   );
 };
 
-const TablaVentas = ({ listaVentas }) => {
+const TablaVentas = ({ listaVentas, setEjecutarConsulta }) => {
 
   const form = useRef(null)
 
@@ -125,7 +126,10 @@ const TablaVentas = ({ listaVentas }) => {
         <tbody>
         {listaVentas.map((venta) => {
           return (
-            <FilaVenta key={ nanoid() } venta = {venta}/>
+            <FilaVenta key={ nanoid() }
+            venta = {venta}
+            setEjecutarConsulta={setEjecutarConsulta}
+            />
           );
         })}
         </tbody>
@@ -134,7 +138,7 @@ const TablaVentas = ({ listaVentas }) => {
   );
 };
 
-const FilaVenta = ( {venta} )=>{
+const FilaVenta = ( {venta, setEjecutarConsulta} )=>{
 
   const [edit, setEdit] = useState(false)
   const [infoNuevaVenta, setInforNuevaVenta] = useState({
@@ -143,14 +147,49 @@ const FilaVenta = ( {venta} )=>{
     nomProducto: venta.nomProducto,
     cantidad: venta.cantidad
   }) 
-  const actualizarVenta = ()=>{
-    /* con axios traer el metodo patch y cambiar el icono de editar con setEdit(false) */
+  const actualizarVenta = async () => {
+    //enviar la info al backend
+    const options = {
+      method: 'PATCH',
+      url: 'http://localhost:5000/formventas/actualizarventa',
+      headers: { 'Content-Type': 'application/json' },
+      data: { ...infoNuevaVenta, id: venta._id },
+    };
 
-  }
+    await axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success('Venta modificada con éxito');
+        setEdit(false);
+        setEjecutarConsulta(true);
+      })
+      .catch(function (error) {
+        toast.error('Error modificando la venta');
+        console.error(error);
+      });
+  };
 
-  const eliminarVenta = ()=>{
-    /* Traer la operación de tipo delete desde axios */
-  }
+  const eliminarVenta = async () => {
+    const options = {
+      method: 'DELETE',
+      url: 'http://localhost:5000/formventas/eliminarventa',
+      headers: { 'Content-Type': 'application/json' },
+      data: { id: venta._id },
+    };
+
+    await axios
+      .request(options)
+      .then(function (response) {
+        console.log(response.data);
+        toast.success('Venta eliminada con éxito');
+        setEjecutarConsulta(true);
+      })
+      .catch(function (error) {
+        console.error(error);
+        toast.error('Error eliminando la venta');
+      });
+  };
 
   return(
     <tr>
@@ -195,13 +234,13 @@ const FilaVenta = ( {venta} )=>{
         <div className="d-flex justify-content-around">
           { edit ? 
             ( 
-              <i onClick={()=> setEdit(!edit)/* actualizarVenta */} class="fas fa-check" />
+              <i onClick={()=> actualizarVenta()} class="fas fa-check" />
             )
             : 
             (
               <i onClick={()=> setEdit(!edit)} className="fas fa-pen pointer"></i>
             )}
-          <i onClick={eliminarVenta} className="fas fa-trash-alt eliminar"></i>
+          <i onClick={()=> eliminarVenta()} className="fas fa-trash-alt eliminar"></i>
         </div>
       </td>
     </tr>
@@ -248,7 +287,7 @@ const FormularioCreacionVentas = ({ setMostrarTabla, listaVentas, setVentas }) =
         <h4>Crear nueva venta</h4>
       </div>
       <div className="card-body">
-        <div class="card-body">
+        <div className="card-body">
           <div className="form-group">
             <label htmlFor="id">Id de la venta</label>
             <input type="number" className="form-control" name='id' required />
