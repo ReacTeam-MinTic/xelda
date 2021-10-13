@@ -24,7 +24,6 @@ function LoginUser() {
                   <div className="card-body">
                     <form
                       method="POST"
-                      action="#"
                       className="needs-validation"
                       noValidate
                     >
@@ -107,17 +106,10 @@ function LoginUser() {
                           > <img src="../assets/img/logo-google.svg"
                           alt="logo"
                           width={17}/> <br />
-                             Incia sesión conGoogle
-                          </button>
-                        
+                             Incia sesión con Google
+                          </button>  
                       </div>
                     </div>
-
-
-
-
-
-
                     </form>
                     <div className="row sm-gutters">
                     </div>

@@ -1,6 +1,8 @@
 import React from 'react'
+import { useAuth0 } from "@auth0/auth0-react";
 
 const NavBar = () => {
+  const { logout } = useAuth0();
     return (
       <>
       <div className="navbar-bg"></div>
@@ -42,7 +44,7 @@ const NavBar = () => {
               <div className="dropdown-title">Logged in 5 min ago</div>
               <div className="dropdown-divider"></div>
               <a href="#" className="dropdown-item has-icon text-danger">
-                <i className="fas fa-sign-out-alt"></i> Salir
+                <i onClick={() => logout({ returnTo: window.location.origin })} className="fas fa-sign-out-alt"></i> Cerrar Sesión
               </a>
             </div>
           </li>
