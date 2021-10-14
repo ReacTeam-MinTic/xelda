@@ -3,10 +3,8 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Index from "pages/index";
 import Layouts from "layouts/layouts";
 import Login from "layouts/login";
-import LoginUser from "pages/loginUser";
 import Ventas from "pages/Ventas";
 import ListVentas from "pages/listventas";
-import AuthRegister from "pages/auth-register";
 import AppUser from "pages/formUser/appUser";
 import { Auth0Provider } from "@auth0/auth0-react";
 import LoginUsers from "pages/LoginUsers";
@@ -37,18 +35,6 @@ const App = () => {
                 </Route>
               </Switch>
             </Layouts>
-          </Route>
-          <Route path={["/login", "/auth-register"]}>
-            <Login>
-              <Switch>
-                <Route path="/login" exact>
-                  <LoginUser />
-                </Route>
-                <Route path="/auth-register" exact>
-                  <AuthRegister />
-                </Route>
-              </Switch>
-            </Login>
           </Route>
           <Route path={["/index"]}>
             <Layouts>

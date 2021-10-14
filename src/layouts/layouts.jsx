@@ -12,8 +12,8 @@ const Layouts = ({ children }) => {
      
       <MainSidebar />
       <NavBar />
-      <div class="main-content">
-        <section class="section">{children}</section>
+      <div className="main-content">
+        <section className="section">{children}</section>
       </div>
       <Footer />
     </>
