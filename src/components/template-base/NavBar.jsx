@@ -43,8 +43,8 @@ const NavBar = () => {
             <div className="dropdown-menu dropdown-menu-right">
               <div className="dropdown-title">Logged in 5 min ago</div>
               <div className="dropdown-divider"></div>
-              <button className="dropdown-item has-icon text-danger">
-                <i onClick={() => logout({ returnTo: window.location.origin })} className="fas fa-sign-out-alt"></i> Cerrar Sesión
+              <button className="d-flex dropdown-item has-icon text-danger">
+                <i onClick={() => logout({ returnTo: "http://localhost:3000" })} className="fas fa-sign-out-alt"></i> Cerrar Sesión
               </button>
             </div>
           </li>

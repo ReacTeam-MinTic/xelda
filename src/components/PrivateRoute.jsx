@@ -21,7 +21,7 @@ const PrivateRoute = ({ children }) => {
     (
         <>
             <div className="display-2 text-danger">No estás autorizado para ver este sitio</div> 
-            <Link to="/">Regístrate</Link>
+            <Link to="/"><span>Regístrate</span></Link>
         </>
     )
         

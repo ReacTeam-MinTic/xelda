@@ -17,7 +17,7 @@ const App = () => {
     <Auth0Provider
     domain="xelda.us.auth0.com"
     clientId="vIWD5IdvNAKfDeUT23be8DdaJpw8JEIu"
-    redirectUri={window.location.origin}
+    redirectUri="http://localhost:3000/index"
     >
       <Router>
         <Switch>
