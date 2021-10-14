@@ -21,7 +21,7 @@ const LoginUsers = () => {
                   </div>
                 </div>
                 <div className="d-flex justify-content-center">
-                  <button onClick={() => loginWithRedirect()} type ="submit" className ="btn btn-primary btn-lg btn-icon icon-right mt-5 px-5 fw-bolder" tabindex="4">
+                  <button onClick={() => loginWithRedirect()} type ="submit" className ="btn btn-primary btn-lg btn-icon icon-right mt-5 px-5 fw-bolder" tabIndex="1">
                     Ingresar
                   </button>
                 </div>
