@@ -1,22 +1,22 @@
-import FormUsers from "./formusers";
-import ListUsers from "./listusers";
+import FormProducts from "./formproducts";
+import ListProducts from "./listproducts";
 import { useState, useEffect } from "react";
 import SectionTitle from "components/template-base/content/SectionTitle";
 import CardHeader from "components/template-base/content/CardHeader";
 import SectionHeader from "components/template-base/content/SectionHeader";
-import { getUsersBackend } from "utils/api";
+import { getProductsBackend } from "utils/api";
 
 
-const AppUser = () => {
+const AppProducts = () => {
   const [viewTable, setWiewTable] = useState(true);
-  const [textButton, setTextButton] = useState("Nuevo Usuario");
-  const [usersDb, setUsersDb] = useState([]);
+  const [textButton, setTextButton] = useState("Nuevo Producto");
+  const [ProductsDb, setProductsDb] = useState([]);
   const [runQuery, setRunQuery] = useState(true);
   
 
   useEffect(() => {
     if(runQuery){
-      getUsersBackend(setUsersDb, setRunQuery);
+      getProductsBackend(setProductsDb, setRunQuery);
     }
   }, [runQuery])
 
@@ -28,7 +28,7 @@ const AppUser = () => {
 
   useEffect(() => {
     if (viewTable) {
-      setTextButton("Nuevo Usuario");
+      setTextButton("Nuevo Producto");
     } else {
       setTextButton("Ver Todos");
     }
@@ -47,12 +47,12 @@ const AppUser = () => {
         />
         <div className="card-body">
           {viewTable ? (
-            <ListUsers usersDb={usersDb} setRunQuery={setRunQuery} />
+            <ListProducts productsDb={ProductsDb} setRunQuery={setRunQuery} />
           ) : (
-            <FormUsers
+            <FormProducts
               setWiewTable={setWiewTable}
-              setUsersDb={setUsersDb}
-              usersDb={usersDb}
+              setProductsDb={setProductsDb}
+              ProductsDb={ProductsDb}
             />
           )}
         </div>
@@ -61,4 +61,4 @@ const AppUser = () => {
   );
 };
 
-export default AppUser;
+export default AppProducts;

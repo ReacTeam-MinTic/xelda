@@ -6,24 +6,24 @@ import Alerts from "styles/js/alerts";
 import ButtonSerarch from "components/utilsComponent/buttonSerarch";
 
 
-const FileTableUsers = ({ user, setRunQuery}) => {
+const FileTableProducts = ({ product, setRunQuery}) => {
   const [edit, setEdit] = useState(false);
-  const [infoNewUser, setInfoNewUser] = useState({
-    name:user.name,
-    lastname:user.lastname,
-    state:user.state,
-    role:user.role,
-    email:user.email,
+  const [infoNewProduct, setInfoNewProduct] = useState({
+    cod:product.cod,
+    name:product.name,
+    description:product.description,
+    value_:product.value_,
+    status:product.status
   });
 
-  const updateUser = async () => {
-    console.log(infoNewUser);
+  const updateProduct = async () => {
+    console.log(infoNewProduct);
     setEdit(false);
     const options = {
       method: 'PATCH',
-      url: `http://localhost:5000/users/${user._id}`,
+      url: `http://localhost:5000/products/${product._id}`,
       headers: {'Content-Type': 'application/json'},
-      data: {...infoNewUser, id: user._id}
+      data: {...infoNewProduct, id: product._id}
     };
     
     await axios.request(options).then(function (response) {
@@ -37,12 +37,12 @@ const FileTableUsers = ({ user, setRunQuery}) => {
     });
   };
   
-  const deleteUser = async () => {
+  const deleteProduct = async () => {
     const options = {
       method: 'DELETE',
-      url: `http://localhost:5000/users/${user._id}`,
+      url: `http://localhost:5000/products/${product._id}`,
       headers: {'Content-Type': 'application/json'},
-      data: {_id: user._id}
+      data: {_id: product._id}
     };
     
     await axios.request(options).then(function (response) {
@@ -70,7 +70,7 @@ const FileTableUsers = ({ user, setRunQuery}) => {
           "<button>OK</button>",
           function (instance, toast) {
             
-            deleteUser();
+            deleteProduct();
             instance.hide(
               {
                 transitionOut: "fadeOutUp",
@@ -111,58 +111,58 @@ const FileTableUsers = ({ user, setRunQuery}) => {
         <>
           <td>
             <input
-              type="text"
+              type="number"
               className="form-control"
-              value={infoNewUser.name}
-              onChange={(e)=> setInfoNewUser({...infoNewUser, name: e.target.value})}
+              value={infoNewProduct.cod}
+              onChange={(e)=> setInfoNewProduct({...infoNewProduct, cod: e.target.value})}
             />
           </td>
           <td>
             <input
               type="text"
               className="form-control"
-              value={infoNewUser.lastname}
-              onChange={(e)=> setInfoNewUser({...infoNewUser, lastname: e.target.value})}
+              value={infoNewProduct.name}
+              onChange={(e)=> setInfoNewProduct({...infoNewProduct, name: e.target.value})}
             />
           </td>
           <td>
             <input
               type="text"
               className="form-control"
-              value={infoNewUser.state}
-              onChange={(e)=> setInfoNewUser({...infoNewUser, state: e.target.value})}
+              value={infoNewProduct.description}
+              onChange={(e)=> setInfoNewProduct({...infoNewProduct, description: e.target.value})}
+            />
+          </td>
+          <td>
+            <input
+              type="number"
+              className="form-control"
+              value={infoNewProduct.value_}
+              onChange={(e)=> setInfoNewProduct({...infoNewProduct, value_: e.target.value})}
             />
           </td>
           <td>
             <input
               type="text"
               className="form-control"
-              value={infoNewUser.role}
-              onChange={(e)=> setInfoNewUser({...infoNewUser, role: e.target.value})}
-            />
-          </td>
-          <td>
-            <input
-              type="text"
-              className="form-control"
-              value={infoNewUser.email}
-              onChange={(e)=> setInfoNewUser({...infoNewUser, email: e.target.value})}
+              value={infoNewProduct.status}
+              onChange={(e)=> setInfoNewProduct({...infoNewProduct, status: e.target.value})}
             />
           </td>
           
         </>
       ) : (
         <>
-          <td>{user.name}</td>
-          <td>{user.lastname}</td>
+          <td>{product.cod}</td>
+          <td>{product.name}</td>
+          <td>{product.description}</td>
+          <td>{product.value_}</td>
           <td>
             {" "}
-            <div class="badge badge-success">{user.state}</div>
+            <div class="badge badge-success">{product.status}</div>
           </td>
-          <td>
-            <div class="badge badge-warning">{user.role}</div>
-          </td>
-          <td>{user.email}</td>
+   
+          
         </>
       )}
 
@@ -170,7 +170,7 @@ const FileTableUsers = ({ user, setRunQuery}) => {
         <div class="row justify-content-md-center">
           {edit ? (
             <>
-            <a onClick={() => updateUser()}>
+            <a onClick={() => updateProduct()}>
               <i class="fas fa-check"></i>
             </a>
             <a onClick={() => setEdit(!edit)}>
@@ -193,17 +193,17 @@ const FileTableUsers = ({ user, setRunQuery}) => {
   );
 };
 
-const ListUsers = ({ usersDb, setRunQuery}) => {
+const ListProducts = ({ productsDb, setRunQuery}) => {
   const [busqueda, setBusqueda] =useState('');
-  const[usersFiltered, setusersFiltered] = useState(usersDb);
+  const[productsFiltered, setproductsFiltered] = useState(productsDb);
 
   useEffect(() => {
-   setusersFiltered(
-     usersDb.filter((elemento)=>{
+   setproductsFiltered(
+     productsDb.filter((elemento)=>{
        return JSON.stringify(elemento).toLowerCase().includes(busqueda.toLowerCase());
      })
    );
-  }, [busqueda, usersDb])
+  }, [busqueda, productsDb])
   
 
   return (
@@ -216,17 +216,17 @@ const ListUsers = ({ usersDb, setRunQuery}) => {
       <table className="table table-striped">
         <thead>
           <tr>
-            <th>Nombres</th>
-            <th>Apellidos</th>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Descropción</th>
+            <th>Valor</th>
             <th>Estado</th>
-            <th>Rol</th>
-            <th>Email</th>
             <th>Opciones</th>
           </tr>
         </thead>
         <tbody>
-          {usersFiltered.map((user) => {
-            return <FileTableUsers key={nanoid()} user={user} setRunQuery={setRunQuery}/>;
+          {productsFiltered.map((product) => {
+            return <FileTableProducts key={nanoid()} product={product} setRunQuery={setRunQuery}/>;
           })}
         </tbody>
       </table>
@@ -235,4 +235,4 @@ const ListUsers = ({ usersDb, setRunQuery}) => {
   );
 };
 
-export default ListUsers;
+export default ListProducts;
