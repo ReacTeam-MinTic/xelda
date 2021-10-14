@@ -3,8 +3,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const NavBar = () => {
   const { logout } = useAuth0();
-    return (
-      <>
+  return (
+    <>
       <div className="navbar-bg"></div>
       <nav className="navbar navbar-expand-lg main-navbar">
         <form className="form-inline mr-auto">
@@ -25,7 +25,7 @@ const NavBar = () => {
             </li>
           </ul>
         </form>
-        
+
         <ul className="navbar-nav navbar-right">
           <li className="dropdown">
             <a
@@ -38,21 +38,24 @@ const NavBar = () => {
                 src="../assets/img/avatar/avatar-1.png"
                 className="rounded-circle mr-1"
               />
-              <div className="d-sm-none d-lg-inline-block">Hi, User</div>
+              <div className="d-sm-none d-lg-inline-block">Hola, usuario</div>
             </a>
             <div className="dropdown-menu dropdown-menu-right">
-              <div className="dropdown-title">Logged in 5 min ago</div>
+            {/*<div className="dropdown-title">Logged in 5 min ago</div> */}
               <div className="dropdown-divider"></div>
-              <button className="d-flex dropdown-item has-icon text-danger">
-                <i onClick={() => logout({ returnTo: "http://localhost:3000" })} className="fas fa-sign-out-alt"></i> Cerrar Sesión
+              {/* <button onClick={() => logout({ returnTo: window.location.origin })}>
+                Log Out
+              </button> */}
+              <button onClick={() => logout({ returnTo: window.location.origin})} className="d-flex align-items-center dropdown-item has-icon pe-auto text-danger">
+                <i className="fas fa-sign-out-alt"></i> Cerrar Sesión
               </button>
             </div>
           </li>
         </ul>
       </nav>
-      </>
+    </>
 
-    )
+  )
 }
 
 export default NavBar;
