@@ -21,7 +21,7 @@ const LoginUsers = () => {
                   </div>
                 </div>
                 <div className="d-flex justify-content-center">
-                  <button onClick={() => loginWithRedirect()} type ="submit" className ="btn btn-primary btn-lg btn-icon icon-right mt-5 px-5 fw-bolder" tabIndex="1">
+                  <button onClick={() => loginWithRedirect('/index')} type ="submit" className ="btn btn-primary btn-lg btn-icon icon-right mt-5 px-5 fw-bolder" tabIndex="1">
                     Ingresar
                   </button>
                 </div>
@@ -34,7 +34,7 @@ const LoginUsers = () => {
               <div className="absolute-bottom-left index-2">
                 <div className="text-light p-5 pb-2">
                   <div className="mb-5 pb-3">
-                    <h1 className="mb-2 display-4 font-weight-bold">Feliz día <span>:)</span></h1>
+                    <h1 className="mb-2 display-4 font-weight-bold">Feliz día 😉</h1>
                     <h5 className="font-weight-normal text-muted-transparent">Colombia</h5>
                   </div>
                   Photo by <a className="text-light bb" target="_blank" href="https://unsplash.com/photos/a8lTjWJJgLA">Justin Kauffman</a> on <a className="text-light bb" target="_blank" href="https://unsplash.com">Unsplash</a>
