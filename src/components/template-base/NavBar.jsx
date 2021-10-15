@@ -2,7 +2,7 @@ import React from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
 
 const NavBar = () => {
-  const { logout } = useAuth0();
+  const { logout, user } = useAuth0();
 
   const cerrarSesion = ()=>{
     logout({ returnTo: window.location.origin})
@@ -40,10 +40,10 @@ const NavBar = () => {
             >
               <img
                 alt="image"
-                src="../assets/img/avatar/avatar-1.png"
-                className="rounded-circle mr-1"
+                src={user.picture}
+                className="rounded-circle mr-2"
               />
-              <div className="d-sm-none d-lg-inline-block">Hola, usuario</div>
+              <div className="d-sm-none d-lg-inline-block">{`Hola, ${user.name}`}</div>
             </a>
             <div className="dropdown-menu dropdown-menu-right">
             {/*<div className="dropdown-title">Logged in 5 min ago</div> */}
