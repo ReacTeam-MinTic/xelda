@@ -6,7 +6,6 @@ import Login from "layouts/login";
 import AppUser from "pages/formUser/appUser";
 import { Auth0Provider } from "@auth0/auth0-react";
 import LoginUsers from "pages/LoginUsers";
-import AppUser from "pages/formUser/appUser";
 import AppProducts from "pages/products/appProducts";
 import AppSale from "pages/sales/appSales";
 import IndexSup from "layouts";
