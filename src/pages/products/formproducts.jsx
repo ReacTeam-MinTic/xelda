@@ -1,29 +1,29 @@
 import React from "react";
 import Alerts from "styles/js/alerts";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import axios from "axios";
 
-const FormUsers = ({ setWiewTable, setUsersDb, usersDb }) => {
+const FormProducts = ({ setWiewTable, setProductsDb, ProductsDb }) => {
   const form = useRef(null);
   const submitForm = async (e) => {
     e.preventDefault();
     const fd = new FormData(form.current);
 
-    const newUser = {};
+    const newProduct = {};
     fd.forEach((value, key) => {
-      newUser[key] = value;
+      newProduct[key] = value;
     });
 
     const options = {
       method: "POST",
-      url: "http://localhost:5000/users",
+      url: "http://localhost:5000/products",
       headers: { "Content-Type": "application/json" },
       data: {
-        name: newUser.name,
-        lastname: newUser.lastname,
-        state: newUser.state,
-        role: newUser.role,
-        email: newUser.email,
+        cod: newProduct.cod,
+        name: newProduct.name,
+        description: newProduct.description,
+        value_: newProduct.value_,
+        value_: newProduct.value_,
       },
     };
     await axios
@@ -49,7 +49,22 @@ const FormUsers = ({ setWiewTable, setUsersDb, usersDb }) => {
         </div>
         <div className="card-body">
           <div className="form-group">
-            <label htmlFor="name">Nombres</label>
+            <label htmlFor="cod">Cod</label>
+            <input
+              autoComplete="nope"
+              name="cod"
+              type="text"
+              className="form-control "
+              required
+              autoComplete="off"
+              placeholder="00001"
+            />
+            <div className="invalid-feedback">
+              El campo no puede quedar vacío.
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="name">Producto</label>
             <input
               autoComplete="nope"
               name="name"
@@ -64,69 +79,52 @@ const FormUsers = ({ setWiewTable, setUsersDb, usersDb }) => {
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="lastname">Apellidos</label>
+            <label htmlFor="description">Descripción</label>
             <input
-              name="lastname"
+              name="description"
               type="text"
               className="form-control "
               required
               autoComplete="off"
-              placeholder="Perez Perez"
+              placeholder=""
             />
             <div className="invalid-feedback">
               El campo no puede quedar vacío.
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="state">Estado</label>
-            <select
-              className="form-control select2"
-              name="state"
-              defaultValue={0}
-            >
-              <option disabled value={0}>
-                Seleccione un opción
-              </option>
-              <option>Activo</option>
-              <option>Inactivo</option>
-            </select>
-            <div className="invalid-feedback">
-              El campo no puede quedar vacío.
-            </div>
-          </div>
-          <div className="form-group">
-            <label htmlFor="state">Rol</label>
-            <select
-              className="form-control select2"
-              name="role"
-              defaultValue={0}
-            >
-              <option disabled value={0}>
-                Seleccione un opción
-              </option>
-              <option>Vendedor</option>
-              <option>Admin</option>
-            </select>
-            <div className="invalid-feedback">
-              El campo no puede quedar vacío.
-            </div>
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="value">Valor</label>
             <input
-              name="email"
-              type="email"
-              className="form-control"
+              name="value"
+              type="text"
+              className="form-control "
               required
               autoComplete="off"
-              placeholder="abc@gmail.com"
+              placeholder=""
             />
             <div className="invalid-feedback">
-              Por favor, ingrese un email válido.
+              El campo no puede quedar vacío.
+            </div>
+          </div>
+          
+          <div className="form-group">
+            <label htmlFor="status">Estado</label>
+            <select
+              className="form-control select2"
+              name="status"
+              defaultValue={0}
+            >
+              <option disabled value={0}>
+                Seleccione un opción
+              </option>
+              <option>Disponible</option>
+              <option>No Disponible</option>
+            </select>
+            <div className="invalid-feedback">
+              El campo no puede quedar vacío.
             </div>
           </div>
         </div>
-
         <div className=" d-flex justify-content-end flex-wrap my-2">
           <button
             className="btn btn-primary btn-lg rounded mx-2 my-2"
@@ -147,4 +145,4 @@ const FormUsers = ({ setWiewTable, setUsersDb, usersDb }) => {
   );
 };
 
-export default FormUsers;
+export default FormProducts;

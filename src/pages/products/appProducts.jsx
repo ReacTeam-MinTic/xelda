@@ -1,25 +1,25 @@
-import FormUsers from "./formusers";
-import ListUsers from "./listusers";
+import FormProducts from "./formproducts";
+import ListProducts from "./listproducts";
 import { useState, useEffect } from "react";
 import SectionTitle from "components/template-base/content/SectionTitle";
 import CardHeader from "components/template-base/content/CardHeader";
 import SectionHeader from "components/template-base/content/SectionHeader";
-import { getUsersBackend } from "utils/api";
+import { getProductsBackend } from "utils/api";
 
 
-const AppUser = () => {
+const AppProducts = () => {
   const [viewTable, setWiewTable] = useState(true);
-  const [textButton, setTextButton] = useState("Nuevo Usuario");
-  const [usersDb, setUsersDb] = useState([]);
+  const [textButton, setTextButton] = useState("Nuevo Producto");
+  const [ProductsDb, setProductsDb] = useState([]);
   const [runQuery, setRunQuery] = useState(true);
-  const [title, setTitle] = useState("Módulo de Usuarios");
-  const [subtitle, setSubTitle] = useState("Listado de Usuarios");
+  const [title, setTitle] = useState("Módulo de Productos");
+  const [subtitle, setSubTitle] = useState("Listado de Productos");
   const [subtitletag, setSubTitleTag] = useState("Busque, edite o elimine los registros");
   
 
   useEffect(() => {
     if(runQuery){
-      getUsersBackend(setUsersDb, setRunQuery);
+      getProductsBackend(setProductsDb, setRunQuery);
     }
   }, [runQuery])
 
@@ -31,13 +31,13 @@ const AppUser = () => {
 
   useEffect(() => {
     if (viewTable) {
-      setTextButton("Nuevo Usuario");
-      setSubTitle("Listado de usuarios");
+      setTextButton("Nuevo Producto");
+      setSubTitle("Listado de productos");
       setSubTitleTag("Busque, edite o elimine los registros")
     } else {
       setTextButton("Ver Todos");
-      setSubTitle("Registro de usuarios");
-      setSubTitleTag("Agregue nuevos usuarios")
+      setSubTitle("Registro de productos");
+      setSubTitleTag("Agregue nuevos productos")
     }
   }, [viewTable]);
 
@@ -54,12 +54,12 @@ const AppUser = () => {
         />
         <div className="card-body">
           {viewTable ? (
-            <ListUsers usersDb={usersDb} setRunQuery={setRunQuery} />
+            <ListProducts productsDb={ProductsDb} setRunQuery={setRunQuery} />
           ) : (
-            <FormUsers
+            <FormProducts
               setWiewTable={setWiewTable}
-              setUsersDb={setUsersDb}
-              usersDb={usersDb}
+              setProductsDb={setProductsDb}
+              ProductsDb={ProductsDb}
             />
           )}
         </div>
@@ -68,4 +68,4 @@ const AppUser = () => {
   );
 };
 
-export default AppUser;
+export default AppProducts;

@@ -1,29 +1,32 @@
 import React from "react";
 import Alerts from "styles/js/alerts";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 
-const FormUsers = ({ setWiewTable, setUsersDb, usersDb }) => {
+const FormSales = ({ setWiewTable, setSalesDb, salesDb }) => {
+
   const form = useRef(null);
   const submitForm = async (e) => {
     e.preventDefault();
     const fd = new FormData(form.current);
 
-    const newUser = {};
+    const newSale = {};
     fd.forEach((value, key) => {
-      newUser[key] = value;
+      newSale[key] = value;
     });
 
     const options = {
       method: "POST",
-      url: "http://localhost:5000/users",
+      url: "http://localhost:5000/sales",
       headers: { "Content-Type": "application/json" },
       data: {
-        name: newUser.name,
-        lastname: newUser.lastname,
-        state: newUser.state,
-        role: newUser.role,
-        email: newUser.email,
+        cod: newSale.cod,
+        date: newSale.date,
+        id_customer: newSale.id_customer,
+        customer: newSale.customer,
+        cost: newSale.cost,
+        amount: newSale.amount,
+        total_value: newSale.cost*newSale.amount
       },
     };
     await axios
@@ -49,83 +52,113 @@ const FormUsers = ({ setWiewTable, setUsersDb, usersDb }) => {
         </div>
         <div className="card-body">
           <div className="form-group">
-            <label htmlFor="name">Nombres</label>
+            <label htmlFor="cod">COD</label>
             <input
               autoComplete="nope"
-              name="name"
-              type="text"
+              name="cod"
+              type="number"
               className="form-control "
               required
               autoComplete="off"
-              placeholder="Camilo Camilo"
+              placeholder="0001"
             />
             <div className="invalid-feedback">
               El campo no puede quedar vacío.
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="lastname">Apellidos</label>
+            <label htmlFor="date">FECHA</label>
             <input
-              name="lastname"
-              type="text"
+              autoComplete="nope"
+              name="date"
+              type="date"
               className="form-control "
               required
               autoComplete="off"
-              placeholder="Perez Perez"
+              placeholder="dd/mm/aaaa"
             />
             <div className="invalid-feedback">
               El campo no puede quedar vacío.
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="state">Estado</label>
-            <select
-              className="form-control select2"
-              name="state"
-              defaultValue={0}
-            >
-              <option disabled value={0}>
-                Seleccione un opción
-              </option>
-              <option>Activo</option>
-              <option>Inactivo</option>
-            </select>
-            <div className="invalid-feedback">
-              El campo no puede quedar vacío.
-            </div>
-          </div>
-          <div className="form-group">
-            <label htmlFor="state">Rol</label>
-            <select
-              className="form-control select2"
-              name="role"
-              defaultValue={0}
-            >
-              <option disabled value={0}>
-                Seleccione un opción
-              </option>
-              <option>Vendedor</option>
-              <option>Admin</option>
-            </select>
-            <div className="invalid-feedback">
-              El campo no puede quedar vacío.
-            </div>
-          </div>
-          <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="id_customer">ID CLIENTE</label>
             <input
-              name="email"
-              type="email"
+              autoComplete="nope"
+              name="id_customer"
+              type="number"
+              className="form-control "
+              required
+              autoComplete="off"
+              placeholder=""
+            />
+            <div className="invalid-feedback">
+              El campo no puede quedar vacío.
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="customer">CLIENTE</label>
+            <input
+              autoComplete="nope"
+              name="customer"
+              type="text"
+              className="form-control "
+              required
+              autoComplete="off"
+              placeholder=""
+            />
+            <div className="invalid-feedback">
+              El campo no puede quedar vacío.
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="cost">PRECIO</label>
+            <input
+              autoComplete="nope"
+              name="cost"
+              type="number"
+              className="form-control "
+              required
+              autoComplete="off"
+              placeholder=""
+            />
+            <div className="invalid-feedback">
+              El campo no puede quedar vacío.
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="amount">CANTIDAD</label>
+            <input
+              autoComplete="nope"
+              name="amount"
+              type="number"
+              className="form-control "
+              required
+              autoComplete="off"
+              placeholder=""
+              
+            />
+            <div className="invalid-feedback">
+              El campo no puede quedar vacío.
+            </div>
+          </div>
+          {/* <div className="form-group">
+            <label htmlFor="total_value">TOTAL</label>
+            <input
+              autoComplete="nope"
+              name="total_value"
+              type="number"
               className="form-control"
-              required
               autoComplete="off"
-              placeholder="abc@gmail.com"
+              placeholder="0"
+              value={}
             />
             <div className="invalid-feedback">
-              Por favor, ingrese un email válido.
+              El campo no puede quedar vacío.
             </div>
           </div>
-        </div>
+           */}
+         </div>
 
         <div className=" d-flex justify-content-end flex-wrap my-2">
           <button
@@ -147,4 +180,4 @@ const FormUsers = ({ setWiewTable, setUsersDb, usersDb }) => {
   );
 };
 
-export default FormUsers;
+export default FormSales;
