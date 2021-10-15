@@ -1,29 +1,16 @@
-import {React, useEffect } from 'react'
+import {React } from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
-import { Link } from 'react-router-dom';
 
 const PrivateRoute = ({ children }) => {
-    const { user, isAuthenticated, isLoading} = useAuth0()
-
-    useEffect(() => {
-        console.log(user, isAuthenticated, isLoading)
-    }, [user, isAuthenticated, isLoading])
+    const { user, isAuthenticated, isLoading, loginWithRedirect} = useAuth0()
 
     if(isLoading) return <div><h2>Loading...</h2></div>
 
-    return isAuthenticated ? 
-    ( 
-        <>
-            { children } 
-        </> 
-     )
-    :
-    (
-        <>
-            <div className="display-2 text-danger">No estás autorizado para ver este sitio</div> 
-            <Link to="/"><span>Regístrate</span></Link>
-        </>
-    )
+    if(!isAuthenticated){
+        return loginWithRedirect()
+    }
+    
+   return <> { children } </> 
         
 }
 
