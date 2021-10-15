@@ -3,6 +3,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const NavBar = () => {
   const { logout } = useAuth0();
+
+  const cerrarSesion = ()=>{
+    logout({ returnTo: window.location.origin})
+    localStorage.setItem('token', null)
+  }
   return (
     <>
       <div className="navbar-bg"></div>
@@ -43,10 +48,8 @@ const NavBar = () => {
             <div className="dropdown-menu dropdown-menu-right">
             {/*<div className="dropdown-title">Logged in 5 min ago</div> */}
               <div className="dropdown-divider"></div>
-              {/* <button onClick={() => logout({ returnTo: window.location.origin })}>
-                Log Out
-              </button> */}
-              <button onClick={() => logout({ returnTo: window.location.origin})} className="d-flex align-items-center dropdown-item has-icon pe-auto text-danger">
+
+              <button onClick={() => cerrarSesion() } className="d-flex align-items-center dropdown-item has-icon pe-auto text-danger">
                 <i className="fas fa-sign-out-alt"></i> Cerrar Sesión
               </button>
             </div>
