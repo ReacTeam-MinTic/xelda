@@ -12,6 +12,9 @@ const AppUser = () => {
   const [textButton, setTextButton] = useState("Nuevo Usuario");
   const [usersDb, setUsersDb] = useState([]);
   const [runQuery, setRunQuery] = useState(true);
+  const [title, setTitle] = useState("Módulo de Usuarios");
+  const [subtitle, setSubTitle] = useState("Listado de Usuarios");
+  const [subtitletag, setSubTitleTag] = useState("Busque, edite o elimine los registros");
   
 
   useEffect(() => {
@@ -29,15 +32,19 @@ const AppUser = () => {
   useEffect(() => {
     if (viewTable) {
       setTextButton("Nuevo Usuario");
+      setSubTitle("Listado de usuarios");
+      setSubTitleTag("Busque, edite o elimine los registros")
     } else {
       setTextButton("Ver Todos");
+      setSubTitle("Registro de usuarios");
+      setSubTitleTag("Agregue nuevos usuarios")
     }
   }, [viewTable]);
 
   return (
     <>
-      <SectionHeader />
-      <SectionTitle />
+      <SectionHeader title={title} subtitle={subtitle} />
+      <SectionTitle  subtitle={subtitle} subtitletag={subtitletag}/>
       <div className="card">
         <CardHeader
           setWiewTable={setWiewTable}

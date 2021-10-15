@@ -29,10 +29,7 @@ const MainSidebar = () => {
             </a>
             <ul className="dropdown-menu" style={{ display: "none" }}>
               <li>
-                <a href="/listventas">Listado de ventas</a>
-              </li>
-              <li>
-                <a href="/ventas">Registrar ventas</a>
+                <a href="/sales">Listado de ventas</a>
               </li>
             </ul>
           </li>
@@ -46,10 +43,7 @@ const MainSidebar = () => {
             </a>
             <ul className="dropdown-menu" style={{ display: "none" }}>
               <li>
-                <a href="/listproducts">Listado de productos</a>
-              </li>
-              <li>
-                <a href="/formproducts">Agregar productos</a>
+                <a href="/products">Listado de productos</a>
               </li>
             </ul>
           </li>
@@ -63,7 +57,7 @@ const MainSidebar = () => {
             </a>
             <ul className="dropdown-menu" style={{ display: "none" }}>
               <li>
-                <a href="/users">Usuarios</a>
+                <a href="/users">Listado de Usuarios</a>
               </li>
              
             </ul>

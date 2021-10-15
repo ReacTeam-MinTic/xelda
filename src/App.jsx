@@ -4,12 +4,11 @@ import Index from "pages/index";
 import Layouts from "layouts/layouts";
 import Login from "layouts/login";
 import LoginUser from "pages/loginUser";
-import Ventas from "pages/Ventas";
-import ListVentas from "pages/listventas";
 import AuthRegister from "pages/auth-register";
 import AppUser from "pages/formUser/appUser";
 import AppProducts from "pages/products/appProducts";
 import AppSale from "pages/sales/appSales";
+import IndexSup from "layouts";
 // Un Route por cada Layouts - Ver los layouts como pages-templante (NO como componentes)
 // Agreagr otro Toute para Login
 
@@ -17,15 +16,9 @@ const App = () => {
   return (
     <Router>
       <Switch>
-        <Route path={["/ventas", "/listventas", "/users", "/products", "/sales"]}>
+        <Route path={["/users", "/products", "/sales"]}>
           <Layouts>
             <Switch>
-              <Route path="/ventas" exact>
-                <Ventas />
-              </Route>
-              <Route path="/listventas" exact>
-                <ListVentas />
-              </Route>
               <Route path="/users" exact>
                 <AppUser />
               </Route>
@@ -51,13 +44,13 @@ const App = () => {
           </Login>
         </Route>
         <Route path={["/"]}>
-          <Layouts>
+          <IndexSup>
             <Switch>
               <Route path="/" exact>
                 <Index />
               </Route>
             </Switch>
-          </Layouts>
+          </IndexSup>
         </Route>
       </Switch>
     </Router>

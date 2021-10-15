@@ -1,9 +1,10 @@
 import React from "react";
 import Alerts from "styles/js/alerts";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 import axios from "axios";
 
 const FormSales = ({ setWiewTable, setSalesDb, salesDb }) => {
+
   const form = useRef(null);
   const submitForm = async (e) => {
     e.preventDefault();
@@ -25,7 +26,7 @@ const FormSales = ({ setWiewTable, setSalesDb, salesDb }) => {
         customer: newSale.customer,
         cost: newSale.cost,
         amount: newSale.amount,
-        total_value: newSale.total_value
+        total_value: newSale.cost*newSale.amount
       },
     };
     await axios
@@ -135,27 +136,28 @@ const FormSales = ({ setWiewTable, setSalesDb, salesDb }) => {
               required
               autoComplete="off"
               placeholder=""
+              
             />
             <div className="invalid-feedback">
               El campo no puede quedar vacío.
             </div>
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
             <label htmlFor="total_value">TOTAL</label>
             <input
               autoComplete="nope"
               name="total_value"
               type="number"
-              className="form-control "
-              required
+              className="form-control"
               autoComplete="off"
-              placeholder=""
+              placeholder="0"
+              value={}
             />
             <div className="invalid-feedback">
               El campo no puede quedar vacío.
             </div>
           </div>
-          
+           */}
          </div>
 
         <div className=" d-flex justify-content-end flex-wrap my-2">

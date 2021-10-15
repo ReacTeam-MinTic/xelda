@@ -156,10 +156,10 @@ const FileTableProducts = ({ product, setRunQuery}) => {
           <td>{product.cod}</td>
           <td>{product.name}</td>
           <td>{product.description}</td>
-          <td>{product.value_}</td>
+          <td>${product.value_}</td>
           <td>
-            {" "}
-            <div class="badge badge-success">{product.status}</div>
+            {product.status.toLowerCase() === "disponible" ? <div class="badge badge-success">{product.status}</div> : <div class="badge badge-danger">{product.status}</div>}
+            
           </td>
    
           

@@ -1,17 +1,17 @@
 import React from "react";
 
-const SectionHeader = () => {
+const SectionHeader = ({subtitle, title}) => {
   return (
     <div className="section-header">
-      <h1>Table</h1>
+      <h1>{title}</h1>
       <div className="section-header-breadcrumb">
         <div className="breadcrumb-item active">
-          <a href="#">Dashboard</a>
+          <a href="#">Inicio</a>
         </div>
         <div className="breadcrumb-item">
-          <a href="#">Components</a>
+          <a href="#">{subtitle}</a>
         </div>
-        <div className="breadcrumb-item">Table</div>
+        
       </div>
     </div>
   );

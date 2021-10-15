@@ -12,6 +12,9 @@ const AppProducts = () => {
   const [textButton, setTextButton] = useState("Nuevo Producto");
   const [ProductsDb, setProductsDb] = useState([]);
   const [runQuery, setRunQuery] = useState(true);
+  const [title, setTitle] = useState("Módulo de Productos");
+  const [subtitle, setSubTitle] = useState("Listado de Productos");
+  const [subtitletag, setSubTitleTag] = useState("Busque, edite o elimine los registros");
   
 
   useEffect(() => {
@@ -29,15 +32,19 @@ const AppProducts = () => {
   useEffect(() => {
     if (viewTable) {
       setTextButton("Nuevo Producto");
+      setSubTitle("Listado de productos");
+      setSubTitleTag("Busque, edite o elimine los registros")
     } else {
       setTextButton("Ver Todos");
+      setSubTitle("Registro de productos");
+      setSubTitleTag("Agregue nuevos productos")
     }
   }, [viewTable]);
 
   return (
     <>
-      <SectionHeader />
-      <SectionTitle />
+      <SectionHeader title={title} subtitle={subtitle} />
+      <SectionTitle  subtitle={subtitle} subtitletag={subtitletag}/>
       <div className="card">
         <CardHeader
           setWiewTable={setWiewTable}

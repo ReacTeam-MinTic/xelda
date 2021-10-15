@@ -174,12 +174,11 @@ const FileTableSales = ({ sale, setRunQuery }) => {
           </td>
           <td>
             <input
+              className="form-control-plaintext"
               type="text"
-              className="form-control"
-              value={infoNewSale.total_value}
-              onChange={(e) =>
-                setInfoNewSale({ ...infoNewSale, total_value: e.target.value })
-              }
+              placeholder="Readonly" 
+              readOnly={true}
+              readonly
             />
           </td>
         </>
@@ -189,9 +188,9 @@ const FileTableSales = ({ sale, setRunQuery }) => {
           <td>{sale.date}</td>
           <td>{sale.id_customer}</td>
           <td>{sale.customer}</td>
-          <td>{sale.cost}</td>
+          <td>${sale.cost}</td>
           <td>{sale.amount}</td>
-          <td>{sale.total_value}</td>
+          <td>${sale.total_value}</td>
         </>
       )}
 

@@ -8,12 +8,14 @@ const AuthRegister = () => {
           <div className="row">
             <div className="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
               <div className="login-brand">
+                <a href="/">
                 <img
                   src="../assets/img/logo.svg"
                   alt="logo"
                   width={100}
                   className="shadow-light rounded-circle"
                 />
+                </a>
               </div>
               <div className="card card-primary">
                 <div className="card-header">
