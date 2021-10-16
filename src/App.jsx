@@ -38,13 +38,13 @@ const App = () => {
             </Layouts>
           </Route>
           <Route path={["/index"]}>
-            <IndexSup>
+            <Layouts>
               <Switch>
                 <Route path="/index" exact>
                   <Index />
                 </Route>
               </Switch>
-            </IndexSup>
+            </Layouts>
           </Route>
           <Route path={["/"]}>
             <Login>

@@ -24,7 +24,7 @@ export const getUsersBackend = async (setUsersDb, setRunQuery) => {
 
 };
 
-const getProductsBackend = async (setProductsDb, setRunQuery) => {
+export const getProductsBackend = async (setProductsDb, setRunQuery) => {
   const options = {
     method: "GET", url: "http://localhost:5000/products",
     headers: {
@@ -42,7 +42,7 @@ const getProductsBackend = async (setProductsDb, setRunQuery) => {
   setRunQuery(false);
 };
 
-const getSalesBackend = async (setSalesDb, setRunQuery) => {
+export const getSalesBackend = async (setSalesDb, setRunQuery) => {
   const options = {
     method: "GET", url: "http://localhost:5000/sales",
     headers: {
@@ -60,4 +60,4 @@ const getSalesBackend = async (setSalesDb, setRunQuery) => {
   setRunQuery(false);
 };
 
-export { getUsersBackend, getProductsBackend, getSalesBackend };
+ 

@@ -2,6 +2,7 @@ import React from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
 
 const NavBar = () => {
+  console.log("informacion usuario", typeof(useAuth0))
   const { logout, user } = useAuth0();
 
   const cerrarSesion = ()=>{
