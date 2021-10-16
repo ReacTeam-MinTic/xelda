@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import SectionTitle from "components/template-base/content/SectionTitle";
 import CardHeader from "components/template-base/content/CardHeader";
 import SectionHeader from "components/template-base/content/SectionHeader";
-import { getSalesBackend } from "utils/api";
+import { getProductsBackend, getSeller_, getSalesBackend} from "utils/api";
 
 
 const AppSale = () => {
@@ -15,6 +15,32 @@ const AppSale = () => {
   const [title, setTitle] = useState("Módulo de ventas");
   const [subtitle, setSubTitle] = useState("Listado de Ventas");
   const [subtitletag, setSubTitleTag] = useState("Busque, edite o elimine los registros");
+  const [seller, setSeller] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  useEffect(()=>{
+
+    const getSeller = async () => {
+      await getSeller_(
+        (response)=>{
+          setSeller(response.data)
+          console.log(seller)
+        }, 
+        (error)=>{console.error(error)});
+    };
+    const getProducts = async () => {
+      await getProductsBackend(
+        (response)=>{
+          setProducts(response.data)
+          console.log(products)
+        }, 
+        (error)=>{console.error(error)}
+        );
+    };
+    getSeller();
+    getProducts();
+
+  },[]);
   
   
 
@@ -69,6 +95,8 @@ const AppSale = () => {
               setWiewTable={setWiewTable}
               setSalesDb={setSalesDb}
               salesDb={salesDb}
+              seller={seller}
+              products={products}
             />
           )}
         </div>

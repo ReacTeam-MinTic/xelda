@@ -3,7 +3,7 @@ import Alerts from "styles/js/alerts";
 import { useRef } from "react";
 import { postSales } from "utils/api";
 
-const FormSales = ({ setWiewTable }) => {
+const FormSales = ({ setWiewTable, seller, products }) => {
   const form = useRef(null);
   const submitForm = async (e) => {
     e.preventDefault();
@@ -133,6 +133,45 @@ const FormSales = ({ setWiewTable }) => {
               El campo no puede quedar vacío.
             </div>
           </div>
+          <div className="form-group">
+            <label htmlFor="saller">Vendedor</label>
+            <select
+              className="form-control select2"
+              name="saller"
+              defaultValue={0}
+            >
+              <option disabled value={0}>
+                Seleccione un opción
+              </option>
+              {seller.map((el)=>{
+                return <option value={el._id}>{`${el.name} ${el.lastname}`}</option>;
+              })}
+              
+            </select>
+            <div className="invalid-feedback">
+              El campo no puede quedar vacío.
+            </div>
+          </div>
+          <div className="form-group">
+            <label htmlFor="products">Productos</label>
+            <select
+              className="form-control select2"
+              name="products"
+              defaultValue={0}
+            >
+              <option disabled value={0}>
+                Seleccione un opción
+              </option>
+              {products.map((em)=>{
+                return <option value={em._id}>{`${em.name} ${em.value_}`}</option>;
+              })}
+              
+            </select>
+            <div className="invalid-feedback">
+              El campo no puede quedar vacío.
+            </div>
+          </div>
+         
           {/* <div className="form-group">
             <label htmlFor="total_value">TOTAL</label>
             <input
