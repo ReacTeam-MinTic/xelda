@@ -1,41 +1,59 @@
 import axios from "axios";
-const getUsersBackend = async (setUsersDb, setRunQuery) => {
+
+//Módulo de usuarios
+export const getUsersBackend = async (successCallback, errorCallback) => {
   const options = { method: "GET", url: "http://localhost:5000/users" };
-  await axios
-    .request(options)
-    .then(function (response) {
-      setUsersDb(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-  setRunQuery(false);
+  await axios.request(options).then(successCallback).catch(errorCallback);
 };
 
-const getProductsBackend = async (setProductsDb, setRunQuery) => {
+export const postUsers = async (data, successCallback, errorCallback) => {
+  const options = {
+    method: "POST",
+    url: "http://localhost:5000/users",
+    headers: { "Content-Type": "application/json" },
+    data,
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const editUsers = async (id, data, successCallback, errorCallback) => {
+  const options = {
+    method: 'PATCH',
+    url: `http://localhost:5000/users/${id}`,
+    headers: {'Content-Type': 'application/json'},
+    data,
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+//Módulo de Productos
+export const getProductsBackend = async (successCallback, errorCallback) => {
   const options = { method: "GET", url: "http://localhost:5000/products" };
-  await axios
-    .request(options)
-    .then(function (response) {
-      setProductsDb(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-  setRunQuery(false);
+  await axios.request(options).then(successCallback).catch(errorCallback);
 };
 
-const getSalesBackend = async (setSalesDb, setRunQuery) => {
+export const postProducts = async (data, successCallback, errorCallback) => {
+  const options = {
+    method: "POST",
+    url: "http://localhost:5000/products",
+    headers: { "Content-Type": "application/json" },
+    data,
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+//Módulo de Ventas
+export const getSalesBackend = async (successCallback, errorCallback) => {
   const options = { method: "GET", url: "http://localhost:5000/sales" };
-  await axios
-    .request(options)
-    .then(function (response) {
-      setSalesDb(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-  setRunQuery(false);
+  await axios.request(options).then(successCallback).catch(errorCallback);
 };
 
-export { getUsersBackend, getProductsBackend, getSalesBackend };
+export const postSales = async (data, successCallback, errorCallback) => {
+  const options = {
+    method: "POST",
+    url: "http://localhost:5000/sales",
+    headers: { "Content-Type": "application/json" },
+    data,
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};

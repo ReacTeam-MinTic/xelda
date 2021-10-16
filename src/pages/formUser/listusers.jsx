@@ -4,6 +4,7 @@ import axios from "axios";
 import iziToast from "izitoast";
 import Alerts from "styles/js/alerts";
 import ButtonSerarch from "components/utilsComponent/buttonSerarch";
+import { editUsers } from "utils/api";
 
 
 const FileTableUsers = ({ user, setRunQuery}) => {
@@ -17,24 +18,8 @@ const FileTableUsers = ({ user, setRunQuery}) => {
   });
 
   const updateUser = async () => {
-    console.log(infoNewUser);
-    setEdit(false);
-    const options = {
-      method: 'PATCH',
-      url: `http://localhost:5000/users/${user._id}`,
-      headers: {'Content-Type': 'application/json'},
-      data: {...infoNewUser, id: user._id}
-    };
-    
-    await axios.request(options).then(function (response) {
-      console.log(response.data);
-      Alerts.alertSucees();
-      setRunQuery(true);
-      setEdit(false);
-    }).catch(function (error) {
-      Alerts.alertError();
-      console.error("_____dd",error);
-    });
+    editUsers(user._id, )
+  
   };
   
   const deleteUser = async () => {

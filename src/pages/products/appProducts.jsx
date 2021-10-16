@@ -19,7 +19,15 @@ const AppProducts = () => {
 
   useEffect(() => {
     if(runQuery){
-      getProductsBackend(setProductsDb, setRunQuery);
+      getProductsBackend(
+        (response)=> {
+          setProductsDb(response.data);
+        }, 
+        (error)=> {
+          console.error(error);
+        }
+        );
+      setRunQuery(false);
     }
   }, [runQuery])
 

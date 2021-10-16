@@ -1,43 +1,36 @@
 import React from "react";
 import Alerts from "styles/js/alerts";
 import { useRef } from "react";
-import axios from "axios";
+import { postProducts } from "utils/api";
 
-const FormProducts = ({ setWiewTable, setProductsDb, ProductsDb }) => {
+const FormProducts = ({ setWiewTable }) => {
   const form = useRef(null);
   const submitForm = async (e) => {
     e.preventDefault();
     const fd = new FormData(form.current);
-
     const newProduct = {};
     fd.forEach((value, key) => {
       newProduct[key] = value;
     });
-
-    const options = {
-      method: "POST",
-      url: "http://localhost:5000/products",
-      headers: { "Content-Type": "application/json" },
-      data: {
+    await postProducts(
+      {
         cod: newProduct.cod,
         name: newProduct.name,
         description: newProduct.description,
         value_: newProduct.value_,
-        value_: newProduct.value_,
+        status: newProduct.status,
       },
-    };
-    await axios
-      .request(options)
-      .then(function (response) {
+      (response) => {
         console.log("data enviada", response.data);
-        const bodyAlert = "¡Guardado!"
-        const mensaje = "Operación exitosa"
-        Alerts.alertSucees(mensaje,bodyAlert);
-      })
-      .catch(function (error) {
+        const bodyAlert = "¡Guardado!";
+        const mensaje = "Operación exitosa";
+        Alerts.alertSucees(mensaje, bodyAlert);
+      },
+      (error) => {
         console.error("Este es el error", error);
         Alerts.alertError();
-      });
+      }
+    );
     setWiewTable(true);
   };
 
@@ -93,9 +86,9 @@ const FormProducts = ({ setWiewTable, setProductsDb, ProductsDb }) => {
             </div>
           </div>
           <div className="form-group">
-            <label htmlFor="value">Valor</label>
+            <label htmlFor="value_">Valor</label>
             <input
-              name="value"
+              name="value_"
               type="text"
               className="form-control "
               required
@@ -106,7 +99,7 @@ const FormProducts = ({ setWiewTable, setProductsDb, ProductsDb }) => {
               El campo no puede quedar vacío.
             </div>
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="status">Estado</label>
             <select

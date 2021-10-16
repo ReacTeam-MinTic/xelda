@@ -19,7 +19,15 @@ const AppUser = () => {
 
   useEffect(() => {
     if(runQuery){
-      getUsersBackend(setUsersDb, setRunQuery);
+      getUsersBackend(
+        (response)=> {
+          setUsersDb(response.data);
+        }, 
+        (error)=> {
+          console.error(error);
+        }
+        );
+      setRunQuery(false);
     }
   }, [runQuery])
 

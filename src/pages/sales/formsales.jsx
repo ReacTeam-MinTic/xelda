@@ -1,46 +1,38 @@
 import React from "react";
 import Alerts from "styles/js/alerts";
-import { useRef, useState, useEffect } from "react";
-import axios from "axios";
+import { useRef } from "react";
+import { postSales } from "utils/api";
 
-const FormSales = ({ setWiewTable, setSalesDb, salesDb }) => {
-
+const FormSales = ({ setWiewTable }) => {
   const form = useRef(null);
   const submitForm = async (e) => {
     e.preventDefault();
     const fd = new FormData(form.current);
-
     const newSale = {};
     fd.forEach((value, key) => {
       newSale[key] = value;
     });
-
-    const options = {
-      method: "POST",
-      url: "http://localhost:5000/sales",
-      headers: { "Content-Type": "application/json" },
-      data: {
+    await postSales(
+      {
         cod: newSale.cod,
         date: newSale.date,
         id_customer: newSale.id_customer,
         customer: newSale.customer,
         cost: newSale.cost,
         amount: newSale.amount,
-        total_value: newSale.cost*newSale.amount
+        total_value: newSale.cost * newSale.amount,
       },
-    };
-    await axios
-      .request(options)
-      .then(function (response) {
+      (response) => {
         console.log("data enviada", response.data);
-        const bodyAlert = "¡Guardado!"
-        const mensaje = "Operación exitosa"
-        Alerts.alertSucees(mensaje,bodyAlert);
-      })
-      .catch(function (error) {
+        const bodyAlert = "¡Guardado!";
+        const mensaje = "Operación exitosa";
+        Alerts.alertSucees(mensaje, bodyAlert);
+      },
+      (error) => {
         console.error("Este es el error", error);
         Alerts.alertError();
-      });
+      }
+    );
     setWiewTable(true);
   };
 
@@ -136,7 +128,6 @@ const FormSales = ({ setWiewTable, setSalesDb, salesDb }) => {
               required
               autoComplete="off"
               placeholder=""
-              
             />
             <div className="invalid-feedback">
               El campo no puede quedar vacío.
@@ -158,7 +149,7 @@ const FormSales = ({ setWiewTable, setSalesDb, salesDb }) => {
             </div>
           </div>
            */}
-         </div>
+        </div>
 
         <div className=" d-flex justify-content-end flex-wrap my-2">
           <button

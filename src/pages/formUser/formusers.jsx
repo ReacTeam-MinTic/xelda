@@ -1,9 +1,9 @@
 import React from "react";
 import Alerts from "styles/js/alerts";
-import { useRef, useState } from "react";
-import axios from "axios";
+import { useRef } from "react";
+import { postUsers } from "utils/api";
 
-const FormUsers = ({ setWiewTable, setUsersDb, usersDb }) => {
+const FormUsers = ({ setWiewTable }) => {
   const form = useRef(null);
   const submitForm = async (e) => {
     e.preventDefault();
@@ -13,31 +13,25 @@ const FormUsers = ({ setWiewTable, setUsersDb, usersDb }) => {
     fd.forEach((value, key) => {
       newUser[key] = value;
     });
-
-    const options = {
-      method: "POST",
-      url: "http://localhost:5000/users",
-      headers: { "Content-Type": "application/json" },
-      data: {
+    await postUsers(
+      {
         name: newUser.name,
         lastname: newUser.lastname,
         state: newUser.state,
         role: newUser.role,
         email: newUser.email,
       },
-    };
-    await axios
-      .request(options)
-      .then(function (response) {
+      (response) => {
         console.log("data enviada", response.data);
-        const bodyAlert = "¡Guardado!"
-        const mensaje = "Operación exitosa"
-        Alerts.alertSucees(mensaje,bodyAlert);
-      })
-      .catch(function (error) {
+        const bodyAlert = "¡Guardado!";
+        const mensaje = "Operación exitosa";
+        Alerts.alertSucees(mensaje, bodyAlert);
+      },
+      (error) => {
         console.error("Este es el error", error);
         Alerts.alertError();
-      });
+      }
+    );
     setWiewTable(true);
   };
 

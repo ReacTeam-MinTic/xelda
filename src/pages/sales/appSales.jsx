@@ -20,7 +20,15 @@ const AppSale = () => {
 
   useEffect(() => {
     if(runQuery){
-      getSalesBackend(setSalesDb, setRunQuery);
+      getSalesBackend(
+        (response)=> {
+          setSalesDb(response.data);
+        }, 
+        (error)=> {
+          console.error(error);
+        }
+        );
+      setRunQuery(false);
     }
   }, [runQuery])
 
