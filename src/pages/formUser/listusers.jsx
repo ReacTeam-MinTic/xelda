@@ -14,7 +14,7 @@ const FileTableUsers = ({ user, setRunQuery}) => {
   const [infoNewUser, setInfoNewUser] = useState({
     name:user.name,
     lastname:user.lastname,
-    state:user.state,
+    /* state:user.state, */
     role:user.role,
     email:user.email,
   });
@@ -113,7 +113,6 @@ const FileTableUsers = ({ user, setRunQuery}) => {
       
     });
   };
-
   return (
     <tr>
       {edit ? (
@@ -134,21 +133,16 @@ const FileTableUsers = ({ user, setRunQuery}) => {
               onChange={(e)=> setInfoNewUser({...infoNewUser, lastname: e.target.value})}
             />
           </td>
-          <td>
+            {/*<td>
             <input
               type="text"
               className="form-control"
               value={infoNewUser.state}
               onChange={(e)=> setInfoNewUser({...infoNewUser, state: e.target.value})}
             />
-          </td>
+          </td> */}
           <td>
-            <input
-              type="text"
-              className="form-control"
-              value={infoNewUser.role}
-              onChange={(e)=> setInfoNewUser({...infoNewUser, role: e.target.value})}
-            />
+            <RolesUsuarios infoNewUser = {infoNewUser} setInfoNewUser= {setInfoNewUser}/>
           </td>
           <td>
             <input
@@ -158,16 +152,15 @@ const FileTableUsers = ({ user, setRunQuery}) => {
               onChange={(e)=> setInfoNewUser({...infoNewUser, email: e.target.value})}
             />
           </td>
-          
         </>
       ) : (
         <>
           <td>{user.name}</td>
           <td>{user.lastname}</td>
-          <td>
+          {/* <td>
             {user.state.toLowerCase() === "activo" ? <div className="badge badge-success">{user.state}</div> : <div className="badge badge-danger">{user.state}</div>}
             
-          </td>
+          </td> */}
           <td>
             {user.role.toLowerCase()=== "admin" ? <div className="badge badge-info">{user.role}</div> : <div className="badge badge-warning">{user.role}</div>}
           </td>
@@ -202,8 +195,24 @@ const FileTableUsers = ({ user, setRunQuery}) => {
   );
 };
 
+const RolesUsuarios = ({ infoNewUser, setInfoNewUser }) => {
+
+  const [rol, setRol] = useState(infoNewUser.role)
+  useEffect(() => {
+    const editUsuario = async () => {}
+    editUsuario()
+  }, [rol])
+  return(
+    <select className="form-control" value={infoNewUser.role} onChange={(e)=> setInfoNewUser({...infoNewUser, role: e.target.value})}>
+      <option value="admin">Admin</option>
+      <option value="Vendedor">Vendedor</option>
+      <option value="Inactivo">Inactivo</option>
+    </select>
+  )
+}
+
 const ListUsers = ({ usersDb, setRunQuery}) => {
-  const [busqueda, setBusqueda] =useState('');
+  const [busqueda, setBusqueda] = useState('');
   const[usersFiltered, setusersFiltered] = useState(usersDb);
 
   useEffect(() => {
@@ -227,7 +236,7 @@ const ListUsers = ({ usersDb, setRunQuery}) => {
           <tr>
             <th>Nombres</th>
             <th>Apellidos</th>
-            <th>Estado</th>
+            {/* <th>Estado</th> */}
             <th>Rol</th>
             <th>Email</th>
             <th>Opciones</th>
