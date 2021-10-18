@@ -17,6 +17,7 @@ const AppSale = () => {
   const [subtitletag, setSubTitleTag] = useState("Busque, edite o elimine los registros");
   const [seller, setSeller] = useState([]);
   const [products, setProducts] = useState([]);
+  const [productsRow, setproductsRow] = useState();
 
   useEffect(()=>{
 
@@ -97,6 +98,10 @@ const AppSale = () => {
               salesDb={salesDb}
               seller={seller}
               products={products}
+              setProducts={setProducts}
+              setproductsRow={setproductsRow}
+              productsRow={productsRow}
+              
             />
           )}
         </div>

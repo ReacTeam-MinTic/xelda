@@ -235,7 +235,7 @@ const ListSales = ({ salesDb, setRunQuery }) => {
               <th>Id Cliente</th>
               <th>Cliente</th>
               <th>Precio</th>
-              <th>Valor</th>
+              <th>Unt</th>
               <th>Total</th>
               <th>Opciones</th>
             </tr>
