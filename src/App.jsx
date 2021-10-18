@@ -18,8 +18,7 @@ const App = () => {
     domain="xelda.us.auth0.com"
     clientId="vIWD5IdvNAKfDeUT23be8DdaJpw8JEIu"
     redirectUri="http://localhost:3000/index"
-    audience='api-autenticacion-xelda'
-    >
+    audience= 'api-autenticacion-xelda'>
       <Router>
         <Switch>
           <Route path={["/products","/sales", "/users"]}>

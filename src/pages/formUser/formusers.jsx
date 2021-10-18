@@ -3,6 +3,10 @@ import Alerts from "styles/js/alerts";
 import { useRef, useState } from "react";
 import axios from "axios";
 
+const getToken = () => {
+  return `Bearer ${localStorage.getItem('token')}`
+}
+
 const FormUsers = ({ setWiewTable, setUsersDb, usersDb }) => {
   const form = useRef(null);
   const submitForm = async (e) => {
@@ -17,7 +21,9 @@ const FormUsers = ({ setWiewTable, setUsersDb, usersDb }) => {
     const options = {
       method: "POST",
       url: "http://localhost:5000/users",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json",
+        Authorization: getToken() },
       data: {
         name: newUser.name,
         lastname: newUser.lastname,

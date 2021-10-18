@@ -3,6 +3,10 @@ import Alerts from "styles/js/alerts";
 import { useRef } from "react";
 import axios from "axios";
 
+const getToken = () => {
+  return `Bearer ${localStorage.getItem('token')}`
+}
+
 const FormProducts = ({ setWiewTable, setProductsDb, ProductsDb }) => {
   const form = useRef(null);
   const submitForm = async (e) => {
@@ -17,7 +21,10 @@ const FormProducts = ({ setWiewTable, setProductsDb, ProductsDb }) => {
     const options = {
       method: "POST",
       url: "http://localhost:5000/products",
-      headers: { "Content-Type": "application/json" },
+      headers: { 
+        "Content-Type": "application/json",
+        Authorization: getToken()
+      },
       data: {
         cod: newProduct.cod,
         name: newProduct.name,

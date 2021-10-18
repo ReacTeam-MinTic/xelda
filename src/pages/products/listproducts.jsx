@@ -5,6 +5,9 @@ import iziToast from "izitoast";
 import Alerts from "styles/js/alerts";
 import ButtonSerarch from "components/utilsComponent/buttonSerarch";
 
+const getToken = () => {
+  return `Bearer ${localStorage.getItem('token')}`
+}
 
 const FileTableProducts = ({ product, setRunQuery}) => {
   const [edit, setEdit] = useState(false);
@@ -22,7 +25,10 @@ const FileTableProducts = ({ product, setRunQuery}) => {
     const options = {
       method: 'PATCH',
       url: `http://localhost:5000/products/${product._id}`,
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: getToken()
+      },
       data: {...infoNewProduct, id: product._id}
     };
     
@@ -41,7 +47,10 @@ const FileTableProducts = ({ product, setRunQuery}) => {
     const options = {
       method: 'DELETE',
       url: `http://localhost:5000/products/${product._id}`,
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: getToken()
+      },
       data: {_id: product._id}
     };
     
