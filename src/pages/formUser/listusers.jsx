@@ -165,35 +165,34 @@ const FileTableUsers = ({ user, setRunQuery}) => {
           <td>{user.name}</td>
           <td>{user.lastname}</td>
           <td>
-            {user.state.toLowerCase() === "activo" ? <div class="badge badge-success">{user.state}</div> : <div class="badge badge-danger">{user.state}</div>}
+            {user.state.toLowerCase() === "activo" ? <div className="badge badge-success">{user.state}</div> : <div className="badge badge-danger">{user.state}</div>}
             
           </td>
           <td>
-            {user.role.toLowerCase()=== "admin" ? <div class="badge badge-info">{user.role}</div> : <div class="badge badge-warning">{user.role}</div>}
-            
+            {user.role.toLowerCase()=== "admin" ? <div className="badge badge-info">{user.role}</div> : <div className="badge badge-warning">{user.role}</div>}
           </td>
           <td>{user.email}</td>
         </>
       )}
 
       <td>
-        <div class="row justify-content-md-center">
+        <div className="row justify-content-md-center">
           {edit ? (
             <>
             <a onClick={() => updateUser()}>
-              <i class="fas fa-check"></i>
+              <i className="fas fa-check"></i>
             </a>
             <a onClick={() => setEdit(!edit)}>
-           <i class="fas fa-ban"></i>
+           <i className="fas fa-ban"></i>
          </a>
             </>
           ) : (
             <>
             <a onClick={() => setEdit(!edit)}>
-              <i class="fas fa-edit"></i>
+              <i className="fas fa-edit"></i>
             </a>
             <a onClick={()=> alertWarning_()}>
-              <i class="fas fa-trash-alt"></i>
+              <i className="fas fa-trash-alt"></i>
             </a> 
          </>
           )}

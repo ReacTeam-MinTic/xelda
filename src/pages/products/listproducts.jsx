@@ -167,8 +167,7 @@ const FileTableProducts = ({ product, setRunQuery}) => {
           <td>{product.description}</td>
           <td>${product.value_}</td>
           <td>
-            {product.status.toLowerCase() === "disponible" ? <div class="badge badge-success">{product.status}</div> : <div class="badge badge-danger">{product.status}</div>}
-            
+            {product.status.toLowerCase() === "disponible" ? <div className="badge badge-success">{product.status}</div> : <div className="badge badge-danger">{product.status}</div>}
           </td>
    
           
@@ -176,23 +175,23 @@ const FileTableProducts = ({ product, setRunQuery}) => {
       )}
 
       <td>
-        <div class="row justify-content-md-center">
+        <div className="row justify-content-md-center">
           {edit ? (
             <>
             <a onClick={() => updateProduct()}>
-              <i class="fas fa-check"></i>
+              <i className="fas fa-check"></i>
             </a>
             <a onClick={() => setEdit(!edit)}>
-           <i class="fas fa-ban"></i>
+           <i className="fas fa-ban"></i>
          </a>
             </>
           ) : (
             <>
             <a onClick={() => setEdit(!edit)}>
-              <i class="fas fa-edit"></i>
+              <i className="fas fa-edit"></i>
             </a>
             <a onClick={()=> alertWarning_()}>
-              <i class="fas fa-trash-alt"></i>
+              <i className="fas fa-trash-alt"></i>
             </a> 
          </>
           )}

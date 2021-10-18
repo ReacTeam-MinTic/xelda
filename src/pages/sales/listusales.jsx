@@ -205,23 +205,23 @@ const FileTableSales = ({ sale, setRunQuery }) => {
       )}
 
       <td>
-        <div class="row justify-content-md-center">
+        <div className="row justify-content-md-center">
           {edit ? (
             <>
               <a onClick={() => updateSale()}>
-                <i class="fas fa-check"></i>
+                <i className="fas fa-check"></i>
               </a>
               <a onClick={() => setEdit(!edit)}>
-                <i class="fas fa-ban"></i>
+                <i className="fas fa-ban"></i>
               </a>
             </>
           ) : (
             <>
               <a onClick={() => setEdit(!edit)}>
-                <i class="fas fa-edit"></i>
+                <i className="fas fa-edit"></i>
               </a>
               <a onClick={() => alertWarning_()}>
-                <i class="fas fa-trash-alt"></i>
+                <i className="fas fa-trash-alt"></i>
               </a>
             </>
           )}
