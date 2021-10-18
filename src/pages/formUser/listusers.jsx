@@ -94,7 +94,6 @@ const FileTableUsers = ({ user, setRunQuery }) => {
       ],
     });
   };
-
   return (
     <tr>
       {edit ? (
@@ -119,7 +118,7 @@ const FileTableUsers = ({ user, setRunQuery }) => {
               }
             />
           </td>
-          <td>
+            <td>
             <input
               type="text"
               className="form-control"
@@ -173,7 +172,7 @@ const FileTableUsers = ({ user, setRunQuery }) => {
       )}
 
       <td>
-        <div class="row justify-content-md-center">
+        <div className="row justify-content-md-center">
           {edit ? (
             <>
               <a onClick={() => updateUser()}>

@@ -5,15 +5,15 @@ const MainSidebar = () => {
       <div className="main-sidebar">
       <aside id="sidebar-wrapper">
         <div className="sidebar-brand">
-          <a href="/" className="nav-link">Xelda</a>
+          <a href="/index" className="nav-link">Xelda</a>
         </div>
         <div className="sidebar-brand sidebar-brand-sm">
-          <a href="/" className="nav-link">Xd</a>
+          <a href="/index" className="nav-link">Xd</a>
         </div>
         <ul className="sidebar-menu">
           <li className="menu-header">Inicio</li>
           <li className="active">
-            <a href="/" className="nav-link">
+            <a href="/index" className="nav-link">
               <i className="fas fa-fire" />
               <span>Inicio</span>
             </a>

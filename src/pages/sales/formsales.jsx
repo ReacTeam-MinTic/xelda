@@ -7,6 +7,8 @@ import { nanoid } from "nanoid";
 const FormSales = ({
   setWiewTable,
   seller,
+  setSalesDb, 
+  salesDb,
   products,
   setProducts,
   setproductsRow,
