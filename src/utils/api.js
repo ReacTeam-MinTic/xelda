@@ -25,7 +25,8 @@ export const obtenerDatosUsuario = async (setUsersDb, setRunQuery) => {
 
 export const getUsersBackend = async (setUsersDb, setRunQuery) => {
   const options = {
-    method: "GET", url: "http://localhost:5000/users",
+    method: "GET", 
+    url: "http://localhost:5000/users",
     headers: {
       Authorization: getToken() 
     }
