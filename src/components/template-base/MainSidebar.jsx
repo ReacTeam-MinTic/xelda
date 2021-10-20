@@ -1,8 +1,8 @@
 import React from 'react'
 
 const MainSidebar = () => {
-    return (
-      <div className="main-sidebar">
+  return (
+    <div className="main-sidebar">
       <aside id="sidebar-wrapper">
         <div className="sidebar-brand">
           <a href="/index" className="nav-link">Xelda</a>
@@ -59,30 +59,12 @@ const MainSidebar = () => {
               <li>
                 <a href="/users">Listado de Usuarios</a>
               </li>
-             
-            </ul>
-          </li>
-          <li className="nav-item dropdown">
-            <a
-              href="#"
-              className="nav-link has-dropdown"
-              data-toggle="dropdown"
-            >
-              <i className="fas fa-sign-in-alt"></i> <span>Autenticación</span>
-            </a>
-            <ul className="dropdown-menu" style={{ display: "none" }}>
-              <li>
-                <a href="/login">Login</a>
-              </li>
-              <li>
-                <a href="/auth-register">Registro</a>
-              </li>
             </ul>
           </li>
         </ul>
       </aside>
     </div>
-);
+  );
 }
 
 export default MainSidebar
