@@ -32,6 +32,7 @@ export const obtenerDatosUsuario = async (setUsersDb, setRunQuery) => {
     });
   setRunQuery(false);
 };
+
 export const postUsers = async (data, successCallback, errorCallback) => {
   const options = {
     method: "POST",
@@ -47,7 +48,9 @@ export const editUsers = async (id, data, successCallback, errorCallback) => {
   const options = {
     method: 'PATCH',
     url: `http://localhost:5000/users/${id}/`,
-    headers: {'Content-Type': 'application/json', Authorization: getToken()},
+    headers: {
+      'Content-Type': 'application/json', 
+      Authorization: getToken()},
     data,
   };
   await axios.request(options).then(successCallback).catch(errorCallback);

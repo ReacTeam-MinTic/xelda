@@ -154,14 +154,14 @@ const FileTableUsers = ({ user, setRunQuery }) => {
           <td>{user.name}</td>
           <td>{user.lastname}</td>
           <td>
-            {user.state.toLowerCase() === "activo" ? (
+            {user.state === "activo" ? (
               <div class="badge badge-success">{user.state}</div>
             ) : (
               <div class="badge badge-danger">{user.state}</div>
             )}
           </td>
           <td>
-            {user.role.toLowerCase() === "admin" ? (
+            {user.role === "admin" ? (
               <div class="badge badge-info">{user.role}</div>
             ) : (
               <div class="badge badge-warning">{user.role}</div>
