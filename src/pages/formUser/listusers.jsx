@@ -4,14 +4,15 @@ import iziToast from "izitoast";
 import Alerts from "styles/js/alerts";
 import ButtonSerarch from "components/utilsComponent/buttonSerarch";
 import { editUsers, deleteUsers_ } from "utils/api";
+import PrivateComponent from "components/PrivateComponent";
 
 const FileTableUsers = ({ user, setRunQuery }) => {
   const [edit, setEdit] = useState(false);
   const [infoNewUser, setInfoNewUser] = useState({
     name: user.name,
     lastname: user.lastname,
-    state: user.state,
-    role: user.role,
+    /* state: user.state, */
+    rol: user.rol,
     email: user.email,
   });
 
@@ -95,106 +96,108 @@ const FileTableUsers = ({ user, setRunQuery }) => {
     });
   };
   return (
-    <tr>
-      {edit ? (
-        <>
-          <td>
-            <input
-              type="text"
-              className="form-control"
-              value={infoNewUser.name}
-              onChange={(e) =>
-                setInfoNewUser({ ...infoNewUser, name: e.target.value })
-              }
-            />
-          </td>
-          <td>
-            <input
-              type="text"
-              className="form-control"
-              value={infoNewUser.lastname}
-              onChange={(e) =>
-                setInfoNewUser({ ...infoNewUser, lastname: e.target.value })
-              }
-            />
-          </td>
+    <PrivateComponent roleList={['admin', 'vendedor']}>
+      <tr>
+        {edit ? (
+          <>
             <td>
-            <input
-              type="text"
-              className="form-control"
-              value={infoNewUser.state}
-              onChange={(e) =>
-                setInfoNewUser({ ...infoNewUser, state: e.target.value })
-              }
-            />
-          </td>
-          <td>
-            <input
-              type="text"
-              className="form-control"
-              value={infoNewUser.role}
-              onChange={(e) =>
-                setInfoNewUser({ ...infoNewUser, role: e.target.value })
-              }
-            />
-          </td>
-          <td>
-            <input
-              type="text"
-              className="form-control"
-              value={infoNewUser.email}
-              onChange={(e) =>
-                setInfoNewUser({ ...infoNewUser, email: e.target.value })
-              }
-            />
-          </td>
-        </>
-      ) : (
-        <>
-          <td>{user.name}</td>
-          <td>{user.lastname}</td>
-          <td>
-            {user.state === "activo" ? (
-              <div class="badge badge-success">{user.state}</div>
-            ) : (
-              <div class="badge badge-danger">{user.state}</div>
-            )}
-          </td>
-          <td>
-            {user.role === "admin" ? (
-              <div class="badge badge-info">{user.role}</div>
-            ) : (
-              <div class="badge badge-warning">{user.role}</div>
-            )}
-          </td>
-          <td>{user.email}</td>
-        </>
-      )}
+              <input
+                type="text"
+                className="form-control"
+                value={infoNewUser.name}
+                onChange={(e) =>
+                  setInfoNewUser({ ...infoNewUser, name: e.target.value })
+                }
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                className="form-control"
+                value={infoNewUser.lastname}
+                onChange={(e) =>
+                  setInfoNewUser({ ...infoNewUser, lastname: e.target.value })
+                }
+              />
+            </td>
+              {/* <td>
+              <input
+                type="text"
+                adminName="form-control"
+                value={infoNewUser.state}
+                onChange={(e) =>
+                  setInfoNewUser({ ...infoNewUser, state: e.target.value })
+                }
+              />
+            </td> */}
+            <td>
+              <input
+                type="text"
+                className="form-control"
+                value={infoNewUser.rol}
+                onChange={(e) =>
+                  setInfoNewUser({ ...infoNewUser, rol: e.target.value })
+                }
+              />
+            </td>
+            <td>
+              <input
+                type="text"
+                className="form-control"
+                value={infoNewUser.email}
+                onChange={(e) =>
+                  setInfoNewUser({ ...infoNewUser, email: e.target.value })
+                }
+              />
+            </td>
+          </>
+        ) : (
+          <>
+            <td>{user.name}</td>
+            <td>{user.lastname}</td>
+            {/* <td>
+              {user.state === "activo" ? (
+                <div className="badge badge-success">{user.state}</div>
+              ) : (
+                <div className="badge badge-danger">{user.state}</div>
+              )}
+            </td> */}
+            <td>
+              {user.rol === "admin" ? (
+                <div className="badge badge-info">{user.rol}</div>
+              ) : (
+                <div className="badge badge-warning">{user.rol}</div>
+              )}
+            </td>
+            <td>{user.email}</td>
+          </>
+        )}
 
-      <td>
-        <div className="row justify-content-md-center">
-          {edit ? (
-            <>
-              <a onClick={() => updateUser()}>
-                <i class="fas fa-check"></i>
-              </a>
-              <a onClick={() => setEdit(!edit)}>
-                <i class="fas fa-ban"></i>
-              </a>
-            </>
-          ) : (
-            <>
-              <a onClick={() => setEdit(!edit)}>
-                <i class="fas fa-edit"></i>
-              </a>
-              <a onClick={() => alertWarning_()}>
-                <i class="fas fa-trash-alt"></i>
-              </a>
-            </>
-          )}
-        </div>
-      </td>
-    </tr>
+        <td>
+          <div className="row justify-content-md-center">
+            {edit ? (
+              <>
+                <a onClick={() => updateUser()}>
+                  <i className="fas fa-check"></i>
+                </a>
+                <a onClick={() => setEdit(!edit)}>
+                  <i className="fas fa-ban"></i>
+                </a>
+              </>
+            ) : (
+              <>
+                <a onClick={() => setEdit(!edit)}>
+                  <i className="fas fa-edit"></i>
+                </a>
+                <a onClick={() => alertWarning_()}>
+                  <i className="fas fa-trash-alt"></i>
+                </a>
+              </>
+            )}
+          </div>
+        </td>
+      </tr>
+    </PrivateComponent>
   );
 };
 
@@ -222,7 +225,7 @@ const ListUsers = ({ usersDb, setRunQuery }) => {
             <tr>
               <th>Nombres</th>
               <th>Apellidos</th>
-              <th>Estado</th>
+              {/* <th>Estado</th> */}
               <th>Rol</th>
               <th>Email</th>
               <th>Opciones</th>

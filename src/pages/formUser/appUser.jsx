@@ -39,7 +39,7 @@ const AppUser = () => {
 
   useEffect(() => {
     if (viewTable) {
-      setTextButton("Nuevo");
+      setTextButton("Nuevo Usuario");
       setSubTitle("Listado de usuarios");
       setSubTitleTag("Busque, edite o elimine los registros")
     } else {
