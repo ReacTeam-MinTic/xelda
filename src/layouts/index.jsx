@@ -5,14 +5,16 @@ import PrivateRoute from "components/auth0/privateRoute";
 
 const IndexSup = ({ children }) => {
   return (
-    <PrivateRoute>
+    
       <>
+      <PrivateRoute>
         <MainSidebar />
         <NavBar />
         {children}
         <Footer />
+        </PrivateRoute>
       </>
-    </PrivateRoute>
+   
   );
 };
 

@@ -16,11 +16,6 @@ const PrivateRoute = ({ children }) => {
 
   useEffect(() => {
     const fecthAuthoToken =  async () => {
-      // if (localStorage.getItem("Token")){
-      //   //Validar fecha expiración del token
-      // } else {
-      //   //Pedir Token
-      // }
       const accessToken =  await getAccessTokenSilently({ audience: `api-xelda-auth` });
       localStorage.setItem("Token", accessToken);
       console.log("Token: ", accessToken)
