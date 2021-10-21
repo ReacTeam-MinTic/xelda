@@ -1,82 +1,146 @@
 import axios from "axios";
 
 const getToken = () => {
-  return `Bearer ${localStorage.getItem('token')}`
-}
+  return `Bearer ${localStorage.getItem("Token")}`;
+};
 
-//Ruta dummy para identificar los datos del usuario 
-export const getDataUser = async (setUsersDb, setRunQuery) => {
+//Módulo de usuarios
+export const getUsersBackend = async (successCallback, errorCallback) => {
+  const options = { method: "GET", url: "http://localhost:5000/users/",
+  headers: {
+    Authorization: getToken(),
+  },
+};
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const postUsers = async (data, successCallback, errorCallback) => {
+  const options = {
+    method: "POST",
+    url: "http://localhost:5000/users/",
+    headers: { "Content-Type": "application/json", Authorization: getToken() },
+    data,
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const editUsers = async (id, data, successCallback, errorCallback) => {
+  const options = {
+    method: "PATCH",
+    url: `http://localhost:5000/users/${id}/`,
+    headers: { "Content-Type": "application/json", Authorization: getToken() },
+    data,
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const deleteUsers_ = async (id, successCallback, errorCallback) => {
+  const options = {
+    method: "DELETE",
+    url: `http://localhost:5000/users/${id}/`,
+    headers: { "Content-Type": "application/json", Authorization: getToken() },
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const getSeller_ = async (successCallback, errorCallback) => {
   const options = {
     method: "GET",
-    url: "http://localhost:5000/users/self",
+    url: `http://localhost:5000/users/`,
     headers: {
-      Authorization: getToken() //Ponerle Authorization: getToken() en el header de cada petición
-    }
+      Authorization: getToken(),
+    },
   };
-  await axios
-    .request(options)
-    .then(function (response) {
-      setUsersDb(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-  setRunQuery(false);
+  await axios.request(options).then(successCallback).catch(errorCallback);
 };
 
-export const getUsersBackend = async (setUsersDb, setRunQuery) => {
+export const getUserLogin = async (successCallback, errorCallback) => {
+  const options = { method: "GET", url: "http://localhost:5000/users/self/",
+  headers: {
+    Authorization: getToken(),
+  },
+};
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+//Módulo de Productos
+export const getProductsBackend = async (successCallback, errorCallback) => {
   const options = {
     method: "GET",
-    url: "http://localhost:5000/users",
+    url: "http://localhost:5000/products/",
     headers: {
-      Authorization: getToken() //Ponerle Authorization: getToken() en el header de cada petición
-    }
+      Authorization: getToken(),
+    },
   };
-  await axios
-    .request(options)
-    .then(function (response) {
-      setUsersDb(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-  setRunQuery(false);
+  await axios.request(options).then(successCallback).catch(errorCallback);
 };
 
-export const getProductsBackend = async (setProductsDb, setRunQuery) => {
+export const postProducts = async (data, successCallback, errorCallback) => {
   const options = {
-    method: "GET", url: "http://localhost:5000/products",
-    headers: {
-      Authorization: getToken() //Ponerle Authorization: getToken() en el header de cada petición
-    }
+    method: "POST",
+    url: "http://localhost:5000/products/",
+    headers: { "Content-Type": "application/json", Authorization: getToken() },
+    data,
   };
-  await axios
-    .request(options)
-    .then(function (response) {
-      setProductsDb(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-  setRunQuery(false);
+  await axios.request(options).then(successCallback).catch(errorCallback);
 };
 
-export const getSalesBackend = async (setSalesDb, setRunQuery) => {
+export const editProducts = async (id, data, successCallback, errorCallback) => {
   const options = {
-    method: "GET", url: "http://localhost:5000/sales",
-    headers: {
-      Authorization: getToken() //Ponerle Authorization: getToken() en el header de cada petición
-    }
+    method: "PATCH",
+    url: `http://localhost:5000/products/${id}/`,
+    headers: { "Content-Type": "application/json", Authorization: getToken() },
+    data,
   };
-  await axios
-    .request(options)
-    .then(function (response) {
-      setSalesDb(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-  setRunQuery(false);
+  await axios.request(options).then(successCallback).catch(errorCallback);
 };
 
- 
+export const deleteProducts_ = async (id, successCallback, errorCallback) => {
+  const options = {
+    method: "DELETE",
+    url: `http://localhost:5000/products/${id}/`,
+    headers: { "Content-Type": "application/json", Authorization: getToken() },
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+//Módulo de Ventas
+export const getSalesBackend = async (successCallback, errorCallback) => {
+  const options = { 
+    method: "GET", 
+    url: "http://localhost:5000/sales/", 
+  headers: {
+    Authorization: getToken(),
+  },
+ };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const postSales = async (data, successCallback, errorCallback) => {
+  const options = {
+    method: "POST",
+    url: "http://localhost:5000/sales/",
+    headers: { "Content-Type": "application/json", Authorization: getToken() },
+    data,
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const editSales = async (id, data, successCallback, errorCallback) => {
+  const options = {
+    method: "PATCH",
+    url: `http://localhost:5000/sales/${id}/`,
+    headers: { "Content-Type": "application/json", Authorization: getToken() },
+    data,
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const deleteSales_ = async (id, successCallback, errorCallback) => {
+  const options = {
+    method: "DELETE",
+    url: `http://localhost:5000/sales/${id}/`,
+    headers: { "Content-Type": "application/json", Authorization: getToken() },
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};

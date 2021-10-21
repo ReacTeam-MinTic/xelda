@@ -1,75 +1,67 @@
 import { nanoid } from "nanoid";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import iziToast from "izitoast";
 import Alerts from "styles/js/alerts";
 import ButtonSerarch from "components/utilsComponent/buttonSerarch";
+import { editUsers, deleteUsers_ } from "utils/api";
+import ReactLoading from "react-loading";
+import PrivateComponent from "components/auth0/privateComponent";
 
-
-const FileTableUsers = ({ user, setRunQuery}) => {
+const FileTableUsers = ({ user, setRunQuery }) => {
   const [edit, setEdit] = useState(false);
   const [infoNewUser, setInfoNewUser] = useState({
-    name:user.name,
-    lastname:user.lastname,
-    state:user.state,
-    role:user.role,
-    email:user.email,
+    name: user.given_name,
+    family_name: user.family_name,
+    status: user.status,
+    role: user.role,
+    email: user.email,
   });
 
   const updateUser = async () => {
-    console.log(infoNewUser);
-    setEdit(false);
-    const options = {
-      method: 'PATCH',
-      url: `http://localhost:5000/users/${user._id}`,
-      headers: {'Content-Type': 'application/json'},
-      data: {...infoNewUser, id: user._id}
-    };
-    
-    await axios.request(options).then(function (response) {
-      console.log(response.data);
-      Alerts.alertSucees();
-      setRunQuery(true);
-      setEdit(false);
-    }).catch(function (error) {
-      Alerts.alertError();
-      console.error("_____dd",error);
-    });
+    await editUsers(
+      user._id,
+      infoNewUser,
+      (response) => {
+        console.log(response.data);
+        Alerts.alertSucees();
+        setRunQuery(true);
+        setEdit(false);
+      },
+      (error) => {
+        Alerts.alertError();
+        console.error("_____error", error);
+      }
+    );
   };
-  
+
   const deleteUser = async () => {
-    const options = {
-      method: 'DELETE',
-      url: `http://localhost:5000/users/${user._id}`,
-      headers: {'Content-Type': 'application/json'},
-      data: {_id: user._id}
-    };
-    
-    await axios.request(options).then(function (response) {
-      console.log(response.data);
-      const mensaje = "Registro eliminado con éxito"
-      Alerts.alertSucees(mensaje);
-      setRunQuery(true);
-    }).catch(function (error) {
-      console.error(error);
-      Alerts.alertError();
-    }); 
-    
-  }
+    await deleteUsers_(
+      user._id,
+      (response) => {
+        console.log(response.data);
+        const mensaje = "Registro eliminado con éxito";
+        Alerts.alertSucees(mensaje);
+        setRunQuery(true);
+      },
+      (error) => {
+        Alerts.alertError();
+        console.error("_____error", error);
+      }
+    );
+  };
 
   const alertWarning_ = () => {
     iziToast.show({
       title: "¡Cuidado!",
-      message: "¿Está a punto de elimanar el siguiente registro: ",
+      message: "¿Está Link punto de elimanar el siguiente registro: ",
       color: "red",
-      position: 'topRight',
+      position: "topRight",
       icon: "far fa-check-circle",
       timeout: 0,
       buttons: [
         [
           "<button>OK</button>",
           function (instance, toast) {
-            
             deleteUser();
             instance.hide(
               {
@@ -81,7 +73,6 @@ const FileTableUsers = ({ user, setRunQuery}) => {
               toast,
               "buttonName"
             );
-            
           },
           true,
         ], // true to focus
@@ -101,7 +92,6 @@ const FileTableUsers = ({ user, setRunQuery}) => {
           },
         ],
       ],
-      
     });
   };
 
@@ -114,126 +104,206 @@ const FileTableUsers = ({ user, setRunQuery}) => {
               type="text"
               className="form-control"
               value={infoNewUser.name}
-              onChange={(e)=> setInfoNewUser({...infoNewUser, name: e.target.value})}
+              onChange={(e) =>
+                setInfoNewUser({ ...infoNewUser, name: e.target.value })
+              }
             />
           </td>
           <td>
             <input
               type="text"
               className="form-control"
-              value={infoNewUser.lastname}
-              onChange={(e)=> setInfoNewUser({...infoNewUser, lastname: e.target.value})}
+              value={infoNewUser.family_name}
+              onChange={(e) =>
+                setInfoNewUser({ ...infoNewUser, family_name: e.target.value })
+              }
             />
           </td>
           <td>
-            <input
-              type="text"
+            <select
+              value={infoNewUser.status}
               className="form-control"
-              value={infoNewUser.state}
-              onChange={(e)=> setInfoNewUser({...infoNewUser, state: e.target.value})}
-            />
+              onChange={(e) =>
+                setInfoNewUser({ ...infoNewUser, status: e.target.value })
+              }
+            >
+              <option value="Activo">Activo</option>
+              <option value="Inactivo">Inactivo</option>
+            </select>
           </td>
           <td>
-            <input
-              type="text"
-              className="form-control"
+            <select
               value={infoNewUser.role}
-              onChange={(e)=> setInfoNewUser({...infoNewUser, role: e.target.value})}
-            />
+              className="form-control"
+              onChange={(e) =>
+                setInfoNewUser({ ...infoNewUser, role: e.target.value })
+              }
+            >
+              <option value="Admin">Admin</option>
+              <option value="Vendedor">Vendedor</option>
+              <option value="Pendiente">Pendiente</option>
+            </select>
           </td>
           <td>
             <input
               type="text"
               className="form-control"
               value={infoNewUser.email}
-              onChange={(e)=> setInfoNewUser({...infoNewUser, email: e.target.value})}
+              onChange={(e) =>
+                setInfoNewUser({ ...infoNewUser, email: e.target.value })
+              }
             />
           </td>
-          
         </>
       ) : (
         <>
           <td>{user.name}</td>
-          <td>{user.lastname}</td>
+          <td>{user.family_name}</td>
           <td>
-            {user.state.toLowerCase() === "activo" ? <div class="badge badge-success">{user.state}</div> : <div class="badge badge-danger">{user.state}</div>}
-            
+            {user.status === "Activo" ? (
+              <div class="badge badge-success">{user.status}</div>
+            ) : (
+              <div class="badge badge-danger">{user.status}</div>
+            )}
           </td>
           <td>
-            {user.role.toLowerCase()=== "admin" ? <div class="badge badge-info">{user.role}</div> : <div class="badge badge-warning">{user.role}</div>}
-            
+            {user.role === "Admin" || user.role === "Pendiente" ? (
+              <div class="badge badge-warning">{user.role}</div>
+            ) : (
+              <div class="badge badge-info">{user.role}</div>
+            )}
           </td>
           <td>{user.email}</td>
         </>
       )}
-
-      <td>
-        <div class="row justify-content-md-center">
-          {edit ? (
-            <>
-            <a onClick={() => updateUser()}>
-              <i class="fas fa-check"></i>
-            </a>
-            <a onClick={() => setEdit(!edit)}>
-           <i class="fas fa-ban"></i>
-         </a>
-            </>
-          ) : (
-            <>
-            <a onClick={() => setEdit(!edit)}>
-              <i class="fas fa-edit"></i>
-            </a>
-            <a onClick={()=> alertWarning_()}>
-              <i class="fas fa-trash-alt"></i>
-            </a> 
-         </>
-          )}
-        </div> 
-      </td>
+      <PrivateComponent rolesList={["Admin"]}>
+        <td>
+          <div class="row justify-content-md-center">
+            {edit ? (
+              <>
+                <button
+                  class="btn btn-icon btn-sm"
+                  onClick={() => updateUser()}
+                >
+                  <i class="fas fa-check"></i>
+                </button>
+                <button
+                  class="btn btn-icon btn-sm"
+                  onClick={() => setEdit(!edit)}
+                >
+                  <i class="fas fa-ban"></i>
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  class="btn btn-icon btn-sm"
+                  onClick={() => setEdit(!edit)}
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-icon btn-sm"
+                  onClick={() => alertWarning_()}
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </>
+            )}
+          </div>
+        </td>
+      </PrivateComponent>
     </tr>
   );
 };
 
-const ListUsers = ({ usersDb, setRunQuery}) => {
-  const [busqueda, setBusqueda] =useState('');
-  const[usersFiltered, setusersFiltered] = useState(usersDb);
+const ListUsers = ({ loading, usersDb, setRunQuery }) => {
+  const [busqueda, setBusqueda] = useState("");
+  const [usersFiltered, setusersFiltered] = useState(usersDb);
 
   useEffect(() => {
-   setusersFiltered(
-     usersDb.filter((elemento)=>{
-       return JSON.stringify(elemento).toLowerCase().includes(busqueda.toLowerCase());
-     })
-   );
-  }, [busqueda, usersDb])
-  
+    setusersFiltered(
+      usersDb.filter((elemento) => {
+        return JSON.stringify(elemento)
+          .toLowerCase()
+          .includes(busqueda.toLowerCase());
+      })
+    );
+  }, [busqueda, usersDb]);
 
   return (
     <>
-    
-      <ButtonSerarch busqueda={busqueda} setBusqueda={setBusqueda}/>
-      
+      <ButtonSerarch busqueda={busqueda} setBusqueda={setBusqueda} />
 
       <div className="table-responsive">
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>Nombres</th>
-            <th>Apellidos</th>
-            <th>Estado</th>
-            <th>Rol</th>
-            <th>Email</th>
-            <th>Opciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {usersFiltered.map((user) => {
-            return <FileTableUsers key={nanoid()} user={user} setRunQuery={setRunQuery}/>;
-          })}
-        </tbody>
-      </table>
-    </div>
+        {loading ? (
+          <ReactLoading
+            type="spinningBubbles"
+            color="#6777ef"
+            height={667}
+            width={375}
+          />
+        ) : (
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Estado</th>
+                <th>Rol</th>
+                <th>Email</th>
+                <PrivateComponent rolesList={["Admin"]}>
+                  <th>Opciones</th>
+                </PrivateComponent>
+              </tr>
+            </thead>
+            <tbody>
+              {usersFiltered.map((user) => {
+                return (
+                  <FileTableUsers
+                    key={nanoid()}
+                    user={user}
+                    setRunQuery={setRunQuery}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
+        )}
+      </div>
     </>
   );
 };
 
 export default ListUsers;
+
+// const StatusUser = ({ user }) => {
+//   const [status, setStatus] = useState(user.status);
+//   useEffect(() => {
+//     const editUser = async () => {
+//       await editUsers(
+//         user._id,
+//         { status },
+//         (response) => {
+//           console.log(response);
+//         },
+//         (err) => {
+//           console.log(err);
+//         }
+//       );
+//     };
+//     if(user.status !== status){
+//       editUser();
+//     }
+//   }, [status, user]);
+//   return (
+//     <select
+//       value={status}
+//       className="form-control"
+//       onChange={(e) => setStatus(e.target.value)}
+//     >
+//       <option value="Activo">Activo</option>
+//       <option value="Inactivo">Inactivo</option>
+//     </select>
+//   );
+// };

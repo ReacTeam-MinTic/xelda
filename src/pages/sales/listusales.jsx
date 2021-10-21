@@ -1,9 +1,10 @@
 import { nanoid } from "nanoid";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import iziToast from "izitoast";
 import Alerts from "styles/js/alerts";
 import ButtonSerarch from "components/utilsComponent/buttonSerarch";
+import { editSales, deleteSales_ } from "utils/api";
 
 const FileTableSales = ({ sale, setRunQuery }) => {
   const [edit, setEdit] = useState(false);
@@ -18,55 +19,42 @@ const FileTableSales = ({ sale, setRunQuery }) => {
   });
 
   const updateSale = async () => {
-    console.log(infoNewSale);
-    setEdit(false);
-    const options = {
-      method: "PATCH",
-      url: `http://localhost:5000/sales/${sale._id}`,
-      headers: { "Content-Type": "application/json" },
-      data: { ...infoNewSale, id: sale._id },
-    };
-
-    await axios
-      .request(options)
-      .then(function (response) {
+    await editSales(
+      sale._id,
+      infoNewSale,
+      (response) => {
         console.log(response.data);
         Alerts.alertSucees();
         setRunQuery(true);
         setEdit(false);
-      })
-      .catch(function (error) {
+      },
+      (error) => {
         Alerts.alertError();
-        console.error("_____dd", error);
-      });
+        console.error("_____error", error);
+      }
+    );
   };
 
   const deleteSale = async () => {
-    const options = {
-      method: "DELETE",
-      url: `http://localhost:5000/sales/${sale._id}`,
-      headers: { "Content-Type": "application/json" },
-      data: { _id: sale._id },
-    };
-
-    await axios
-      .request(options)
-      .then(function (response) {
+    await deleteSales_(
+      sale._id,
+      (response) => {
         console.log(response.data);
         const mensaje = "Registro eliminado con éxito";
         Alerts.alertSucees(mensaje);
         setRunQuery(true);
-      })
-      .catch(function (error) {
-        console.error(error);
+      },
+      (error) => {
         Alerts.alertError();
-      });
+        console.error("_____error", error);
+      }
+    )
   };
 
   const alertWarning_ = () => {
     iziToast.show({
       title: "¡Cuidado!",
-      message: "¿Está a punto de elimanar el siguiente registro: ",
+      message: "¿Está Link punto de elimanar el siguiente registro: ",
       color: "red",
       position: "topRight",
       icon: "far fa-check-circle",
@@ -198,21 +186,21 @@ const FileTableSales = ({ sale, setRunQuery }) => {
         <div class="row justify-content-md-center">
           {edit ? (
             <>
-              <a onClick={() => updateSale()}>
+              <button class="btn btn-icon btn-sm" onClick={() => updateSale()}>
                 <i class="fas fa-check"></i>
-              </a>
-              <a onClick={() => setEdit(!edit)}>
+              </button>
+              <button class="btn btn-icon btn-sm" onClick={() => setEdit(!edit)}>
                 <i class="fas fa-ban"></i>
-              </a>
+              </button>
             </>
           ) : (
             <>
-              <a onClick={() => setEdit(!edit)}>
+              <button  class="btn btn-icon btn-sm"onClick={() => setEdit(!edit)}>
                 <i class="fas fa-edit"></i>
-              </a>
-              <a onClick={() => alertWarning_()}>
+              </button>
+              <button class="btn btn-icon btn-sm" onClick={() => alertWarning_()}>
                 <i class="fas fa-trash-alt"></i>
-              </a>
+              </button>
             </>
           )}
         </div>
@@ -248,7 +236,7 @@ const ListSales = ({ salesDb, setRunQuery }) => {
               <th>Id Cliente</th>
               <th>Cliente</th>
               <th>Precio</th>
-              <th>Valor</th>
+              <th>Unt</th>
               <th>Total</th>
               <th>Opciones</th>
             </tr>

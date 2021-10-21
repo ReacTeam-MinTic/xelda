@@ -1,9 +1,10 @@
 import { nanoid } from "nanoid";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import axios from "axios";
 import iziToast from "izitoast";
 import Alerts from "styles/js/alerts";
 import ButtonSerarch from "components/utilsComponent/buttonSerarch";
+import { editProducts, deleteProducts_ } from "utils/api";
 
 
 const FileTableProducts = ({ product, setRunQuery}) => {
@@ -17,50 +18,43 @@ const FileTableProducts = ({ product, setRunQuery}) => {
   });
 
   const updateProduct = async () => {
-    console.log(infoNewProduct);
-    setEdit(false);
-    const options = {
-      method: 'PATCH',
-      url: `http://localhost:5000/products/${product._id}`,
-      headers: {'Content-Type': 'application/json'},
-      data: {...infoNewProduct, id: product._id}
-    };
-    
-    await axios.request(options).then(function (response) {
-      console.log(response.data);
-      Alerts.alertSucees();
-      setRunQuery(true);
-      setEdit(false);
-    }).catch(function (error) {
-      Alerts.alertError();
-      console.error("_____dd",error);
-    });
+    await editProducts(
+      product._id,
+      infoNewProduct,
+      (response) => {
+        console.log(response.data);
+        Alerts.alertSucees();
+        setRunQuery(true);
+        setEdit(false);
+      },
+      (error) => {
+        Alerts.alertError();
+        console.error("_____error", error);
+      }
+    );
   };
   
   const deleteProduct = async () => {
-    const options = {
-      method: 'DELETE',
-      url: `http://localhost:5000/products/${product._id}`,
-      headers: {'Content-Type': 'application/json'},
-      data: {_id: product._id}
-    };
-    
-    await axios.request(options).then(function (response) {
-      console.log(response.data);
-      const mensaje = "Registro eliminado con éxito"
-      Alerts.alertSucees(mensaje);
-      setRunQuery(true);
-    }).catch(function (error) {
-      console.error(error);
-      Alerts.alertError();
-    }); 
+    await deleteProducts_(
+      product._id,
+      (response) => {
+        console.log(response.data);
+        const mensaje = "Registro eliminado con éxito";
+        Alerts.alertSucees(mensaje);
+        setRunQuery(true);
+      },
+      (error) => {
+        Alerts.alertError();
+        console.error("_____error", error);
+      }
+    )
     
   }
 
   const alertWarning_ = () => {
     iziToast.show({
       title: "¡Cuidado!",
-      message: "¿Está a punto de elimanar el siguiente registro: ",
+      message: "¿Está Link punto de elimanar el siguiente registro: ",
       color: "red",
       position: 'topRight',
       icon: "far fa-check-circle",
@@ -170,21 +164,21 @@ const FileTableProducts = ({ product, setRunQuery}) => {
         <div class="row justify-content-md-center">
           {edit ? (
             <>
-            <a onClick={() => updateProduct()}>
+            <button class="btn btn-icon btn-sm" onClick={() => updateProduct()}>
               <i class="fas fa-check"></i>
-            </a>
-            <a onClick={() => setEdit(!edit)}>
+            </button >
+            <button class="btn btn-icon btn-sm"  onClick={() => setEdit(!edit)}>
            <i class="fas fa-ban"></i>
-         </a>
+         </button >
             </>
           ) : (
             <>
-            <a onClick={() => setEdit(!edit)}>
+            <button class="btn btn-icon btn-sm"  onClick={() => setEdit(!edit)}>
               <i class="fas fa-edit"></i>
-            </a>
-            <a onClick={()=> alertWarning_()}>
+            </button >
+            <button class="btn btn-icon btn-sm"  onClick={()=> alertWarning_()}>
               <i class="fas fa-trash-alt"></i>
-            </a> 
+            </button > 
          </>
           )}
         </div> 
