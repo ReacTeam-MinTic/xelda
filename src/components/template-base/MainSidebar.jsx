@@ -70,7 +70,7 @@ const MainSidebar = () => {
         </ul>
       </aside>
     </div>
-  );
-};
+  )
+}
 
 export default MainSidebar;

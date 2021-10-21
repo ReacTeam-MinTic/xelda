@@ -6,15 +6,14 @@ import Alerts from "styles/js/alerts";
 import ButtonSerarch from "components/utilsComponent/buttonSerarch";
 import { editProducts, deleteProducts_ } from "utils/api";
 
-
-const FileTableProducts = ({ product, setRunQuery}) => {
+const FileTableProducts = ({ product, setRunQuery }) => {
   const [edit, setEdit] = useState(false);
   const [infoNewProduct, setInfoNewProduct] = useState({
-    cod:product.cod,
-    name:product.name,
-    description:product.description,
-    value_:product.value_,
-    status:product.status
+    cod: product.cod,
+    name: product.name,
+    description: product.description,
+    value_: product.value_,
+    status: product.status
   });
 
   const updateProduct = async () => {
@@ -33,7 +32,7 @@ const FileTableProducts = ({ product, setRunQuery}) => {
       }
     );
   };
-  
+
   const deleteProduct = async () => {
     await deleteProducts_(
       product._id,
@@ -48,7 +47,7 @@ const FileTableProducts = ({ product, setRunQuery}) => {
         console.error("_____error", error);
       }
     )
-    
+
   }
 
   const alertWarning_ = () => {
@@ -63,7 +62,7 @@ const FileTableProducts = ({ product, setRunQuery}) => {
         [
           "<button>OK</button>",
           function (instance, toast) {
-            
+
             deleteProduct();
             instance.hide(
               {
@@ -75,7 +74,7 @@ const FileTableProducts = ({ product, setRunQuery}) => {
               toast,
               "buttonName"
             );
-            
+
           },
           true,
         ], // true to focus
@@ -95,7 +94,7 @@ const FileTableProducts = ({ product, setRunQuery}) => {
           },
         ],
       ],
-      
+
     });
   };
 
@@ -108,7 +107,7 @@ const FileTableProducts = ({ product, setRunQuery}) => {
               type="number"
               className="form-control"
               value={infoNewProduct.cod}
-              onChange={(e)=> setInfoNewProduct({...infoNewProduct, cod: e.target.value})}
+              onChange={(e) => setInfoNewProduct({ ...infoNewProduct, cod: e.target.value })}
             />
           </td>
           <td>
@@ -116,7 +115,7 @@ const FileTableProducts = ({ product, setRunQuery}) => {
               type="text"
               className="form-control"
               value={infoNewProduct.name}
-              onChange={(e)=> setInfoNewProduct({...infoNewProduct, name: e.target.value})}
+              onChange={(e) => setInfoNewProduct({ ...infoNewProduct, name: e.target.value })}
             />
           </td>
           <td>
@@ -124,7 +123,7 @@ const FileTableProducts = ({ product, setRunQuery}) => {
               type="text"
               className="form-control"
               value={infoNewProduct.description}
-              onChange={(e)=> setInfoNewProduct({...infoNewProduct, description: e.target.value})}
+              onChange={(e) => setInfoNewProduct({ ...infoNewProduct, description: e.target.value })}
             />
           </td>
           <td>
@@ -132,7 +131,7 @@ const FileTableProducts = ({ product, setRunQuery}) => {
               type="number"
               className="form-control"
               value={infoNewProduct.value_}
-              onChange={(e)=> setInfoNewProduct({...infoNewProduct, value_: e.target.value})}
+              onChange={(e) => setInfoNewProduct({ ...infoNewProduct, value_: e.target.value })}
             />
           </td>
           <td>
@@ -140,10 +139,10 @@ const FileTableProducts = ({ product, setRunQuery}) => {
               type="text"
               className="form-control"
               value={infoNewProduct.status}
-              onChange={(e)=> setInfoNewProduct({...infoNewProduct, status: e.target.value})}
+              onChange={(e) => setInfoNewProduct({ ...infoNewProduct, status: e.target.value })}
             />
           </td>
-          
+
         </>
       ) : (
         <>
@@ -152,79 +151,78 @@ const FileTableProducts = ({ product, setRunQuery}) => {
           <td>{product.description}</td>
           <td>${product.value_}</td>
           <td>
-            {product.status.toLowerCase() === "disponible" ? <div class="badge badge-success">{product.status}</div> : <div class="badge badge-danger">{product.status}</div>}
-            
+            {product.status.toLowerCase() === "disponible" ? <div className="badge badge-success">{product.status}</div> : <div className="badge badge-danger">{product.status}</div>}
           </td>
-   
-          
+
+
         </>
       )}
 
       <td>
-        <div class="row justify-content-md-center">
+        <div className="row justify-content-md-center">
           {edit ? (
             <>
-            <button class="btn btn-icon btn-sm" onClick={() => updateProduct()}>
-              <i class="fas fa-check"></i>
-            </button >
-            <button class="btn btn-icon btn-sm"  onClick={() => setEdit(!edit)}>
-           <i class="fas fa-ban"></i>
-         </button >
+              <button class="btn btn-icon btn-sm" onClick={() => updateProduct()}>
+                <i class="fas fa-check"></i>
+              </button >
+              <button class="btn btn-icon btn-sm" onClick={() => setEdit(!edit)}>
+                <i class="fas fa-ban"></i>
+              </button >
             </>
           ) : (
             <>
-            <button class="btn btn-icon btn-sm"  onClick={() => setEdit(!edit)}>
-              <i class="fas fa-edit"></i>
-            </button >
-            <button class="btn btn-icon btn-sm"  onClick={()=> alertWarning_()}>
-              <i class="fas fa-trash-alt"></i>
-            </button > 
-         </>
+              <button class="btn btn-icon btn-sm" onClick={() => setEdit(!edit)}>
+                <i class="fas fa-edit"></i>
+              </button >
+              <button class="btn btn-icon btn-sm" onClick={() => alertWarning_()}>
+                <i class="fas fa-trash-alt"></i>
+              </button >
+            </>
           )}
-        </div> 
+        </div>
       </td>
     </tr>
   );
 };
 
-const ListProducts = ({ productsDb, setRunQuery}) => {
-  const [busqueda, setBusqueda] =useState('');
-  const[productsFiltered, setproductsFiltered] = useState(productsDb);
+const ListProducts = ({ productsDb, setRunQuery }) => {
+  const [busqueda, setBusqueda] = useState('');
+  const [productsFiltered, setproductsFiltered] = useState(productsDb);
 
   useEffect(() => {
-   setproductsFiltered(
-     productsDb.filter((elemento)=>{
-       return JSON.stringify(elemento).toLowerCase().includes(busqueda.toLowerCase());
-     })
-   );
+    setproductsFiltered(
+      productsDb.filter((elemento) => {
+        return JSON.stringify(elemento).toLowerCase().includes(busqueda.toLowerCase());
+      })
+    );
   }, [busqueda, productsDb])
-  
+
 
   return (
     <>
-    
-      <ButtonSerarch busqueda={busqueda} setBusqueda={setBusqueda}/>
-      
+
+      <ButtonSerarch busqueda={busqueda} setBusqueda={setBusqueda} />
+
 
       <div className="table-responsive">
-      <table className="table table-striped">
-        <thead>
-          <tr>
-            <th>Code</th>
-            <th>Name</th>
-            <th>Descropción</th>
-            <th>Valor</th>
-            <th>Estado</th>
-            <th>Opciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          {productsFiltered.map((product) => {
-            return <FileTableProducts key={nanoid()} product={product} setRunQuery={setRunQuery}/>;
-          })}
-        </tbody>
-      </table>
-    </div>
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th>Code</th>
+              <th>Name</th>
+              <th>Descropción</th>
+              <th>Valor</th>
+              <th>Estado</th>
+              <th>Opciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            {productsFiltered.map((product) => {
+              return <FileTableProducts key={nanoid()} product={product} setRunQuery={setRunQuery} />;
+            })}
+          </tbody>
+        </table>
+      </div>
     </>
   );
 };

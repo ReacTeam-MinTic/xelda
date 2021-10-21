@@ -1,3 +1,4 @@
+import PrivateRoute from "components/PrivateRoute";
 import Footer from "components/template-base/Footer";
 import MainSidebar from "components/template-base/MainSidebar";
 import NavBar from "components/template-base/NavBar";
@@ -5,16 +6,17 @@ import PrivateRoute from "components/auth0/privateRoute";
 
 const Layouts = ({ children }) => {
   return (
-    <PrivateRoute>
-      <>
+    <>
+      <PrivateRoute>
         <MainSidebar />
-        <NavBar />
-        <div class="main-content">
-          <section class="section">{children}</section>
-        </div>
-        <Footer />
-      </>
-    </PrivateRoute>
+          <NavBar />
+          <div className="main-content">
+            <section className="section">{children}</section>
+          </div>
+          <Footer />
+      </PrivateRoute>
+        
+    </>
   );
 };
 

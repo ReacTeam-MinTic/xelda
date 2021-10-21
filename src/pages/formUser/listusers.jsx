@@ -94,7 +94,6 @@ const FileTableUsers = ({ user, setRunQuery }) => {
       ],
     });
   };
-
   return (
     <tr>
       {edit ? (

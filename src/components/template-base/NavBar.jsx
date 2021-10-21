@@ -1,18 +1,16 @@
 import React from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
-import { Link } from 'react-router-dom';
-
 
 const NavBar = () => {
-  const { loginWithRedirect } = useAuth0();
-  const { user, logout } = useAuth0();
 
-  const logoutCloseToken = () => {
-    logout({ returnTo: window.location.origin });
-    localStorage.setItem("Token", null);
+  const { logout, user } = useAuth0();
+
+  const cerrarSesion = ()=>{
+    logout({ returnTo: window.location.origin})
+    localStorage.setItem('token', null)
   }
-    return (
-      <>
+  return (
+    <>
       <div className="navbar-bg"></div>
       <nav className="navbar navbar-expand-lg main-navbar">
         <form className="form-inline mr-auto">
@@ -33,7 +31,7 @@ const NavBar = () => {
             </li>
           </ul>
         </form>
-        
+
         <ul className="navbar-nav navbar-right">
           <li className="dropdown">
             <a
@@ -44,26 +42,24 @@ const NavBar = () => {
               <img
                 alt="image"
                 src={user.picture}
-                className="rounded-circle mr-1"
+                className="rounded-circle mr-2"
               />
-              <div className="d-sm-none d-lg-inline-block">Hola, {user ? user.name : "invitado"}</div>
+              <div className="d-sm-none d-lg-inline-block">{`Hola, ${user.name}`}</div>
             </a>
             <div className="dropdown-menu dropdown-menu-right">
-              <div className="dropdown-title">Logged in 5 min ago</div>
+            {/*<div className="dropdown-title">Logged in 5 min ago</div> */}
               <div className="dropdown-divider"></div>
-              <button  onClick={() => loginWithRedirect()} className="dropdown-item has-icon text-danger">
-                <i className="fas fa-sign-out-alt"></i> Iniciar sesión
-              </button>
-              <button onClick={() => logoutCloseToken()} className="dropdown-item has-icon text-danger">
-                <i className="fas fa-sign-out-alt"></i> Salir
+
+              <button onClick={() => cerrarSesion() } className="d-flex align-items-center dropdown-item has-icon pe-auto text-danger">
+                <i className="fas fa-sign-out-alt"></i> Cerrar Sesión
               </button>
             </div>
           </li>
         </ul>
       </nav>
-      </>
+    </>
 
-    )
+  )
 }
 
 export default NavBar;

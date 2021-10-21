@@ -1,10 +1,11 @@
 import axios from "axios";
 
-const getToken = () => {
-  return `Bearer ${localStorage.getItem("Token")}`;
-};
-
 //Módulo de usuarios
+
+const getToken = () => {
+  return `Bearer ${localStorage.getItem('token')}`
+}
+
 export const getUsersBackend = async (successCallback, errorCallback) => {
   const options = { method: "GET", url: "http://localhost:5000/users/",
   headers: {
@@ -12,6 +13,25 @@ export const getUsersBackend = async (successCallback, errorCallback) => {
   },
 };
   await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const obtenerDatosUsuario = async (setUsersDb, setRunQuery) => {
+  const options = {
+    method: "GET",
+    url: "http://localhost:5000/users/self",
+    headers: {
+      Authorization: getToken()
+    }
+  };
+  await axios
+    .request(options)
+    .then(function (response) {
+      setUsersDb(response.data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+  setRunQuery(false);
 };
 
 export const postUsers = async (data, successCallback, errorCallback) => {
@@ -47,10 +67,10 @@ export const getSeller_ = async (successCallback, errorCallback) => {
   const options = {
     method: "GET",
     url: `http://localhost:5000/users/`,
-    headers: {
-      Authorization: getToken(),
-    },
-  };
+    header: {
+      Authorization: getToken()
+    }
+  }
   await axios.request(options).then(successCallback).catch(errorCallback);
 };
 

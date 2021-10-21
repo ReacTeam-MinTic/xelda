@@ -183,7 +183,7 @@ const FileTableSales = ({ sale, setRunQuery }) => {
       )}
 
       <td>
-        <div class="row justify-content-md-center">
+        <div className="row justify-content-md-center">
           {edit ? (
             <>
               <button class="btn btn-icon btn-sm" onClick={() => updateSale()}>

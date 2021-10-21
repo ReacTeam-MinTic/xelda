@@ -9,7 +9,7 @@ import { getProductsBackend, getSeller_, getSalesBackend} from "utils/api";
 
 const AppSale = () => {
   const [viewTable, setWiewTable] = useState(true);
-  const [textButton, setTextButton] = useState("Nuevo Usuario");
+  const [textButton, setTextButton] = useState("Nueva Venta");
   const [salesDb, setSalesDb] = useState([]);
   const [runQuery, setRunQuery] = useState(true);
   const [title, setTitle] = useState("Módulo de ventas");
@@ -69,7 +69,7 @@ const AppSale = () => {
 
   useEffect(() => {
     if (viewTable) {
-      setTextButton("Nuevo Usuario");
+      setTextButton("Nueva Venta");
       setSubTitle("Listado de ventas");
       setSubTitleTag("Busque, edite o elimine los registros")
     } else {
