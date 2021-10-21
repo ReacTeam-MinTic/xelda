@@ -1,6 +1,5 @@
 import React from "react";
 import Login from "layouts/login";
-import { Link } from "react-router-dom";
 
 function LoginUser() {
   return (
@@ -11,13 +10,13 @@ function LoginUser() {
             <div className="row">
               <div className="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
                 <div className="login-brand">
-                  <a  href="/">
-                  <img
-                    src="../assets/img/logo.svg"
-                    alt="logo"
-                    width={100}
-                    className="shadow-light rounded-circle"
-                  />
+                  <a href="/">
+                    <img
+                      src="../assets/img/logo.svg"
+                      alt="logo"
+                      width={100}
+                      className="shadow-light rounded-circle"
+                    />
                   </a>
                 </div>
                 <div className="card card-primary">
@@ -90,40 +89,31 @@ function LoginUser() {
                         </div>
                       </div>
                       <div class="container">
-                      <div class="row">
-                        
-                          <button
-                            type="submit"
-                            className="btn btn-primary btn-lg btn-block"
-                          >
+                        <div class="row">
+                          <button className="btn btn-primary btn-lg btn-block">
                             Iniciar sesión
                           </button>
-                      
-                      </div>
-                      <br></br>
-                      
-                      <div class="row">
-                        
+                        </div>
+                        <br></br>
+
+                        <div class="row">
                           <button
                             type="submit"
                             className="btn btn-dark2 btn-lg btn-block"
-                          > <img src="../assets/img/logo-google.svg"
-                          alt="logo"
-                          width={17}/> <br />
-                             Incia sesión conGoogle
+                          >
+                            {" "}
+                            <img
+                              src="../assets/img/logo-google.svg"
+                              alt="logo"
+                              width={17}
+                            />{" "}
+                            <br />
+                            Incia sesión conGoogle
                           </button>
-                        
+                        </div>
                       </div>
-                    </div>
-
-
-
-
-
-
                     </form>
-                    <div className="row sm-gutters">
-                    </div>
+                    <div className="row sm-gutters"></div>
                   </div>
                 </div>
                 <div className="mt-5 text-muted text-center">

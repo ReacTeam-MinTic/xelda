@@ -6,7 +6,6 @@ import CardHeader from "components/template-base/content/CardHeader";
 import SectionHeader from "components/template-base/content/SectionHeader";
 import { getUsersBackend } from "utils/api";
 
-
 const AppUser = () => {
   const [viewTable, setWiewTable] = useState(true);
   const [textButton, setTextButton] = useState("Nuevo Usuario");
@@ -14,55 +13,62 @@ const AppUser = () => {
   const [runQuery, setRunQuery] = useState(true);
   const [title, setTitle] = useState("Módulo de Usuarios");
   const [subtitle, setSubTitle] = useState("Listado de Usuarios");
-  const [subtitletag, setSubTitleTag] = useState("Busque, edite o elimine los registros");
-  
+  const [subtitletag, setSubTitleTag] = useState(
+    "Busque, edite o elimine los registros"
+  );
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if(runQuery){
-      getUsersBackend(
-        (response)=> {
+    const fecthUser = async () => {
+      setLoading(true);
+      await getUsersBackend(
+        (response) => {
           setUsersDb(response.data);
-        }, 
-        (error)=> {
+          setRunQuery(false);
+          setLoading(false);
+        },
+        (error) => {
           console.error(error);
+          setLoading(false);
         }
-        );
-      setRunQuery(false);
+      );
+    };
+    if (runQuery) {
+      fecthUser();
     }
-  }, [runQuery])
+  }, [runQuery]);
 
   useEffect(() => {
-    if(viewTable){
+    if (viewTable) {
       setRunQuery(true);
-    };
+    }
   }, [viewTable]);
 
   useEffect(() => {
     if (viewTable) {
       setTextButton("Nuevo Usuario");
       setSubTitle("Listado de usuarios");
-      setSubTitleTag("Busque, edite o elimine los registros")
+      setSubTitleTag("Busque, edite o elimine los registros");
     } else {
       setTextButton("Ver Todos");
       setSubTitle("Registro de usuarios");
-      setSubTitleTag("Agregue nuevos usuarios")
+      setSubTitleTag("Agregue nuevos usuarios");
     }
   }, [viewTable]);
 
   return (
     <>
       <SectionHeader title={title} subtitle={subtitle} />
-      <SectionTitle  subtitle={subtitle} subtitletag={subtitletag}/>
+      <SectionTitle subtitle={subtitle} subtitletag={subtitletag} />
       <div className="card">
         <CardHeader
           setWiewTable={setWiewTable}
           viewTable={viewTable}
           textButton={textButton}
-        
         />
         <div className="card-body">
           {viewTable ? (
-            <ListUsers usersDb={usersDb} setRunQuery={setRunQuery} />
+            <ListUsers loading={loading} usersDb={usersDb} setRunQuery={setRunQuery} />
           ) : (
             <FormUsers
               setWiewTable={setWiewTable}

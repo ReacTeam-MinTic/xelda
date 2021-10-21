@@ -4,13 +4,15 @@ import iziToast from "izitoast";
 import Alerts from "styles/js/alerts";
 import ButtonSerarch from "components/utilsComponent/buttonSerarch";
 import { editUsers, deleteUsers_ } from "utils/api";
+import ReactLoading from "react-loading";
+import PrivateComponent from "components/auth0/privateComponent";
 
 const FileTableUsers = ({ user, setRunQuery }) => {
   const [edit, setEdit] = useState(false);
   const [infoNewUser, setInfoNewUser] = useState({
-    name: user.name,
-    lastname: user.lastname,
-    state: user.state,
+    name: user.given_name,
+    family_name: user.family_name,
+    status: user.status,
     role: user.role,
     email: user.email,
   });
@@ -33,7 +35,6 @@ const FileTableUsers = ({ user, setRunQuery }) => {
   };
 
   const deleteUser = async () => {
-
     await deleteUsers_(
       user._id,
       (response) => {
@@ -46,14 +47,13 @@ const FileTableUsers = ({ user, setRunQuery }) => {
         Alerts.alertError();
         console.error("_____error", error);
       }
-    )
-
+    );
   };
 
   const alertWarning_ = () => {
     iziToast.show({
       title: "¡Cuidado!",
-      message: "¿Está a punto de elimanar el siguiente registro: ",
+      message: "¿Está Link punto de elimanar el siguiente registro: ",
       color: "red",
       position: "topRight",
       icon: "far fa-check-circle",
@@ -113,31 +113,36 @@ const FileTableUsers = ({ user, setRunQuery }) => {
             <input
               type="text"
               className="form-control"
-              value={infoNewUser.lastname}
+              value={infoNewUser.family_name}
               onChange={(e) =>
-                setInfoNewUser({ ...infoNewUser, lastname: e.target.value })
+                setInfoNewUser({ ...infoNewUser, family_name: e.target.value })
               }
             />
           </td>
           <td>
-            <input
-              type="text"
+            <select
+              value={infoNewUser.status}
               className="form-control"
-              value={infoNewUser.state}
               onChange={(e) =>
-                setInfoNewUser({ ...infoNewUser, state: e.target.value })
+                setInfoNewUser({ ...infoNewUser, status: e.target.value })
               }
-            />
+            >
+              <option value="Activo">Activo</option>
+              <option value="Inactivo">Inactivo</option>
+            </select>
           </td>
           <td>
-            <input
-              type="text"
-              className="form-control"
+            <select
               value={infoNewUser.role}
+              className="form-control"
               onChange={(e) =>
                 setInfoNewUser({ ...infoNewUser, role: e.target.value })
               }
-            />
+            >
+              <option value="Admin">Admin</option>
+              <option value="Vendedor">Vendedor</option>
+              <option value="Pendiente">Pendiente</option>
+            </select>
           </td>
           <td>
             <input
@@ -153,53 +158,66 @@ const FileTableUsers = ({ user, setRunQuery }) => {
       ) : (
         <>
           <td>{user.name}</td>
-          <td>{user.lastname}</td>
+          <td>{user.family_name}</td>
           <td>
-            {user.state.toLowerCase() === "activo" ? (
-              <div class="badge badge-success">{user.state}</div>
+            {user.status === "Activo" ? (
+              <div class="badge badge-success">{user.status}</div>
             ) : (
-              <div class="badge badge-danger">{user.state}</div>
+              <div class="badge badge-danger">{user.status}</div>
             )}
           </td>
           <td>
-            {user.role.toLowerCase() === "admin" ? (
-              <div class="badge badge-info">{user.role}</div>
-            ) : (
+            {user.role === "Admin" || user.role === "Pendiente" ? (
               <div class="badge badge-warning">{user.role}</div>
+            ) : (
+              <div class="badge badge-info">{user.role}</div>
             )}
           </td>
           <td>{user.email}</td>
         </>
       )}
-
-      <td>
-        <div class="row justify-content-md-center">
-          {edit ? (
-            <>
-              <a onClick={() => updateUser()}>
-                <i class="fas fa-check"></i>
-              </a>
-              <a onClick={() => setEdit(!edit)}>
-                <i class="fas fa-ban"></i>
-              </a>
-            </>
-          ) : (
-            <>
-              <a onClick={() => setEdit(!edit)}>
-                <i class="fas fa-edit"></i>
-              </a>
-              <a onClick={() => alertWarning_()}>
-                <i class="fas fa-trash-alt"></i>
-              </a>
-            </>
-          )}
-        </div>
-      </td>
+      <PrivateComponent rolesList={["Admin"]}>
+        <td>
+          <div class="row justify-content-md-center">
+            {edit ? (
+              <>
+                <button
+                  class="btn btn-icon btn-sm"
+                  onClick={() => updateUser()}
+                >
+                  <i class="fas fa-check"></i>
+                </button>
+                <button
+                  class="btn btn-icon btn-sm"
+                  onClick={() => setEdit(!edit)}
+                >
+                  <i class="fas fa-ban"></i>
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  class="btn btn-icon btn-sm"
+                  onClick={() => setEdit(!edit)}
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  class="btn btn-icon btn-sm"
+                  onClick={() => alertWarning_()}
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
+              </>
+            )}
+          </div>
+        </td>
+      </PrivateComponent>
     </tr>
   );
 };
 
-const ListUsers = ({ usersDb, setRunQuery }) => {
+const ListUsers = ({ loading, usersDb, setRunQuery }) => {
   const [busqueda, setBusqueda] = useState("");
   const [usersFiltered, setusersFiltered] = useState(usersDb);
 
@@ -218,32 +236,74 @@ const ListUsers = ({ usersDb, setRunQuery }) => {
       <ButtonSerarch busqueda={busqueda} setBusqueda={setBusqueda} />
 
       <div className="table-responsive">
-        <table className="table table-striped">
-          <thead>
-            <tr>
-              <th>Nombres</th>
-              <th>Apellidos</th>
-              <th>Estado</th>
-              <th>Rol</th>
-              <th>Email</th>
-              <th>Opciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {usersFiltered.map((user) => {
-              return (
-                <FileTableUsers
-                  key={nanoid()}
-                  user={user}
-                  setRunQuery={setRunQuery}
-                />
-              );
-            })}
-          </tbody>
-        </table>
+        {loading ? (
+          <ReactLoading
+            type="spinningBubbles"
+            color="#6777ef"
+            height={667}
+            width={375}
+          />
+        ) : (
+          <table className="table table-striped">
+            <thead>
+              <tr>
+                <th>Nombres</th>
+                <th>Apellidos</th>
+                <th>Estado</th>
+                <th>Rol</th>
+                <th>Email</th>
+                <PrivateComponent rolesList={["Admin"]}>
+                  <th>Opciones</th>
+                </PrivateComponent>
+              </tr>
+            </thead>
+            <tbody>
+              {usersFiltered.map((user) => {
+                return (
+                  <FileTableUsers
+                    key={nanoid()}
+                    user={user}
+                    setRunQuery={setRunQuery}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
+        )}
       </div>
     </>
   );
 };
 
 export default ListUsers;
+
+// const StatusUser = ({ user }) => {
+//   const [status, setStatus] = useState(user.status);
+//   useEffect(() => {
+//     const editUser = async () => {
+//       await editUsers(
+//         user._id,
+//         { status },
+//         (response) => {
+//           console.log(response);
+//         },
+//         (err) => {
+//           console.log(err);
+//         }
+//       );
+//     };
+//     if(user.status !== status){
+//       editUser();
+//     }
+//   }, [status, user]);
+//   return (
+//     <select
+//       value={status}
+//       className="form-control"
+//       onChange={(e) => setStatus(e.target.value)}
+//     >
+//       <option value="Activo">Activo</option>
+//       <option value="Inactivo">Inactivo</option>
+//     </select>
+//   );
+// };

@@ -1,4 +1,5 @@
 import { nanoid } from "nanoid";
+import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import iziToast from "izitoast";
 import Alerts from "styles/js/alerts";
@@ -53,7 +54,7 @@ const FileTableSales = ({ sale, setRunQuery }) => {
   const alertWarning_ = () => {
     iziToast.show({
       title: "¡Cuidado!",
-      message: "¿Está a punto de elimanar el siguiente registro: ",
+      message: "¿Está Link punto de elimanar el siguiente registro: ",
       color: "red",
       position: "topRight",
       icon: "far fa-check-circle",
@@ -185,21 +186,21 @@ const FileTableSales = ({ sale, setRunQuery }) => {
         <div class="row justify-content-md-center">
           {edit ? (
             <>
-              <a onClick={() => updateSale()}>
+              <button class="btn btn-icon btn-sm" onClick={() => updateSale()}>
                 <i class="fas fa-check"></i>
-              </a>
-              <a onClick={() => setEdit(!edit)}>
+              </button>
+              <button class="btn btn-icon btn-sm" onClick={() => setEdit(!edit)}>
                 <i class="fas fa-ban"></i>
-              </a>
+              </button>
             </>
           ) : (
             <>
-              <a onClick={() => setEdit(!edit)}>
+              <button  class="btn btn-icon btn-sm"onClick={() => setEdit(!edit)}>
                 <i class="fas fa-edit"></i>
-              </a>
-              <a onClick={() => alertWarning_()}>
+              </button>
+              <button class="btn btn-icon btn-sm" onClick={() => alertWarning_()}>
                 <i class="fas fa-trash-alt"></i>
-              </a>
+              </button>
             </>
           )}
         </div>

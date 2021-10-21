@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const SectionHeader = ({subtitle, title}) => {
   return (
@@ -6,10 +7,10 @@ const SectionHeader = ({subtitle, title}) => {
       <h1>{title}</h1>
       <div className="section-header-breadcrumb">
         <div className="breadcrumb-item active">
-          <a href="#">Inicio</a>
+          <Link >Inicio</Link>
         </div>
         <div className="breadcrumb-item">
-          <a href="#">{subtitle}</a>
+          <Link >{subtitle}</Link>
         </div>
         
       </div>
