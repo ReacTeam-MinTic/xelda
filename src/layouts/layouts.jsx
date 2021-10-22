@@ -1,6 +1,6 @@
-import Footer from "components/template-base/Footer";
-import MainSidebar from "components/template-base/MainSidebar";
-import NavBar from "components/template-base/NavBar";
+import Footer from "components/Footer";
+import MainSidebar from "components/MainSidebar";
+import NavBar from "components/NavBar";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useUser } from "context/userContext";
 import { useEffect, useState } from "react";

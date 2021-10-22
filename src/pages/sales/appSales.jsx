@@ -1,9 +1,9 @@
 import FormSales from "./formsales";
 import ListSales from "./listusales";
 import { useState, useEffect } from "react";
-import SectionTitle from "components/template-base/content/SectionTitle";
-import CardHeader from "components/template-base/content/CardHeader";
-import SectionHeader from "components/template-base/content/SectionHeader";
+import SectionTitle from "components/content/SectionTitle";
+import CardHeader from "components/content/CardHeader";
+import SectionHeader from "components/content/SectionHeader";
 import { getProductsBackend, getSeller_, getSalesBackend} from "utils/api";
 
 
