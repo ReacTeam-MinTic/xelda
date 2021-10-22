@@ -196,7 +196,7 @@ const FormSales = ({
               className="form-control select2"
               name="seller"
               defaultValue=""
-              required
+              
             >
               <option disabled value="">
                 Seleccione un opción
