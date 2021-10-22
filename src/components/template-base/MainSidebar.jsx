@@ -1,28 +1,27 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import PrivateComponent from "components/auth0/privateComponent";
 
 const MainSidebar = () => {
   return (
-    <div className="main-sidebar " style={{overflow: "hidden", outline: "none"}}>
+    <div className="main-sidebar ">
       <aside id="sidebar-wrapper">
         <div className="sidebar-brand">
-          <Link to="/" className="nav-link">
+          <a href="/" className="nav-link">
             Xelda
-          </Link>
+          </a>
         </div>
         <div className="sidebar-brand sidebar-brand-sm">
-          <Link to="/" className="nav-link">
+          <a href="/" className="nav-link">
             Xd
-          </Link>
+          </a>
         </div>
         <ul className="sidebar-menu">
           <li className="menu-header">Inicio</li>
           <li className="active">
-            <Link to="/" className="nav-link">
+            <a href="/" className="nav-link">
               <i className="fas fa-fire" />
               Inicio
-            </Link>
+            </a>
           </li>
           <PrivateComponent rolesList={["Admin", "Vendedor"]}>
           <li className="menu-header">Módulos</li>
@@ -32,7 +31,7 @@ const MainSidebar = () => {
             </a>
             <ul className="dropdown-menu" style={{ display: "none" }}>
               <li>
-                <Link to="/sales">Listado de ventas</Link>
+                <a href="/sales">Listado de ventas</a>
               </li>
             </ul>
           </li>
@@ -44,7 +43,7 @@ const MainSidebar = () => {
             </a>
             <ul className="dropdown-menu" style={{ display: "none" }}>
               <li>
-                <Link to="/products">Listado de productos</Link>
+                <a href="/products">Listado de productos</a>
               </li>
             </ul>
           </li>
@@ -56,7 +55,7 @@ const MainSidebar = () => {
             </a>
             <ul className="dropdown-menu" style={{ display: "none" }}>
               <li>
-                <Link to="/users">Listado de Usuarios</Link>
+                <a href="/users">Listado de Usuarios</a>
               </li>
             </ul>
           </li>

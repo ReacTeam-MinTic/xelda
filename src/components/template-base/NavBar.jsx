@@ -1,6 +1,5 @@
 import React from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
-import { Link } from 'react-router-dom';
 
 
 const NavBar = () => {
@@ -23,13 +22,13 @@ const NavBar = () => {
               </a>
             </li>
             <li>
-              <Link
-                 to={"#"} 
+              <a
+                 href="#"
                 data-toggle="search"
                 className="nav-link nav-link-lg d-sm-none"
               >
                 <i className="fas fa-search"></i>
-              </Link>
+              </a>
             </li>
           </ul>
         </form>
