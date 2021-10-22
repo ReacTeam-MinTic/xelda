@@ -18,7 +18,7 @@ const App = () => {
     <Auth0Provider
       domain="misiontic-sales2021.us.auth0.com"
       clientId="3G27oOyaGGQ3fzLbjv7xwzZIcTQJqaGG"
-      redirectUri={window.location.origin}
+      redirectUri="https://gentle-earth-75322.herokuapp.com/"
       audience="api-xelda-auth"
     >
       <UserContext.Provider value={{ userData, setUserData }}>
