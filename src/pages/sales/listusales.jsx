@@ -1,10 +1,10 @@
 import { nanoid } from "nanoid";
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import iziToast from "izitoast";
 import Alerts from "styles/js/alerts";
 import ButtonSerarch from "components/utilsComponent/buttonSerarch";
 import { editSales, deleteSales_ } from "utils/api";
+import PrivateComponent from "components/auth0/privateComponent";
 
 const FileTableSales = ({ sale, setRunQuery }) => {
   const [edit, setEdit] = useState(false);
@@ -198,9 +198,11 @@ const FileTableSales = ({ sale, setRunQuery }) => {
               <button  class="btn btn-icon btn-sm"onClick={() => setEdit(!edit)}>
                 <i class="fas fa-edit"></i>
               </button>
+              <PrivateComponent rolesList={["Admin"]}>
               <button class="btn btn-icon btn-sm" onClick={() => alertWarning_()}>
                 <i class="fas fa-trash-alt"></i>
               </button>
+              </PrivateComponent>
             </>
           )}
         </div>

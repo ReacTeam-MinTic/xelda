@@ -18,13 +18,13 @@ const NavBar = () => {
         <form className="form-inline mr-auto">
           <ul className="navbar-nav mr-3">
             <li>
-              <Link   data-toggle="sidebar" className="nav-link nav-link-lg">
+              <Link to={"#"}  data-toggle="sidebar" className="nav-link nav-link-lg">
                 <i className="fas fa-bars"></i>
               </Link>
             </li>
             <li>
               <Link
-                 
+                 to={"#"} 
                 data-toggle="search"
                 className="nav-link nav-link-lg d-sm-none"
               >
@@ -43,7 +43,7 @@ const NavBar = () => {
             >
               <img
                 alt="image"
-                src={user.picture}
+                src={user.picture }
                 className="rounded-circle mr-1"
               />
               <div className="d-sm-none d-lg-inline-block">Hola, {user ? user.name : "invitado"}</div>

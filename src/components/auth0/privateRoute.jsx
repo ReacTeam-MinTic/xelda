@@ -1,46 +1,16 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { useUser } from "context/userContext";
-import { useEffect } from "react";
-import { getUserLogin } from "utils/api";
+import React from "react";
 
-const PrivateRoute = ({ children }) => {
-  const {
-    loginWithRedirect,
-    isAuthenticated,
-    isLoading,
-    getAccessTokenSilently,
-  } = useAuth0();
-
-  const {setUserData} = useUser();
-
-
-  useEffect(() => {
-    const fecthAuthoToken =  async () => {
-      // if (localStorage.getItem("Token")){
-      //   //Validar fecha expiración del token
-      // } else {
-      //   //Pedir Token
-      // }
-      const accessToken =  await getAccessTokenSilently({ audience: `api-xelda-auth` });
-      localStorage.setItem("Token", accessToken);
-      console.log("Token: ", accessToken)
-      await getUserLogin(
-        (response)=>{
-          console.log("Respuesta: ", response);
-          setUserData(response.data);
-        }, 
-        (err)=>{
-          console.log("Error: ", err);
-        }
-        );
-    };
-    if(isAuthenticated){
-      fecthAuthoToken();
-    }
-  }, [isAuthenticated, getAccessTokenSilently]);
-
-  if (isLoading) return <div>is loading.....</div>;
-  return isAuthenticated ? <>{children}</> : loginWithRedirect();
+const PrivateRoute = ({ rolesList, children }) => {
+  const { userData } = useUser();
+  if (rolesList.includes(userData.role)) {
+    return children;
+  }
+  return (
+    <div>
+      <h1>No estas autorizado por favor esperaaaaaa.......................</h1>
+    </div>
+  );
 };
 
 export default PrivateRoute;

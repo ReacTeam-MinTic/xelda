@@ -1,10 +1,10 @@
 import { nanoid } from "nanoid";
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import iziToast from "izitoast";
 import Alerts from "styles/js/alerts";
 import ButtonSerarch from "components/utilsComponent/buttonSerarch";
 import { editProducts, deleteProducts_ } from "utils/api";
+import PrivateComponent from "components/auth0/privateComponent";
 
 
 const FileTableProducts = ({ product, setRunQuery}) => {
@@ -159,7 +159,7 @@ const FileTableProducts = ({ product, setRunQuery}) => {
           
         </>
       )}
-
+      <PrivateComponent rolesList={["Admin"]}>
       <td>
         <div class="row justify-content-md-center">
           {edit ? (
@@ -183,6 +183,7 @@ const FileTableProducts = ({ product, setRunQuery}) => {
           )}
         </div> 
       </td>
+      </PrivateComponent>
     </tr>
   );
 };
