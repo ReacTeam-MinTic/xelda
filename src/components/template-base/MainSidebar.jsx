@@ -4,7 +4,7 @@ import PrivateComponent from "components/auth0/privateComponent";
 
 const MainSidebar = () => {
   return (
-    <div className="main-sidebar">
+    <div className="main-sidebar " style={{overflow: "hidden", outline: "none"}}>
       <aside id="sidebar-wrapper">
         <div className="sidebar-brand">
           <Link to="/" className="nav-link">

@@ -69,11 +69,11 @@ const AppSale = () => {
 
   useEffect(() => {
     if (viewTable) {
-      setTextButton("Nuevo Usuario");
+      setTextButton("Nueva venta");
       setSubTitle("Listado de ventas");
       setSubTitleTag("Busque, edite o elimine los registros")
     } else {
-      setTextButton("Ver Todos");
+      setTextButton("Ver Todo");
       setSubTitle("Registro de ventas");
       setSubTitleTag("Agregue nuevas ventas")
     }

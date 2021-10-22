@@ -46,12 +46,14 @@ const Layouts = ({ children }) => {
   return (
 
       <>
-        <MainSidebar />
+        <div class="main-wrapper">
         <NavBar />
-        <div class="main-content">
+        <MainSidebar />
+        <div class="main-content" style={{minHeight: 581}}>
           <section class="section">{children}</section>
         </div>
         <Footer />
+        </div>
       </>
    
   );

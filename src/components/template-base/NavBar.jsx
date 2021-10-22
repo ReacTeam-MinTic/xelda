@@ -18,9 +18,9 @@ const NavBar = () => {
         <form className="form-inline mr-auto">
           <ul className="navbar-nav mr-3">
             <li>
-              <Link to={"#"}  data-toggle="sidebar" className="nav-link nav-link-lg">
+              <a href="#" data-toggle="sidebar" className="nav-link nav-link-lg">
                 <i className="fas fa-bars"></i>
-              </Link>
+              </a>
             </li>
             <li>
               <Link
