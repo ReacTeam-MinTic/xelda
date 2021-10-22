@@ -1275,6 +1275,7 @@ h6 .badge {
   border-color: #2f353b;
   color: #2f353b; }
 
+
 .btn-outline-dark:hover, .btn-outline-dark:focus, .btn-outline-dark:active, .btn-outline-dark.disabled:hover, .btn-outline-dark.disabled:focus, .btn-outline-dark.disabled:active {
   background-color: black !important;
   color: #fff !important; }
