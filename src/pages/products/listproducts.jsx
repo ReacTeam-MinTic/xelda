@@ -216,7 +216,9 @@ const ListProducts = ({ productsDb, setRunQuery}) => {
             <th>Descropción</th>
             <th>Valor</th>
             <th>Estado</th>
+            <PrivateComponent rolesList={["Admin"]}>
             <th>Opciones</th>
+            </PrivateComponent>
           </tr>
         </thead>
         <tbody>

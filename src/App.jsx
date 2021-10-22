@@ -18,7 +18,8 @@ const App = () => {
     <Auth0Provider
       domain="misiontic-sales2021.us.auth0.com"
       clientId="3G27oOyaGGQ3fzLbjv7xwzZIcTQJqaGG"
-      redirectUri={window.location.origin}
+      // redirectUri={window.location.origin}
+      redirectUri="http://localhost:3000/dashboard"
       audience="api-xelda-auth"
     >
       <UserContext.Provider value={{ userData, setUserData }}>
@@ -43,8 +44,8 @@ const App = () => {
                     </PrivateRoute>
                   </Route>
                   <Route path="/dashboard" exact>
-                  <PrivateRoute rolesList={["Admin", "Vendedor"]}>
-                    <Index />
+                    <PrivateRoute rolesList={["Admin", "Vendedor"]}>
+                      <Index />
                     </PrivateRoute>
                   </Route>
                 </Switch>

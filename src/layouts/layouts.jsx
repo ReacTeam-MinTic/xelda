@@ -28,7 +28,7 @@ const Layouts = ({ children }) => {
         (err)=>{
           console.log("Error: ", err);
           setLoadingUserInformaction(false);
-          logout({returnTo:'http://localhost:3000/public'});
+          logout({returnTo:'http://localhost:3000/'});
           
         }
         );

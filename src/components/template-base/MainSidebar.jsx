@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import PrivateComponent from "components/auth0/privateComponent";
 
 const MainSidebar = () => {
   return (
@@ -23,6 +24,7 @@ const MainSidebar = () => {
               Inicio
             </Link>
           </li>
+          <PrivateComponent rolesList={["Admin", "Vendedor"]}>
           <li className="menu-header">Módulos</li>
           <li className="nav-item dropdown">
             <a className="nav-link has-dropdown" data-toggle="dropdown">
@@ -34,6 +36,8 @@ const MainSidebar = () => {
               </li>
             </ul>
           </li>
+          </PrivateComponent>
+          <PrivateComponent rolesList={["Admin", "Vendedor"]}>
           <li className="nav-item dropdown">
             <a className="nav-link has-dropdown" data-toggle="dropdown">
               <i className="fas fa-briefcase"></i> <span>Productos</span>
@@ -44,6 +48,8 @@ const MainSidebar = () => {
               </li>
             </ul>
           </li>
+          </PrivateComponent>
+          <PrivateComponent rolesList={["Admin"]}>
           <li className="nav-item dropdown">
             <a className="nav-link has-dropdown" data-toggle="dropdown">
               <i className="fas fa-users-cog" /> <span>Usuarios</span>
@@ -54,19 +60,7 @@ const MainSidebar = () => {
               </li>
             </ul>
           </li>
-          <li className="nav-item dropdown">
-            <a className="nav-link has-dropdown" data-toggle="dropdown">
-              <i className="fas fa-sign-in-alt"></i> <span>Autenticación</span>
-            </a>
-            <ul className="dropdown-menu" style={{ display: "none" }}>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/auth-register">Registro</Link>
-              </li>
-            </ul>
-          </li>
+          </PrivateComponent>
         </ul>
       </aside>
     </div>
