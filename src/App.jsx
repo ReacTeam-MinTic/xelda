@@ -16,11 +16,10 @@ const App = () => {
   const [userData, setUserData] = useState({});
   return (
     <Auth0Provider
-      domain="misiontic-sales2021.us.auth0.com"
-      clientId="3G27oOyaGGQ3fzLbjv7xwzZIcTQJqaGG"
-      redirectUri="https://gentle-earth-75322.herokuapp.com/"
-      audience="api-xelda-auth"
-    >
+    domain="xelda.us.auth0.com"
+    clientId="vIWD5IdvNAKfDeUT23be8DdaJpw8JEIu"
+    redirectUri="http://localhost:3000/dashboard"
+    audience= 'api-autenticacion-xelda'>
       <UserContext.Provider value={{ userData, setUserData }}>
         <Router>
           <Switch>
@@ -43,8 +42,8 @@ const App = () => {
                     </PrivateRoute>
                   </Route>
                   <Route path="/dashboard" exact>
-                  <PrivateRoute rolesList={["Admin", "Vendedor"]}>
-                    <Index />
+                    <PrivateRoute rolesList={["Admin", "Vendedor"]}>
+                      <Index />
                     </PrivateRoute>
                   </Route>
                 </Switch>

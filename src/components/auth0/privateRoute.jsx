@@ -7,9 +7,19 @@ const PrivateRoute = ({ rolesList, children }) => {
     return children;
   }
   return (
-    <div>
-      <h1>No estas autorizado por favor esperaaaaaa.......................</h1>
-    </div>
+    <section className="section">
+      <div className="section-body">
+        <div className="card">
+          <div className="card-header">
+            <h3 style={{color: "black"}}>¡ATENCIÓN!</h3>
+          </div>
+          <div className="card-body">
+            <h1>Por favor espere que el administrador del sistema le asigne un rol para poder ingresar a los módulos.</h1>
+            <h3>Agredecemos su paciencia</h3>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 

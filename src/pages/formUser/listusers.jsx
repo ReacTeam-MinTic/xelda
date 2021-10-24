@@ -94,7 +94,6 @@ const FileTableUsers = ({ user, setRunQuery }) => {
       ],
     });
   };
-
   return (
     <tr>
       {edit ? (
@@ -166,20 +165,20 @@ const FileTableUsers = ({ user, setRunQuery }) => {
           <td>{user.family_name}</td>
           <td>
             {user.status === "Autorizado" ? (
-              <div class="badge badge-success">{user.status}</div>
+              <div className="badge badge-success">{user.status}</div>
             ) : user.status === "Rechazado" ? (
-              <div class="badge badge-danger">{user.status} </div>
+              <div className="badge badge-danger">{user.status} </div>
             ) : (
-              <div class="badge badge-secondary">{user.status}</div>
+              <div className="badge badge-secondary">{user.status}</div>
             )}
           </td>
           <td>
             {user.role === "Admin" ? (
-              <div class="badge badge-info">{user.role}</div>
+              <div className="badge badge-info">{user.role}</div>
             ) : user.role === "Vendedor" ? (
-              <div class="badge badge-warning">{user.role}</div>
+              <div className="badge badge-warning">{user.role}</div>
             ) : (
-              <div class="badge badge-secondary">{user.role}</div>
+              <div className="badge badge-secondary">{user.role}</div>
             )}
           </td>
           <td>{user.email}</td>
@@ -187,35 +186,35 @@ const FileTableUsers = ({ user, setRunQuery }) => {
       )}
       <PrivateComponent rolesList={["Admin"]}>
         <td>
-          <div class="row justify-content-md-center">
+          <div className="row justify-content-md-center">
             {edit ? (
               <>
                 <button
-                  class="btn btn-icon btn-sm"
+                  className="btn btn-icon btn-sm"
                   onClick={() => updateUser()}
                 >
-                  <i class="fas fa-check"></i>
+                  <i className="fas fa-check"></i>
                 </button>
                 <button
-                  class="btn btn-icon btn-sm"
+                  className="btn btn-icon btn-sm"
                   onClick={() => setEdit(!edit)}
                 >
-                  <i class="fas fa-ban"></i>
+                  <i className="fas fa-ban"></i>
                 </button>
               </>
             ) : (
               <>
                 <button
-                  class="btn btn-icon btn-sm"
+                  className="btn btn-icon btn-sm"
                   onClick={() => setEdit(!edit)}
                 >
-                  <i class="fas fa-edit"></i>
+                  <i className="fas fa-edit"></i>
                 </button>
                 <button
-                  class="btn btn-icon btn-sm"
+                  className="btn btn-icon btn-sm"
                   onClick={() => alertWarning_()}
                 >
-                  <i class="fas fa-trash-alt"></i>
+                  <i className="fas fa-trash-alt"></i>
                 </button>
               </>
             )}

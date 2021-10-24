@@ -1,30 +1,32 @@
 import React from "react";
+import PrivateComponent from "components/auth0/privateComponent";
 import { Link } from "react-router-dom";
 
 const MainSidebar = () => {
   return (
-    <div className="main-sidebar">
+    <div className="main-sidebar" id="navbarToggleExternalContent">
       <aside id="sidebar-wrapper">
         <div className="sidebar-brand">
-          <Link to="/" className="nav-link">
+          <Link to="/dashboard" className="nav-link">
             Xelda
           </Link>
         </div>
         <div className="sidebar-brand sidebar-brand-sm">
-          <Link to="/" className="nav-link">
+          <Link to="/dashboard" className="nav-link">
             Xd
           </Link>
         </div>
         <ul className="sidebar-menu">
           <li className="menu-header">Inicio</li>
           <li className="active">
-            <Link to="/" className="nav-link">
+            <Link to='/dashboard' className="nav-link">
               <i className="fas fa-fire" />
               Inicio
             </Link>
           </li>
+          <PrivateComponent rolesList={["Admin", "Vendedor"]}>
           <li className="menu-header">Módulos</li>
-          <li className="nav-item dropdown">
+          <li className="nav-item dropdown mb-4">
             <a className="nav-link has-dropdown" data-toggle="dropdown">
               <i className="far fa-file-alt" /> <span>Ventas</span>
             </a>
@@ -34,7 +36,9 @@ const MainSidebar = () => {
               </li>
             </ul>
           </li>
-          <li className="nav-item dropdown">
+          </PrivateComponent>
+          <PrivateComponent rolesList={["Admin", "Vendedor"]}>
+          <li className="nav-item dropdown mb-4">
             <a className="nav-link has-dropdown" data-toggle="dropdown">
               <i className="fas fa-briefcase"></i> <span>Productos</span>
             </a>
@@ -44,7 +48,9 @@ const MainSidebar = () => {
               </li>
             </ul>
           </li>
-          <li className="nav-item dropdown">
+          </PrivateComponent>
+          <PrivateComponent rolesList={["Admin"]}>
+          <li className="nav-item dropdown mb-4">
             <a className="nav-link has-dropdown" data-toggle="dropdown">
               <i className="fas fa-users-cog" /> <span>Usuarios</span>
             </a>
@@ -54,19 +60,7 @@ const MainSidebar = () => {
               </li>
             </ul>
           </li>
-          <li className="nav-item dropdown">
-            <a className="nav-link has-dropdown" data-toggle="dropdown">
-              <i className="fas fa-sign-in-alt"></i> <span>Autenticación</span>
-            </a>
-            <ul className="dropdown-menu" style={{ display: "none" }}>
-              <li>
-                <Link to="/login">Login</Link>
-              </li>
-              <li>
-                <Link to="/auth-register">Registro</Link>
-              </li>
-            </ul>
-          </li>
+          </PrivateComponent>
         </ul>
       </aside>
     </div>

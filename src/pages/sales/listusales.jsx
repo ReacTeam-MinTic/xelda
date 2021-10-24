@@ -164,9 +164,9 @@ const FileTableSales = ({ sale, setRunQuery }) => {
             <input
               className="form-control-plaintext"
               type="text"
-              placeholder="Readonly" 
+              placeholder="readOnly" 
               readOnly={true}
-              readonly
+              readOnly
             />
           </td>
         </>
@@ -183,24 +183,24 @@ const FileTableSales = ({ sale, setRunQuery }) => {
       )}
 
       <td>
-        <div class="row justify-content-md-center">
+        <div className="row justify-content-md-center">
           {edit ? (
             <>
-              <button class="btn btn-icon btn-sm" onClick={() => updateSale()}>
-                <i class="fas fa-check"></i>
+              <button className="btn btn-icon btn-sm" onClick={() => updateSale()}>
+                <i className="fas fa-check"></i>
               </button>
-              <button class="btn btn-icon btn-sm" onClick={() => setEdit(!edit)}>
-                <i class="fas fa-ban"></i>
+              <button className="btn btn-icon btn-sm" onClick={() => setEdit(!edit)}>
+                <i className="fas fa-ban"></i>
               </button>
             </>
           ) : (
             <>
-              <button  class="btn btn-icon btn-sm"onClick={() => setEdit(!edit)}>
-                <i class="fas fa-edit"></i>
+              <button  className="btn btn-icon btn-sm"onClick={() => setEdit(!edit)}>
+                <i className="fas fa-edit"></i>
               </button>
               <PrivateComponent rolesList={["Admin"]}>
-              <button class="btn btn-icon btn-sm" onClick={() => alertWarning_()}>
-                <i class="fas fa-trash-alt"></i>
+              <button className="btn btn-icon btn-sm" onClick={() => alertWarning_()}>
+                <i className="fas fa-trash-alt"></i>
               </button>
               </PrivateComponent>
             </>

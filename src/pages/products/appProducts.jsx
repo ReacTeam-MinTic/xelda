@@ -47,7 +47,7 @@ const AppProducts = () => {
       setSubTitle("Listado de productos");
       setSubTitleTag("Busque, edite o elimine los registros");
     } else {
-      setTextButton("Ver Todos");
+      setTextButton("Ver Todo");
       setSubTitle("Registro de productos");
       setSubTitleTag("Agregue nuevos productos");
     }

@@ -6,7 +6,6 @@ import ButtonSerarch from "components/utilsComponent/buttonSerarch";
 import { editProducts, deleteProducts_ } from "utils/api";
 import PrivateComponent from "components/auth0/privateComponent";
 
-
 const FileTableProducts = ({ product, setRunQuery}) => {
   const [edit, setEdit] = useState(false);
   const [infoNewProduct, setInfoNewProduct] = useState({
@@ -152,8 +151,7 @@ const FileTableProducts = ({ product, setRunQuery}) => {
           <td>{product.description}</td>
           <td>${product.value_}</td>
           <td>
-            {product.status.toLowerCase() === "disponible" ? <div class="badge badge-success">{product.status}</div> : <div class="badge badge-danger">{product.status}</div>}
-            
+            {product.status.toLowerCase() === "disponible" ? <div className="badge badge-success">{product.status}</div> : <div className="badge badge-danger">{product.status}</div>}
           </td>
    
           
@@ -161,23 +159,23 @@ const FileTableProducts = ({ product, setRunQuery}) => {
       )}
       <PrivateComponent rolesList={["Admin"]}>
       <td>
-        <div class="row justify-content-md-center">
+        <div className="row justify-content-md-center">
           {edit ? (
             <>
-            <button class="btn btn-icon btn-sm" onClick={() => updateProduct()}>
-              <i class="fas fa-check"></i>
+            <button className="btn btn-icon btn-sm" onClick={() => updateProduct()}>
+              <i className="fas fa-check"></i>
             </button >
-            <button class="btn btn-icon btn-sm"  onClick={() => setEdit(!edit)}>
-           <i class="fas fa-ban"></i>
+            <button className="btn btn-icon btn-sm"  onClick={() => setEdit(!edit)}>
+           <i className="fas fa-ban"></i>
          </button >
             </>
           ) : (
             <>
-            <button class="btn btn-icon btn-sm"  onClick={() => setEdit(!edit)}>
-              <i class="fas fa-edit"></i>
+            <button className="btn btn-icon btn-sm"  onClick={() => setEdit(!edit)}>
+              <i className="fas fa-edit"></i>
             </button >
-            <button class="btn btn-icon btn-sm"  onClick={()=> alertWarning_()}>
-              <i class="fas fa-trash-alt"></i>
+            <button className="btn btn-icon btn-sm"  onClick={()=> alertWarning_()}>
+              <i className="fas fa-trash-alt"></i>
             </button > 
          </>
           )}
@@ -216,7 +214,9 @@ const ListProducts = ({ productsDb, setRunQuery}) => {
             <th>Descropción</th>
             <th>Valor</th>
             <th>Estado</th>
+            <PrivateComponent rolesList={["Admin"]}>
             <th>Opciones</th>
+            </PrivateComponent>
           </tr>
         </thead>
         <tbody>

@@ -16,8 +16,8 @@ const Layouts = ({ children }) => {
     
     const fecthAuthoToken =  async () => {
       setLoadingUserInformaction(true);
-      const accessToken =  await getAccessTokenSilently({ audience: `api-xelda-auth` });
-      localStorage.setItem("Token", accessToken);
+      const accessToken =  await getAccessTokenSilently({ audience: `api-autenticacion-xelda` });
+      localStorage.setItem("token", accessToken);
       //console.log("Token: ", accessToken)
       await getUserLogin(
         (response)=>{
@@ -28,7 +28,7 @@ const Layouts = ({ children }) => {
         (err)=>{
           console.log("Error: ", err);
           setLoadingUserInformaction(false);
-          logout({returnTo:'http://localhost:3000/public'});
+          logout({returnTo:'http://localhost:3000/'});
           
         }
         );
@@ -48,10 +48,11 @@ const Layouts = ({ children }) => {
       <>
         <MainSidebar />
         <NavBar />
-        <div class="main-content">
-          <section class="section">{children}</section>
+         <div className="main-content">
+          <section className="section">{children}</section>
         </div>
         <Footer />
+       
       </>
    
   );
