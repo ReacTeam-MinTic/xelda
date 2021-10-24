@@ -1,9 +1,5 @@
 import axios from "axios";
 
-const getToken = () => {
-  return `Bearer ${localStorage.getItem("Token")}`;
-};
-
 //Módulo de usuarios
 
 const getToken = () => {
