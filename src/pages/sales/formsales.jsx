@@ -80,7 +80,6 @@ const FormSales = ({
           <div className="form-group">
             <label htmlFor="cod">COD</label>
             <input
-              autoComplete="nope"
               name="cod"
               type="number"
               className="form-control "
@@ -95,7 +94,6 @@ const FormSales = ({
           <div className="form-group">
             <label htmlFor="date">FECHA</label>
             <input
-              autoComplete="nope"
               name="date"
               type="date"
               className="form-control "
@@ -110,7 +108,6 @@ const FormSales = ({
           <div className="form-group">
             <label htmlFor="id_customer">ID CLIENTE</label>
             <input
-              autoComplete="nope"
               name="id_customer"
               type="number"
               className="form-control "
@@ -125,7 +122,6 @@ const FormSales = ({
           <div className="form-group">
             <label htmlFor="customer">CLIENTE</label>
             <input
-              autoComplete="nope"
               name="customer"
               type="text"
               className="form-control "

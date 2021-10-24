@@ -18,24 +18,23 @@ const AppSale = () => {
   const [seller, setSeller] = useState([]);
   const [products, setProducts] = useState([]);
   const [productsRow, setproductsRow] = useState();
+  
 
   useEffect(()=>{
-
     const getSeller = async () => {
       await getSeller_(
         (response)=>{
           setSeller(response.data)
-          console.log(seller)
         }, 
-        (error)=>{console.error(error)});
+        (error)=>{console.error("Ha ocurrido un error: ", error)});
     };
+
     const getProducts = async () => {
       await getProductsBackend(
         (response)=>{
           setProducts(response.data)
-          console.log(products)
         }, 
-        (error)=>{console.error(error)}
+        (error)=>{console.error("Ha ocurrido un error: ", error)}
         );
     };
     getSeller();
@@ -46,16 +45,19 @@ const AppSale = () => {
   
 
   useEffect(() => {
-    if(runQuery){
-      getSalesBackend(
+    const fecthSales = async () => {
+      await getSalesBackend(
         (response)=> {
           setSalesDb(response.data);
+          setRunQuery(false);
         }, 
         (error)=> {
-          console.error(error);
+          console.error("Ha ocurrido un error: ", error);
         }
         );
-      setRunQuery(false);
+    }
+    if(runQuery){
+      fecthSales();
     }
   }, [runQuery])
 
@@ -67,11 +69,11 @@ const AppSale = () => {
 
   useEffect(() => {
     if (viewTable) {
-      setTextButton("Nueva Venta");
+      setTextButton("Nueva venta");
       setSubTitle("Listado de ventas");
       setSubTitleTag("Busque, edite o elimine los registros")
     } else {
-      setTextButton("Ver Todos");
+      setTextButton("Ver Todo");
       setSubTitle("Registro de ventas");
       setSubTitleTag("Agregue nuevas ventas")
     }

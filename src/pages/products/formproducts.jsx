@@ -44,7 +44,6 @@ const FormProducts = ({ setWiewTable }) => {
           <div className="form-group">
             <label htmlFor="cod">Cod</label>
             <input
-              autoComplete="nope"
               name="cod"
               type="text"
               className="form-control "
@@ -59,7 +58,6 @@ const FormProducts = ({ setWiewTable }) => {
           <div className="form-group">
             <label htmlFor="name">Producto</label>
             <input
-              autoComplete="nope"
               name="name"
               type="text"
               className="form-control "

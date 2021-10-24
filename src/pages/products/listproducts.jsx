@@ -4,6 +4,7 @@ import iziToast from "izitoast";
 import Alerts from "styles/js/alerts";
 import ButtonSerarch from "components/utilsComponent/buttonSerarch";
 import { editProducts, deleteProducts_ } from "utils/api";
+import PrivateComponent from "components/auth0/privateComponent";
 
 const FileTableProducts = ({ product, setRunQuery}) => {
   const [edit, setEdit] = useState(false);
@@ -52,7 +53,7 @@ const FileTableProducts = ({ product, setRunQuery}) => {
   const alertWarning_ = () => {
     iziToast.show({
       title: "¡Cuidado!",
-      message: "¿Está a punto de elimanar el siguiente registro: ",
+      message: "¿Está Link punto de elimanar el siguiente registro: ",
       color: "red",
       position: 'topRight',
       icon: "far fa-check-circle",
@@ -156,30 +157,31 @@ const FileTableProducts = ({ product, setRunQuery}) => {
           
         </>
       )}
-
+      <PrivateComponent rolesList={["Admin"]}>
       <td>
         <div className="row justify-content-md-center">
           {edit ? (
             <>
-            <a onClick={() => updateProduct()}>
-              <i className="fas fa-check"></i>
-            </a>
-            <a onClick={() => setEdit(!edit)}>
-           <i className="fas fa-ban"></i>
-         </a>
+            <button class="btn btn-icon btn-sm" onClick={() => updateProduct()}>
+              <i class="fas fa-check"></i>
+            </button >
+            <button class="btn btn-icon btn-sm"  onClick={() => setEdit(!edit)}>
+           <i class="fas fa-ban"></i>
+         </button >
             </>
           ) : (
             <>
-            <a onClick={() => setEdit(!edit)}>
-              <i className="fas fa-edit"></i>
-            </a>
-            <a onClick={()=> alertWarning_()}>
-              <i className="fas fa-trash-alt"></i>
-            </a> 
+            <button class="btn btn-icon btn-sm"  onClick={() => setEdit(!edit)}>
+              <i class="fas fa-edit"></i>
+            </button >
+            <button class="btn btn-icon btn-sm"  onClick={()=> alertWarning_()}>
+              <i class="fas fa-trash-alt"></i>
+            </button > 
          </>
           )}
         </div> 
       </td>
+      </PrivateComponent>
     </tr>
   );
 };
@@ -212,7 +214,9 @@ const ListProducts = ({ productsDb, setRunQuery}) => {
             <th>Descropción</th>
             <th>Valor</th>
             <th>Estado</th>
+            <PrivateComponent rolesList={["Admin"]}>
             <th>Opciones</th>
+            </PrivateComponent>
           </tr>
         </thead>
         <tbody>

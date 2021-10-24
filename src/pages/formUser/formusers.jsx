@@ -45,7 +45,6 @@ const FormUsers = ({ setWiewTable }) => {
           <div className="form-group">
             <label htmlFor="name">Nombres</label>
             <input
-              autoComplete="nope"
               name="name"
               type="text"
               className="form-control "
