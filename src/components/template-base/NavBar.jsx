@@ -42,7 +42,7 @@ const NavBar = () => {
             >
               <img
                 alt="image"
-                src={user.picture }
+                src={user ? user.picture : "" }
                 className="rounded-circle mr-1"
               />
               <div className="d-sm-none d-lg-inline-block">Hola, {user ? user.name : "invitado"}</div>
