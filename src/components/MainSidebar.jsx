@@ -7,12 +7,12 @@ const MainSidebar = () => {
     <div className="main-sidebar" id="navbarToggleExternalContent">
       <aside id="sidebar-wrapper">
         <div className="sidebar-brand">
-          <Link to="/dashboard" className="nav-link">
+          <Link to="/" className="nav-link">
             Xelda
           </Link>
         </div>
         <div className="sidebar-brand sidebar-brand-sm">
-          <Link to="/dashboard" className="nav-link">
+          <Link to="/" className="nav-link">
             Xd
           </Link>
         </div>
