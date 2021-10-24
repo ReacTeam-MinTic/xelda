@@ -16,12 +16,10 @@ const App = () => {
   const [userData, setUserData] = useState({});
   return (
     <Auth0Provider
-      domain="misiontic-sales2021.us.auth0.com"
-      clientId="3G27oOyaGGQ3fzLbjv7xwzZIcTQJqaGG"
-      // redirectUri={window.location.origin}
-      redirectUri="http://localhost:3000/dashboard"
-      audience="api-xelda-auth"
-    >
+    domain="xelda.us.auth0.com"
+    clientId="vIWD5IdvNAKfDeUT23be8DdaJpw8JEIu"
+    redirectUri="http://localhost:3000/index"
+    audience= 'api-autenticacion-xelda'>
       <UserContext.Provider value={{ userData, setUserData }}>
         <Router>
           <Switch>
