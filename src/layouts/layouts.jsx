@@ -28,7 +28,7 @@ const Layouts = ({ children }) => {
         (err)=>{
           console.log("Error: ", err);
           setLoadingUserInformaction(false);
-          logout({returnTo:'http://localhost:3000/'});
+          logout({returnTo:'https://gentle-earth-75322.herokuapp.com/'});
           
         }
         );

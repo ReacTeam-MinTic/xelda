@@ -34,7 +34,7 @@ const PublicPage = () => {
         },
         (err) => {
           console.log("Error: ", err);
-          logout({ returnTo: "http://localhost:3000/" });
+          logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" });
         }
       );
     };
