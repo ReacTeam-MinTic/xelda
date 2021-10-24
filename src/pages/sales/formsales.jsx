@@ -133,12 +133,12 @@ const FormSales = ({
               El campo no puede quedar vacío.
             </div>
           </div>
-           <div class="card card-primary">
-            <div class="card-header">
+           <div className="card card-primary">
+            <div className="card-header">
               <h4>Añadir productos</h4>
-              <div class="card-header-action"></div>
+              <div className="card-header-action"></div>
             </div>
-            <div class="card-body">
+            <div className="card-body">
               <div className="form-group">
                 <Productstable
                   products={products}
@@ -298,7 +298,7 @@ const Productstable = ({ products, setProducts, setproductsRow }) => {
             })}
           </select>
         </div>
-        <div class="col-1">
+        <div className="col-1">
           <button
             type="button"
             onClick={() => addNewProductTable()}
@@ -309,7 +309,7 @@ const Productstable = ({ products, setProducts, setproductsRow }) => {
         </div>
       </div>
 
-      <table class="table table-bordered mt-3 ">
+      <table className="table table-bordered mt-3 ">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -338,12 +338,12 @@ const Productstable = ({ products, setProducts, setproductsRow }) => {
                 </td>
                 <td>{subTotalRow*el.value_}</td>
                 <td>
-                  <div class="d-flex justify-content-center">
+                  <div className="d-flex justify-content-center">
                     <button
                       onClick={() => deleteRowTable(el)}
                       className="btn btn-warning mt-1 "
                     >
-                      <i class="fas fa-minus-circle"></i>
+                      <i className="fas fa-minus-circle"></i>
                     </button>
                   </div>
                 </td>

@@ -1,7 +1,8 @@
 import React from "react";
 import Alerts from "styles/js/alerts";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { postUsers } from "utils/api";
+import { editUsers } from "utils/api";
 
 const FormUsers = ({ setWiewTable }) => {
   const form = useRef(null);
@@ -17,8 +18,8 @@ const FormUsers = ({ setWiewTable }) => {
       {
         name: newUser.name,
         lastname: newUser.lastname,
-        state: newUser.state,
-        role: newUser.role,
+        /* state: newUser.state, */
+        rol: newUser.rol,
         email: newUser.email,
       },
       (response) => {
@@ -70,7 +71,7 @@ const FormUsers = ({ setWiewTable }) => {
               El campo no puede quedar vacío.
             </div>
           </div>
-          <div className="form-group">
+          {/* <div className="form-group">
             <label htmlFor="state">Estado</label>
             <select
               className="form-control select2"
@@ -86,9 +87,9 @@ const FormUsers = ({ setWiewTable }) => {
             <div className="invalid-feedback">
               El campo no puede quedar vacío.
             </div>
-          </div>
+          </div> */}
           <div className="form-group">
-            <label htmlFor="state">Rol</label>
+            <label htmlFor="role">Rol</label>
             <select
               className="form-control select2"
               name="role"
@@ -97,6 +98,7 @@ const FormUsers = ({ setWiewTable }) => {
               <option disabled value={0}>
                 Seleccione un opción
               </option>
+              <option>Inactivo</option>
               <option>Vendedor</option>
               <option>Admin</option>
             </select>
@@ -139,5 +141,44 @@ const FormUsers = ({ setWiewTable }) => {
     </>
   );
 };
+
+/* const RolesUsuarios = ({ user }) => {
+  const [rol, setRol] = useState(user.rol)
+
+  useEffect(() => {
+    const editarUsuario = async () => {
+      await editUsers(
+        user._id,
+        { rol },
+        (res) => {
+          console.log(res)
+        },
+        (err) => {
+          console.error(err)
+        }
+      )
+    }
+    if (user.rol !== rol) {
+      editarUsuario()
+    }
+  }, [rol, user])
+
+  return (
+    <select
+      className="form-control select2"
+      name="role"
+      defaultValue={0}
+      value={rol}
+      onChange={(e) => setRol(e.target.value)}
+    >
+      <option disabled value={0}>
+        Seleccione un opción
+      </option>
+      <option>Inactivo</option>
+      <option>Vendedor</option>
+      <option>Admin</option>
+    </select>
+  )
+} */
 
 export default FormUsers;
