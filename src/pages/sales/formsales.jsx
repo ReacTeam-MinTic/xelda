@@ -21,21 +21,22 @@ const FormSales = ({
     const newSale = {};
     fd.forEach((value, key) => {
       newSale[key] = value;
-      console.log("newSale: ", newSale)
     });
 
     const listProducts = Object.keys(newSale)
-    
       .map((k) => {
         if (k.includes("products")) {
-          const listP = productsRow.filter((v) => v._id === newSale[k])[0];
-          //console.log("listP: ", listP);
+          // const listP = productsRow.filter((v) => v._id === newSale[k])[0];
+          const listP = productsRow;
+          console.log("listP: ", listP);
           return listP;
-          
         }
         return null;
       })
       .filter((v) => v);
+    console.log("listProducts_______: ", listProducts);
+    console.log("newSale_______: ", newSale)
+
 
     const saleInputs = {
       cod: newSale.cod,
@@ -43,7 +44,7 @@ const FormSales = ({
       id_customer: newSale.id_customer,
       customer: newSale.customer,
       //cost: newSale.cost,
-      //amount: newSale.amount,
+      amount: newSale.amount,
       seller: seller.filter((s) => s._id === newSale.seller)[0],
       products: listProducts,
       
@@ -63,7 +64,7 @@ const FormSales = ({
         console.error("Este es el error: ", error);
         Alerts.alertError();
       },
-      setWiewTable(true)
+      //setWiewTable(true)
     );
   };
 
@@ -322,7 +323,7 @@ const Productstable = ({ products, setProducts, setproductsRow }) => {
   );
 };
 
-const RowProduct = ({ prod, index, deleteRowTable, editProducts_ }) => {
+const RowProduct = ({ prod, index, deleteRowTable, editProducts_, setproductsRow}) => {
   const [product, setProduct] = useState(prod);
 
   return (
@@ -342,6 +343,7 @@ const RowProduct = ({ prod, index, deleteRowTable, editProducts_ }) => {
               setProduct({
                 ...product,
                 quantity: e.target.value === '' ? '0' : e.target.value,
+                
                 total:
                   parseFloat(product.value_) *
                   parseFloat(e.target.value === '' ? '0' : e.target.value),
