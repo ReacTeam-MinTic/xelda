@@ -162,20 +162,20 @@ const FileTableProducts = ({ product, setRunQuery}) => {
         <div className="row justify-content-md-center">
           {edit ? (
             <>
-            <button class="btn btn-icon btn-sm" onClick={() => updateProduct()}>
-              <i class="fas fa-check"></i>
+            <button className="btn btn-icon btn-sm" onClick={() => updateProduct()}>
+              <i className="fas fa-check"></i>
             </button >
-            <button class="btn btn-icon btn-sm"  onClick={() => setEdit(!edit)}>
-           <i class="fas fa-ban"></i>
+            <button className="btn btn-icon btn-sm"  onClick={() => setEdit(!edit)}>
+           <i className="fas fa-ban"></i>
          </button >
             </>
           ) : (
             <>
-            <button class="btn btn-icon btn-sm"  onClick={() => setEdit(!edit)}>
-              <i class="fas fa-edit"></i>
+            <button className="btn btn-icon btn-sm"  onClick={() => setEdit(!edit)}>
+              <i className="fas fa-edit"></i>
             </button >
-            <button class="btn btn-icon btn-sm"  onClick={()=> alertWarning_()}>
-              <i class="fas fa-trash-alt"></i>
+            <button className="btn btn-icon btn-sm"  onClick={()=> alertWarning_()}>
+              <i className="fas fa-trash-alt"></i>
             </button > 
          </>
           )}

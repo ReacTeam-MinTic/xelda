@@ -8,7 +8,7 @@ const NavBar = () => {
 
   const logoutCloseToken = () => {
     logout({ returnTo: window.location.origin });
-    localStorage.setItem("Token", null);
+    localStorage.setItem("token", null);
   }
     return (
       <>
@@ -19,15 +19,6 @@ const NavBar = () => {
             <li>
               <a href="#" data-toggle="sidebar" className="nav-link nav-link-lg">
                 <i className="fas fa-bars"></i>
-              </a>
-            </li>
-            <li>
-              <a
-                 href="#"
-                data-toggle="search"
-                className="nav-link nav-link-lg d-sm-none"
-              >
-                <i className="fas fa-search"></i>
               </a>
             </li>
           </ul>
@@ -41,7 +32,7 @@ const NavBar = () => {
               className="nav-link dropdown-toggle nav-link-lg nav-link-user"
             >
               <img
-                alt="image"
+                alt="usuario"
                 src={user.picture }
                 className="rounded-circle mr-1"
               />

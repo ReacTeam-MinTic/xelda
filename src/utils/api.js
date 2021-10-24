@@ -15,24 +15,15 @@ export const getUsersBackend = async (successCallback, errorCallback) => {
   await axios.request(options).then(successCallback).catch(errorCallback);
 };
 
-export const obtenerDatosUsuario = async (setUsersDb, setRunQuery) => {
-  const options = {
-    method: "GET",
-    url: "http://localhost:5000/users/self",
-    headers: {
-      Authorization: getToken()
+export const getUserLogin = async (successCallback, errorCallback) => {
+  const options = { method: "GET",
+   url: "http://localhost:5000/users/self/",
+   headers: {
+    Authorization: getToken(),
     }
-  };
-  await axios
-    .request(options)
-    .then(function (response) {
-      setUsersDb(response.data);
-    })
-    .catch(function (error) {
-      console.error(error);
-    });
-  setRunQuery(false);
-};
+  }
+  await axios.request(options).then(successCallback).catch(errorCallback);
+}
 
 export const postUsers = async (data, successCallback, errorCallback) => {
   const options = {
@@ -71,15 +62,6 @@ export const getSeller_ = async (successCallback, errorCallback) => {
       Authorization: getToken(),
     },
   };
-  await axios.request(options).then(successCallback).catch(errorCallback);
-};
-
-export const getUserLogin = async (successCallback, errorCallback) => {
-  const options = { method: "GET", url: "http://localhost:5000/users/self/",
-  headers: {
-    Authorization: getToken(),
-  },
-};
   await axios.request(options).then(successCallback).catch(errorCallback);
 };
 

@@ -16,15 +16,15 @@ const PublicPage = () => {
 
   const logoutCloseToken = () => {
     logout({ returnTo: window.location.origin });
-    localStorage.setItem("Token", null);
+    localStorage.setItem("token", null);
   };
 
   useEffect(() => {
     const fecthAuthoToken = async () => {
       const accessToken = await getAccessTokenSilently({
-        audience: `api-xelda-auth`,
+        audience: `api-autenticacion-xelda`,
       });
-      localStorage.setItem("Token", accessToken);
+      localStorage.setItem("token", accessToken);
       await getUserLogin(
         (response) => {
           setInfoUser(response["data"]);
@@ -61,7 +61,7 @@ const PublicPage = () => {
                 className="nav-link dropdown-toggle nav-link-lg nav-link-user"
               >
                 <img
-                  alt="image"
+                  alt="Usuario"
                   src={user ? user.picture : ""}
                   className="rounded-circle mr-1"
                 />
@@ -102,16 +102,16 @@ const PublicPage = () => {
                   <h4>Módulo de ingreso</h4>
                 </div>
                 <div className="card-body">
-                  <div class="row">
-                    <div class="col-12">
-                      <div class="card card-statistic-1">
+                  <div className="row">
+                    <div className="col-12">
+                      <div className="card card-statistic-1">
                         <a href="/dashboard">
-                          <div class="card-icon bg-primary">
-                            <i class="far fa-user"></i>
+                          <div className="card-icon bg-primary">
+                            <i className="far fa-user"></i>
                           </div>
                         </a>
-                        <div class="card-wrap">
-                          <div class="card-header">
+                        <div className="card-wrap">
+                          <div className="card-header">
                             <a href="#">
                               <h4 style={{ marginTop: 15 }}>Perfil</h4>
                             </a>
@@ -120,15 +120,15 @@ const PublicPage = () => {
                       </div>
                     </div>
                     <PrivateComponent rolesList={["Admin"]}>
-                      <div class="col-12">
-                        <div class="card card-statistic-1">
+                      <div className="col-12">
+                        <div className="card card-statistic-1">
                           <a href="/users">
-                            <div class="card-icon bg-primary">
-                              <i class="far fa-user"></i>
+                            <div className="card-icon bg-primary">
+                              <i className="far fa-user"></i>
                             </div>
                           </a>
-                          <div class="card-wrap">
-                            <div class="card-header">
+                          <div className="card-wrap">
+                            <div className="card-header">
                               <a href="/users">
                                 <h4 style={{ marginTop: 15 }}>Usuarios</h4>
                               </a>
@@ -138,15 +138,15 @@ const PublicPage = () => {
                       </div>
                     </PrivateComponent>
                     <PrivateComponent rolesList={["Admin", "Vendedor"]}>
-                      <div class="col-12">
-                        <div class="card card-statistic-1">
+                      <div className="col-12">
+                        <div className="card card-statistic-1">
                           <a href="/products">
-                            <div class="card-icon bg-danger">
-                              <i class="far fa-newspaper"></i>
+                            <div className="card-icon bg-danger">
+                              <i className="far fa-newspaper"></i>
                             </div>
                           </a>
-                          <div class="card-wrap">
-                            <div class="card-header">
+                          <div className="card-wrap">
+                            <div className="card-header">
                               <a href="/products">
                                 <h4 style={{ marginTop: 15 }}>Productos</h4>
                               </a>
@@ -156,15 +156,15 @@ const PublicPage = () => {
                       </div>
                     </PrivateComponent>
                     <PrivateComponent rolesList={["Admin", "Vendedor"]}>
-                      <div class="col-12">
-                        <div class="card card-statistic-1">
+                      <div className="col-12">
+                        <div className="card card-statistic-1">
                           <a href="/sales">
-                            <div class="card-icon bg-warning">
-                              <i class="far fa-file"></i>
+                            <div className="card-icon bg-warning">
+                              <i className="far fa-file"></i>
                             </div>
                           </a>
-                          <div class="card-wrap">
-                            <div class="card-header">
+                          <div className="card-wrap">
+                            <div className="card-header">
                               <a href="/sales">
                                 <h4 style={{ marginTop: 15 }}>Ventas</h4>
                               </a>
