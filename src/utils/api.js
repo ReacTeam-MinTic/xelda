@@ -16,15 +16,6 @@ export const getUsersBackend = async (successCallback, errorCallback) => {
 };
 
 export const getUserLogin = async (successCallback, errorCallback) => {
-  const options = { method: "GET", url: "http://localhost:5000/users/self/",
-  headers: {
-    Authorization: getToken(),
-  },
-};
-  await axios.request(options).then(successCallback).catch(errorCallback);
-};
-
-export const getUserLogin = async (successCallback, errorCallback) => {
   const options = { method: "GET",
    url: "http://localhost:5000/users/self/",
    headers: {
