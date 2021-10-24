@@ -7,7 +7,10 @@ import { editSales, deleteSales_ } from "utils/api";
 import PrivateComponent from "components/auth0/privateComponent";
 
 const FileTableSales = ({ sale, setRunQuery }) => {
-  console.log("sale..products:", sale.products.map((e)=>{return(<ul><li>{e.name}</li></ul>)}))
+
+  console.log("sale..sale:", sale)
+  console.log("sale..products:", sale.products)
+  console.log("sale..customer:", sale.customer)
   const [edit, setEdit] = useState(false);
   const [infoNewSale, setInfoNewSale] = useState({
     cod: sale.cod,

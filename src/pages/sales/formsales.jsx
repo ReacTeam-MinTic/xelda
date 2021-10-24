@@ -17,6 +17,7 @@ const FormSales = ({
   const submitForm = async (e) => {
     e.preventDefault();
     const fd = new FormData(form.current);
+   
     const newSale = {};
     fd.forEach((value, key) => {
       newSale[key] = value;
@@ -28,7 +29,7 @@ const FormSales = ({
       .map((k) => {
         if (k.includes("products")) {
           const listP = productsRow.filter((v) => v._id === newSale[k])[0];
-          console.log("listP: ", listP);
+          //console.log("listP: ", listP);
           return listP;
           
         }
@@ -41,11 +42,13 @@ const FormSales = ({
       date: newSale.date,
       id_customer: newSale.id_customer,
       customer: newSale.customer,
-      cost: newSale.cost,
-      amount: newSale.amount,
+      //cost: newSale.cost,
+      //amount: newSale.amount,
       seller: seller.filter((s) => s._id === newSale.seller)[0],
       products: listProducts,
-      total_value: newSale.cost * newSale.amount,
+      
+      
+      //total_value: newSale.cost * newSale.amount,
     };
 
     await postSales(
@@ -172,9 +175,9 @@ const FormSales = ({
           </div>
 
           <div className="form-group">
-            <label htmlFor="customer">TOTAL DE LA VENTA</label>
+            <label htmlFor="totalVenta">TOTAL DE LA VENTA</label>
             <input
-              name="customer"
+              name="totalVenta"
               type="number"
               className="form-control "
               autoComplete="off"
@@ -212,7 +215,7 @@ const Productstable = ({ products, setProducts, setproductsRow }) => {
   const [productsForAdd, setProductsForAdd] = useState({});
   const [rowTable, setRowTable] = useState([]);
   
-  //console.log("aSDASD", subTotalRow);
+ 
 
   useEffect(() => {
     setproductsRow(rowTable);
@@ -262,12 +265,14 @@ const Productstable = ({ products, setProducts, setproductsRow }) => {
               Seleccione un opción
             </option>
             {products.map((em) => {
-              return (
-                <option
-                  key={nanoid()}
-                  value={em._id}
-                >{`${em.name} ${em.value_}`}</option>
-              );
+              if(em.status === "Disponible"){
+                return (
+                  <option
+                    key={nanoid()}
+                    value={em._id}
+                  >{`${em.name} ${em.value_}`}</option>
+                  );
+              }
             })}
           </select>
         </div>
