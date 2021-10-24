@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "../styles/styles.css";
-import Footer from "components/template-base/Footer";
+import Footer from "components/Footer";
 import PrivateComponent from "components/auth0/privateComponent";
 import { useUser } from "context/userContext";
 import { useEffect } from "react";
