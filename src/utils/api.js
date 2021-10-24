@@ -1,5 +1,8 @@
 import axios from "axios";
 
+const baseURL = "https://floating-oasis-22135.herokuapp.com"
+
+
 //Módulo de usuarios
 
 const getToken = () => {
@@ -7,7 +10,7 @@ const getToken = () => {
 }
 
 export const getUsersBackend = async (successCallback, errorCallback) => {
-  const options = { method: "GET", url: "http://localhost:5000/users/",
+  const options = { method: "GET", url: `${baseURL}/users/`,
   headers: {
     Authorization: getToken(),
   },
@@ -17,7 +20,7 @@ export const getUsersBackend = async (successCallback, errorCallback) => {
 
 export const getUserLogin = async (successCallback, errorCallback) => {
   const options = { method: "GET",
-   url: "http://localhost:5000/users/self/",
+   url: `${baseURL}/users/self/`,
    headers: {
     Authorization: getToken(),
     }
@@ -28,7 +31,7 @@ export const getUserLogin = async (successCallback, errorCallback) => {
 export const postUsers = async (data, successCallback, errorCallback) => {
   const options = {
     method: "POST",
-    url: "http://localhost:5000/users/",
+    url: `${baseURL}/users/`,
     headers: { "Content-Type": "application/json", Authorization: getToken() },
     data,
   };
@@ -38,7 +41,7 @@ export const postUsers = async (data, successCallback, errorCallback) => {
 export const editUsers = async (id, data, successCallback, errorCallback) => {
   const options = {
     method: "PATCH",
-    url: `http://localhost:5000/users/${id}/`,
+    url: `${baseURL}/users/${id}/`,
     headers: { "Content-Type": "application/json", Authorization: getToken() },
     data,
   };
@@ -48,7 +51,7 @@ export const editUsers = async (id, data, successCallback, errorCallback) => {
 export const deleteUsers_ = async (id, successCallback, errorCallback) => {
   const options = {
     method: "DELETE",
-    url: `http://localhost:5000/users/${id}/`,
+    url: `${baseURL}/users/${id}/`,
     headers: { "Content-Type": "application/json", Authorization: getToken() },
   };
   await axios.request(options).then(successCallback).catch(errorCallback);
@@ -57,7 +60,7 @@ export const deleteUsers_ = async (id, successCallback, errorCallback) => {
 export const getSeller_ = async (successCallback, errorCallback) => {
   const options = {
     method: "GET",
-    url: `http://localhost:5000/users/`,
+    url: `${baseURL}/users/`,
     headers: {
       Authorization: getToken(),
     },
@@ -69,7 +72,7 @@ export const getSeller_ = async (successCallback, errorCallback) => {
 export const getProductsBackend = async (successCallback, errorCallback) => {
   const options = {
     method: "GET",
-    url: "http://localhost:5000/products/",
+    url: `${baseURL}/products/`,
     headers: {
       Authorization: getToken(),
     },
@@ -80,7 +83,7 @@ export const getProductsBackend = async (successCallback, errorCallback) => {
 export const postProducts = async (data, successCallback, errorCallback) => {
   const options = {
     method: "POST",
-    url: "http://localhost:5000/products/",
+    url: `${baseURL}/products/`,
     headers: { "Content-Type": "application/json", Authorization: getToken() },
     data,
   };
@@ -90,7 +93,7 @@ export const postProducts = async (data, successCallback, errorCallback) => {
 export const editProducts = async (id, data, successCallback, errorCallback) => {
   const options = {
     method: "PATCH",
-    url: `http://localhost:5000/products/${id}/`,
+    url: `${baseURL}/products/${id}/`,
     headers: { "Content-Type": "application/json", Authorization: getToken() },
     data,
   };
@@ -100,7 +103,7 @@ export const editProducts = async (id, data, successCallback, errorCallback) => 
 export const deleteProducts_ = async (id, successCallback, errorCallback) => {
   const options = {
     method: "DELETE",
-    url: `http://localhost:5000/products/${id}/`,
+    url: `${baseURL}/products/${id}/`,
     headers: { "Content-Type": "application/json", Authorization: getToken() },
   };
   await axios.request(options).then(successCallback).catch(errorCallback);
@@ -110,7 +113,7 @@ export const deleteProducts_ = async (id, successCallback, errorCallback) => {
 export const getSalesBackend = async (successCallback, errorCallback) => {
   const options = { 
     method: "GET", 
-    url: "http://localhost:5000/sales/", 
+    url: `${baseURL}/sales/`, 
   headers: {
     Authorization: getToken(),
   },
@@ -121,7 +124,7 @@ export const getSalesBackend = async (successCallback, errorCallback) => {
 export const postSales = async (data, successCallback, errorCallback) => {
   const options = {
     method: "POST",
-    url: "http://localhost:5000/sales/",
+    url: `${baseURL}/sales/`,
     headers: { "Content-Type": "application/json", Authorization: getToken() },
     data,
   };
@@ -131,7 +134,7 @@ export const postSales = async (data, successCallback, errorCallback) => {
 export const editSales = async (id, data, successCallback, errorCallback) => {
   const options = {
     method: "PATCH",
-    url: `http://localhost:5000/sales/${id}/`,
+    url: `${baseURL}/sales/${id}/`,
     headers: { "Content-Type": "application/json", Authorization: getToken() },
     data,
   };
@@ -141,7 +144,7 @@ export const editSales = async (id, data, successCallback, errorCallback) => {
 export const deleteSales_ = async (id, successCallback, errorCallback) => {
   const options = {
     method: "DELETE",
-    url: `http://localhost:5000/sales/${id}/`,
+    url: `${baseURL}/sales/${id}/`,
     headers: { "Content-Type": "application/json", Authorization: getToken() },
   };
   await axios.request(options).then(successCallback).catch(errorCallback);
