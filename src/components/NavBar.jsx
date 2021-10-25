@@ -7,7 +7,7 @@ const NavBar = () => {
   const { user, logout } = useAuth0();
 
   const logoutCloseToken = () => {
-    logout({ returnTo: window.location.origin });
+    logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" });
     localStorage.setItem("token", null);
   }
     return (

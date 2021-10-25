@@ -15,7 +15,7 @@ const PublicPage = () => {
   const [infoUser, setInfoUser] = useState({});
 
   const logoutCloseToken = () => {
-    logout({ returnTo: window.location.origin });
+    logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" });
     localStorage.setItem("token", null);
   };
 
@@ -34,7 +34,7 @@ const PublicPage = () => {
         },
         (err) => {
           console.log("Error: ", err);
-          logout({ returnTo: "https://floating-oasis-22135.herokuapp.com/" });
+          logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" });
         }
       );
     };
