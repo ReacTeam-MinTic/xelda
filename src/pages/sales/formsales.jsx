@@ -19,6 +19,7 @@ const FormSales = ({
   const submitForm = async (e) => {
     e.preventDefault();
     const fd = new FormData(form.current);
+   
     const newSale = {};
     fd.forEach((value, key) => {
       newSale[key] = value;
@@ -27,46 +28,45 @@ const FormSales = ({
     const listProducts = Object.keys(newSale)
       .map((k) => {
         if (k.includes("products")) {
-          return productsRow.filter((v) => v._id === newSale[k])[0];
+          // const listP = productsRow.filter((v) => v._id === newSale[k])[0];
+          const listP = productsRow;
+          console.log("listP: ", listP);
+          return listP;
         }
         return null;
       })
       .filter((v) => v);
+    console.log("listProducts_______: ", listProducts);
+    console.log("newSale_______: ", newSale)
 
-    Object.keys(newSale)
-      .forEach((k) => {
-        if (k.includes("cantidad")) {
-          const indice = parseInt(k.split('_')[1]);
-          listProducts[indice]['cantidad']=newSale[k];
-        }
-       
-      });
 
     const saleInputs = {
       cod: newSale.cod,
       date: newSale.date,
       id_customer: newSale.id_customer,
       customer: newSale.customer,
-      cost: newSale.cost,
+      //cost: newSale.cost,
       amount: newSale.amount,
       seller: seller.filter((s) => s._id === newSale.seller)[0],
       products: listProducts,
-      total_value: newSale.cost * newSale.amount,
+      
+      
+      //total_value: newSale.cost * newSale.amount,
     };
 
     await postSales(
       saleInputs,
       (response) => {
-        console.log("data enviada", response.data);
+        console.log("Data enviada: ", response.data);
         const bodyAlert = "¡Guardado!";
         const mensaje = "Operación exitosa";
         Alerts.alertSucees(mensaje, bodyAlert);
       },
       (error) => {
-        console.error("Este es el error", error);
+        console.error("Este es el error: ", error);
         Alerts.alertError();
       },
-      setWiewTable(true)
+      //setWiewTable(true)
     );
   };
 
@@ -133,59 +133,6 @@ const FormSales = ({
               El campo no puede quedar vacío.
             </div>
           </div>
-           <div className="card card-primary">
-            <div className="card-header">
-              <h4>Añadir productos</h4>
-              <div className="card-header-action"></div>
-            </div>
-            <div className="card-body">
-              <div className="form-group">
-                <Productstable
-                  products={products}
-                  setProducts={setProducts}
-                  setproductsRow={setproductsRow}
-                />
-                <div className="invalid-feedback">
-                  El campo no puede quedar vacío.
-                </div>
-              </div>
-            </div>
-          </div>
-          
-{/*           
-          <div className="form-group">
-            <label htmlFor="cost">PRECIO</label>
-            <input
-              autoComplete="nope"
-              name="cost"
-              type="number"
-              className="form-control "
-              required
-              autoComplete="off"
-              placeholder=""
-            />
-            <div className="invalid-feedback">
-              El campo no puede quedar vacío.
-            </div>
-          </div>
-          <div className="form-group">
-            <label htmlFor="amount">CANTIDAD</label>
-            <input
-              autoComplete="nope"
-              name="amount"
-              type="number"
-              className="form-control "
-              required
-              autoComplete="off"
-              placeholder=""
-            />
-            <div className="invalid-feedback">
-              El campo no puede quedar vacío.
-            </div>
-          </div>
-          */}
-         
-         
           <div className="form-group">
             <label htmlFor="seller">Vendedor</label>
             <select
@@ -210,24 +157,41 @@ const FormSales = ({
               El campo no puede quedar vacío.
             </div>
           </div>
-         
+          <div class="card card-primary">
+            <div class="card-header">
+              <h4>Añadir productos</h4>
+              <div class="card-header-action"></div>
+            </div>
+            <div class="card-body">
+              <div className="form-group">
+                <Productstable
+                  products={products}
+                  setProducts={setProducts}
+                  setproductsRow={setproductsRow}
+                 
+                />
+                <div className="invalid-feedback">
+                  El campo no puede quedar vacío.
+                </div>
+              </div>
+            </div>
+          </div>
 
-          {/* <div className="form-group">
-            <label htmlFor="total_value">TOTAL</label>
+          <div className="form-group">
+            <label htmlFor="totalVenta">TOTAL DE LA VENTA</label>
             <input
-              autoComplete="nope"
-              name="total_value"
+              name="totalVenta"
               type="number"
-              className="form-control"
+              className="form-control "
               autoComplete="off"
-              placeholder="0"
-              value={}
+              placeholder=""
             />
             <div className="invalid-feedback">
               El campo no puede quedar vacío.
             </div>
           </div>
-           */}
+
+          
         </div>
 
         <div className=" d-flex justify-content-end flex-wrap my-2">
@@ -253,12 +217,14 @@ const FormSales = ({
 const Productstable = ({ products, setProducts, setproductsRow }) => {
   const [productsForAdd, setProductsForAdd] = useState({});
   const [rowTable, setRowTable] = useState([]);
-  const [subTotalRow, setSubTotalRow] = useState([]);
-  //console.log("aSDASD", subTotalRow);
+  
+ 
 
   useEffect(() => {
     setproductsRow(rowTable);
   }, [rowTable, setproductsRow]);
+
+
 
   const addNewProductTable = () => {
     setRowTable([...rowTable, productsForAdd]);
@@ -270,6 +236,19 @@ const Productstable = ({ products, setProducts, setproductsRow }) => {
     setRowTable(rowTable.filter((x) => x._id !== productRowDelete._id));
     setProducts([...products, productRowDelete]);
   };
+
+  const editProducts_ = (products, quantity) => {
+    setRowTable(
+      rowTable.map((ft) => {
+        if (ft._id === products.id) {
+          ft.quantity = quantity;
+          ft.total = products.value_ * quantity;
+        }
+        return ft;
+      })
+    );
+  };
+ 
 
   return (
     <div className="container">
@@ -289,16 +268,18 @@ const Productstable = ({ products, setProducts, setproductsRow }) => {
               Seleccione un opción
             </option>
             {products.map((em) => {
-              return (
-                <option
-                  key={nanoid()}
-                  value={em._id}
-                >{`${em.name} ${em.value_}`}</option>
-              );
+              if(em.status === "Disponible"){
+                return (
+                  <option
+                    key={nanoid()}
+                    value={em._id}
+                  >{`${em.name} ${em.value_}`}</option>
+                  );
+              }
             })}
           </select>
         </div>
-        <div className="col-1">
+        <div classname="col-1">
           <button
             type="button"
             onClick={() => addNewProductTable()}
@@ -308,56 +289,86 @@ const Productstable = ({ products, setProducts, setproductsRow }) => {
           </button>
         </div>
       </div>
+      <div className="table-responsive">
 
-      <table className="table table-bordered mt-3 ">
+      <table className="table table-bordered mt-3">
         <thead>
           <tr>
             <th scope="col">#</th>
             <th scope="col">PRODUCTO</th>
+            <th scope="col">ESTADO</th>
             <th scope="col">VALOR</th>
             <th scope="col">CANTIDAD</th>
             <th scope="col">SUBTOTAL</th>
             <th scope="col">ELIMINAR</th>
-            <th className="hidden">input</th>
+            <th className="hidden" style={{display: "none"}}>input</th>
           </tr>
         </thead>
         <tbody>
           {rowTable.map((el, index) => {
             return (
-              <tr key={nanoid()}>
-                <th scope="row">{index + 1}</th>
-                <td>{el.name}</td>
-                <td>{el.value_}</td>
-                <td>
-                  <label htmlFor={`value_${index}` }>
-                    <input type="number" name={`cantidad_${index}`}  required  
+              <RowProduct
+                key={el._id}
+                prod={el}
+                index={index}
+                deleteRowTable={deleteRowTable}
+                editProducts_={editProducts_}
+                rowTable={rowTable}
+                setproductsRow={setproductsRow}
               />
-              {/* onChange={(e) =>
-              setSubTotalRow([...subTotalRow, e.target.value])}  */}
-                  </label>
-                </td>
-                <td>{subTotalRow*el.value_}</td>
-                <td>
-                  <div className="d-flex justify-content-center">
-                    <button
-                      onClick={() => deleteRowTable(el)}
-                      className="btn btn-warning mt-1 "
-                    >
-                      <i className="fas fa-minus-circle"></i>
-                    </button>
-                  </div>
-                </td>
-                <input
-                  hidden
-                  defaultValue={el._id}
-                  name={`products_${index}`}
-                />
-              </tr>
             );
           })}
         </tbody>
       </table>
+      </div>
     </div>
+  );
+};
+
+const RowProduct = ({ prod, index, deleteRowTable, editProducts_, setproductsRow}) => {
+  const [product, setProduct] = useState(prod);
+
+  return (
+    <tr>
+      <td scope="row">{index + 1}</td>
+      <td>{product.name}</td>
+      <td>{product.status}</td>
+      <td>{product.value_}</td>
+      <td>
+        <label htmlFor={`valor_${index}`}>
+          <input
+            type="number"
+            name={`cantidad_${index}`}
+            value={product.quantity}
+            onChange={(e) => {
+              editProducts_(product, e.target.value === '' ? '0' : e.target.value);
+              setProduct({
+                ...product,
+                quantity: e.target.value === '' ? '0' : e.target.value,
+                
+                total:
+                  parseFloat(product.value_) *
+                  parseFloat(e.target.value === '' ? '0' : e.target.value),
+              });
+            }}
+          />
+        </label>
+      </td>
+      <td>{parseFloat(product.total ?? 0)}</td>
+      <td>
+        <div class="d-flex justify-content-center">
+          <button
+            onClick={() => deleteRowTable(product)}
+            className="btn btn-warning mt-1 "
+          >
+            <i class="fas fa-minus-circle"></i>
+          </button>
+        </div>
+      </td>
+      <td className='hidden' style={{display: "none"}} > 
+        <input hidden defaultValue={product._id} name={`products_${index}`} />
+      </td>
+    </tr>
   );
 };
 

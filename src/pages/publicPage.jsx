@@ -16,7 +16,7 @@ const PublicPage = () => {
 
   const logoutCloseToken = () => {
     logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" });
-    localStorage.setItem("token", null);
+    localStorage.setItem("Token", null);
   };
 
   useEffect(() => {
@@ -24,7 +24,7 @@ const PublicPage = () => {
       const accessToken = await getAccessTokenSilently({
         audience: `api-autenticacion-xelda`,
       });
-      localStorage.setItem("token", accessToken);
+      localStorage.setItem("Token", accessToken);
       await getUserLogin(
         (response) => {
           setInfoUser(response["data"]);

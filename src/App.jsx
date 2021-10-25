@@ -16,10 +16,11 @@ const App = () => {
   const [userData, setUserData] = useState({});
   return (
     <Auth0Provider
-    domain="xelda.us.auth0.com"
-    clientId="vIWD5IdvNAKfDeUT23be8DdaJpw8JEIu"
-    redirectUri="https://gentle-earth-75322.herokuapp.com/"
-    audience= 'api-autenticacion-xelda'>
+      domain="xelda.us.auth0.com"
+      clientId="vIWD5IdvNAKfDeUT23be8DdaJpw8JEIu"
+      redirectUri="https://gentle-earth-75322.herokuapp.com/dashboard"
+      audience="api-autenticacion-xelda"
+    >
       <UserContext.Provider value={{ userData, setUserData }}>
         <Router>
           <Switch>

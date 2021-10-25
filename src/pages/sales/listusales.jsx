@@ -7,6 +7,10 @@ import { editSales, deleteSales_ } from "utils/api";
 import PrivateComponent from "components/auth0/privateComponent";
 
 const FileTableSales = ({ sale, setRunQuery }) => {
+
+  console.log("sale..sale:", sale)
+  //console.log("sale..products:", sale.products)
+  //console.log("sale..customer:", sale.customer)
   const [edit, setEdit] = useState(false);
   const [infoNewSale, setInfoNewSale] = useState({
     cod: sale.cod,
@@ -176,8 +180,8 @@ const FileTableSales = ({ sale, setRunQuery }) => {
           <td>{sale.date}</td>
           <td>{sale.id_customer}</td>
           <td>{sale.customer}</td>
-          <td>${sale.cost}</td>
-          <td>{sale.amount}</td>
+          <td>{sale.products.map((e)=>{return(<dl><dt>{e.name}</dt></dl>)})}</td>
+          <td>{sale.products.map((e)=>{return(<dl><dd>{e.quantity + " und." }</dd></dl>)})}</td>
           <td>${sale.total_value}</td>
         </>
       )}
@@ -214,6 +218,7 @@ const FileTableSales = ({ sale, setRunQuery }) => {
 const ListSales = ({ salesDb, setRunQuery }) => {
   const [busqueda, setBusqueda] = useState("");
   const [salesFiltered, setsalesFiltered] = useState(salesDb);
+  console.log("salesFiltered: ", salesFiltered)
 
   useEffect(() => {
     setsalesFiltered(
@@ -237,7 +242,7 @@ const ListSales = ({ salesDb, setRunQuery }) => {
               <th>Fecha</th>
               <th>Id Cliente</th>
               <th>Cliente</th>
-              <th>Precio</th>
+              <th>Producto</th>
               <th>Unt</th>
               <th>Total</th>
               <th>Opciones</th>

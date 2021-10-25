@@ -8,7 +8,7 @@ const NavBar = () => {
 
   const logoutCloseToken = () => {
     logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" });
-    localStorage.setItem("token", null);
+    localStorage.setItem("Token", null);
   }
     return (
       <>
@@ -33,7 +33,7 @@ const NavBar = () => {
             >
               <img
                 alt="usuario"
-                src={user.picture }
+                src={user ? user.picture : "" }
                 className="rounded-circle mr-1"
               />
               <div className="d-sm-none d-lg-inline-block">Hola, {user ? user.name : "invitado"}</div>

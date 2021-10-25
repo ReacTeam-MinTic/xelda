@@ -5,6 +5,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useUser } from "context/userContext";
 import { useEffect, useState } from "react";
 import { getUserLogin } from "utils/api";
+import ReactLoading from "react-loading"
+
 
 const Layouts = ({ children }) => {
 
@@ -17,7 +19,7 @@ const Layouts = ({ children }) => {
     const fecthAuthoToken =  async () => {
       setLoadingUserInformaction(true);
       const accessToken =  await getAccessTokenSilently({ audience: `api-autenticacion-xelda` });
-      localStorage.setItem("token", accessToken);
+      localStorage.setItem("Token", accessToken);
       //console.log("Token: ", accessToken)
       await getUserLogin(
         (response)=>{
@@ -36,9 +38,9 @@ const Layouts = ({ children }) => {
     if(isAuthenticated){
       fecthAuthoToken();
     }
-  }, [isAuthenticated, getAccessTokenSilently]);
+  }, [isAuthenticated, getAccessTokenSilently, logout, setUserData]);
 
-  if (isLoading || loadingUserInformaction) return <div>is loading.....</div>;
+  if (isLoading || loadingUserInformaction) return <ReactLoading type='cylon' color='#2C77EB' height={667} width={375} />
   if(!isAuthenticated){
     return loginWithRedirect();
   }

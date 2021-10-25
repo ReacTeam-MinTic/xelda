@@ -6,11 +6,11 @@ import axios from "axios";
 //Módulo de usuarios
 
 const getToken = () => {
-  return `Bearer ${localStorage.getItem('token')}`
+  return `Bearer ${localStorage.getItem('Token')}`
 }
 
 export const getUsersBackend = async (successCallback, errorCallback) => {
-  const options = { method: "GET", url: `https://floating-oasis-22135.herokuapp.com/users/`,
+  const options = { method: "GET", url: "https://floating-oasis-22135.herokuapp.com/users/",
   headers: {
     Authorization: getToken(),
   },
@@ -20,7 +20,7 @@ export const getUsersBackend = async (successCallback, errorCallback) => {
 
 export const getUserLogin = async (successCallback, errorCallback) => {
   const options = { method: "GET",
-   url: `https://floating-oasis-22135.herokuapp.com/users/self/`,
+   url: "https://floating-oasis-22135.herokuapp.com/users/self/",
    headers: {
     Authorization: getToken(),
     }
@@ -31,7 +31,7 @@ export const getUserLogin = async (successCallback, errorCallback) => {
 export const postUsers = async (data, successCallback, errorCallback) => {
   const options = {
     method: "POST",
-    url: `https://floating-oasis-22135.herokuapp.com/users/`,
+    url: "https://floating-oasis-22135.herokuapp.com/users/",
     headers: { "Content-Type": "application/json", Authorization: getToken() },
     data,
   };
@@ -72,7 +72,7 @@ export const getSeller_ = async (successCallback, errorCallback) => {
 export const getProductsBackend = async (successCallback, errorCallback) => {
   const options = {
     method: "GET",
-    url: `https://floating-oasis-22135.herokuapp.com/products/`,
+    url: "https://floating-oasis-22135.herokuapp.com/products/",
     headers: {
       Authorization: getToken(),
     },
@@ -83,7 +83,7 @@ export const getProductsBackend = async (successCallback, errorCallback) => {
 export const postProducts = async (data, successCallback, errorCallback) => {
   const options = {
     method: "POST",
-    url: `https://floating-oasis-22135.herokuapp.com/products/`,
+    url: "https://floating-oasis-22135.herokuapp.com/products/",
     headers: { "Content-Type": "application/json", Authorization: getToken() },
     data,
   };
@@ -113,7 +113,7 @@ export const deleteProducts_ = async (id, successCallback, errorCallback) => {
 export const getSalesBackend = async (successCallback, errorCallback) => {
   const options = { 
     method: "GET", 
-    url: `https://floating-oasis-22135.herokuapp.com/sales/`, 
+    url: "https://floating-oasis-22135.herokuapp.com/sales/", 
   headers: {
     Authorization: getToken(),
   },
@@ -124,7 +124,7 @@ export const getSalesBackend = async (successCallback, errorCallback) => {
 export const postSales = async (data, successCallback, errorCallback) => {
   const options = {
     method: "POST",
-    url: `https://floating-oasis-22135.herokuapp.com/sales/`,
+    url: "https://floating-oasis-22135.herokuapp.com/sales/",
     headers: { "Content-Type": "application/json", Authorization: getToken() },
     data,
   };
