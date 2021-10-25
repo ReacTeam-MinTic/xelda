@@ -18,7 +18,7 @@ const Layouts = ({ children }) => {
     
     const fecthAuthoToken =  async () => {
       setLoadingUserInformaction(true);
-      const accessToken =  await getAccessTokenSilently({ audience: `api-xelda-auth` });
+      const accessToken =  await getAccessTokenSilently({ audience: `api-autenticacion-xelda` });
       localStorage.setItem("Token", accessToken);
       //console.log("Token: ", accessToken)
       await getUserLogin(
@@ -30,7 +30,7 @@ const Layouts = ({ children }) => {
         (err)=>{
           console.log("Error: ", err);
           setLoadingUserInformaction(false);
-          logout({returnTo:'http://localhost:3000/'});
+          logout({returnTo:'https://gentle-earth-75322.herokuapp.com/'});
           
         }
         );
@@ -40,7 +40,7 @@ const Layouts = ({ children }) => {
     }
   }, [isAuthenticated, getAccessTokenSilently, logout, setUserData]);
 
-  if (isLoading || loadingUserInformaction) return <ReactLoading type='cylon' color='#abc123' height={667} width={375} />
+  if (isLoading || loadingUserInformaction) return <ReactLoading type='cylon' color='#2C77EB' height={667} width={375} />
   if(!isAuthenticated){
     return loginWithRedirect();
   }

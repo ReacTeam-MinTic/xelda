@@ -22,7 +22,7 @@ const PublicPage = () => {
   useEffect(() => {
     const fecthAuthoToken = async () => {
       const accessToken = await getAccessTokenSilently({
-        audience: `api-xelda-auth`,
+        audience: `api-autenticacion-xelda`,
       });
       localStorage.setItem("Token", accessToken);
       await getUserLogin(
@@ -34,7 +34,7 @@ const PublicPage = () => {
         },
         (err) => {
           console.log("Error: ", err);
-          logout({ returnTo: "http://localhost:3000/" });
+          logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" });
         }
       );
     };
