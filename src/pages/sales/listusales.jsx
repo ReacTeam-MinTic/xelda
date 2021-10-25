@@ -7,8 +7,7 @@ import { editSales, deleteSales_ } from "utils/api";
 import PrivateComponent from "components/auth0/privateComponent";
 
 const FileTableSales = ({ sale, setRunQuery }) => {
-
-  //console.log("sale..sale:", sale)
+  console.log("sale..sale:", sale);
   //console.log("sale..products:", sale.products)
   //console.log("sale..customer:", sale.customer)
   const [edit, setEdit] = useState(false);
@@ -17,8 +16,7 @@ const FileTableSales = ({ sale, setRunQuery }) => {
     date: sale.date,
     id_customer: sale.id_customer,
     customer: sale.customer,
-    cost: sale.cost,
-    amount: sale.amount,
+    products: sale.products,
     total_value: sale.total_value,
   });
 
@@ -52,7 +50,12 @@ const FileTableSales = ({ sale, setRunQuery }) => {
         Alerts.alertError();
         console.error("_____error", error);
       }
-    )
+    );
+  };
+
+  const getLengthOfObject = (obj) => {
+    let lengthOfObject = Object.keys(obj).length;
+    return lengthOfObject;
   };
 
   const alertWarning_ = () => {
@@ -145,30 +148,46 @@ const FileTableSales = ({ sale, setRunQuery }) => {
             />
           </td>
           <td>
-            <input
-              type="text"
-              className="form-control"
-              value={infoNewSale.cost}
-              onChange={(e) =>
-                setInfoNewSale({ ...infoNewSale, cost: e.target.value })
+            {infoNewSale.products.map((e) => {
+              for (var i = 0; i < infoNewSale.products.length; i++) {
+                console.log("dd", infoNewSale.products)
+                console.log("e", e)
+                return (
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={e.name}
+                    onChange={(e) =>
+                      setInfoNewSale({ ...infoNewSale, cost: e.target.value })
+                    }
+                  />
+                );
               }
-            />
+            })}
           </td>
           <td>
-            <input
-              type="text"
-              className="form-control"
-              value={infoNewSale.amount}
-              onChange={(e) =>
-                setInfoNewSale({ ...infoNewSale, amount: e.target.value })
+          {infoNewSale.products.map((e) => {
+              for (var i = 0; i < infoNewSale.products.length; i++) {
+                //console.log("getLengthOfObject(e)", infoNewSale.products.length)
+                return (
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={e.quantity}
+                    onChange={(e) =>
+                      setInfoNewSale({ ...infoNewSale, amount: e.target.value })
+                    }
+                  />
+                );
               }
-            />
+            })}
+            
           </td>
           <td>
             <input
               className="form-control-plaintext"
               type="text"
-              placeholder="Readonly" 
+              placeholder="Readonly"
               readOnly={true}
               readonly
             />
@@ -180,8 +199,24 @@ const FileTableSales = ({ sale, setRunQuery }) => {
           <td>{sale.date}</td>
           <td>{sale.id_customer}</td>
           <td>{sale.customer}</td>
-          <td>{sale.products.map((e)=>{return(<dl><dt>{e.name}</dt></dl>)})}</td>
-          <td>{sale.products.map((e)=>{return(<dl><dd>{e.quantity + " und." }</dd></dl>)})}</td>
+          <td>
+            {sale.products.map((e) => {
+              return (
+                <ol>
+                  <li>{e.name}</li>
+                </ol>
+              );
+            })}
+          </td>
+          <td>
+            {sale.products.map((e) => {
+              return (
+                <ul>
+                  <li>{e.quantity + " und."}</li>
+                </ul>
+              );
+            })}
+          </td>
           <td>${sale.total_value}</td>
         </>
       )}
@@ -193,19 +228,28 @@ const FileTableSales = ({ sale, setRunQuery }) => {
               <button class="btn btn-icon btn-sm" onClick={() => updateSale()}>
                 <i class="fas fa-check"></i>
               </button>
-              <button class="btn btn-icon btn-sm" onClick={() => setEdit(!edit)}>
+              <button
+                class="btn btn-icon btn-sm"
+                onClick={() => setEdit(!edit)}
+              >
                 <i class="fas fa-ban"></i>
               </button>
             </>
           ) : (
             <>
-              <button  class="btn btn-icon btn-sm"onClick={() => setEdit(!edit)}>
+              <button
+                class="btn btn-icon btn-sm"
+                onClick={() => setEdit(!edit)}
+              >
                 <i class="fas fa-edit"></i>
               </button>
               <PrivateComponent rolesList={["Admin"]}>
-              <button class="btn btn-icon btn-sm" onClick={() => alertWarning_()}>
-                <i class="fas fa-trash-alt"></i>
-              </button>
+                <button
+                  class="btn btn-icon btn-sm"
+                  onClick={() => alertWarning_()}
+                >
+                  <i class="fas fa-trash-alt"></i>
+                </button>
               </PrivateComponent>
             </>
           )}
@@ -218,7 +262,7 @@ const FileTableSales = ({ sale, setRunQuery }) => {
 const ListSales = ({ salesDb, setRunQuery }) => {
   const [busqueda, setBusqueda] = useState("");
   const [salesFiltered, setsalesFiltered] = useState(salesDb);
-  console.log("salesFiltered: ", salesFiltered)
+  console.log("salesFiltered: ", salesFiltered);
 
   useEffect(() => {
     setsalesFiltered(
