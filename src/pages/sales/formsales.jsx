@@ -13,6 +13,7 @@ const FormSales = ({
   productsRow,
 }) => {
   const form = useRef(null);
+  const [suma, setSuma] = useState(0);
 
   const submitForm = async (e) => {
     e.preventDefault();
@@ -21,22 +22,37 @@ const FormSales = ({
     const newSale = {};
     fd.forEach((value, key) => {
       newSale[key] = value;
+      //console.log("newSale: ", newSale)
     });
 
     const listProducts = Object.keys(newSale)
+    
       .map((k) => {
         if (k.includes("products")) {
-          // const listP = productsRow.filter((v) => v._id === newSale[k])[0];
-          const listP = productsRow;
-          console.log("listP: ", listP);
+          const listP = productsRow.filter((v) => v._id === newSale[k])[0];
           return listP;
+          
         }
         return null;
       })
       .filter((v) => v);
-    console.log("listProducts_______: ", listProducts);
-    console.log("newSale_______: ", newSale)
 
+      //Funcoion para obtener la longitud de un objeto
+    const getLengthOfObject = (obj) => {
+      let lengthOfObject = Object.keys(obj).length;
+      //console.log(lengthOfObject);
+      return lengthOfObject;
+    };
+    //console.log("listProducts: ", listProducts)
+    //console.log("newSale: ", newSale)
+
+    for (var i = 0; i < getLengthOfObject(listProducts); i++) {
+      listProducts[i]["quantity"] = parseInt(newSale["cantidad_" + i]);
+      listProducts[i]["subtotal"] = parseInt(listProducts[i]["quantity"] * listProducts[i]["value_"]);
+      newSale["totalVenta"] = parseInt(newSale["totalVenta"]) + listProducts[i]["subtotal"];
+    }
+    //console.log("listProducts: ", listProducts)
+    //console.log("newSale: ", newSale)
 
     const saleInputs = {
       cod: newSale.cod,
@@ -44,18 +60,16 @@ const FormSales = ({
       id_customer: newSale.id_customer,
       customer: newSale.customer,
       //cost: newSale.cost,
-      amount: newSale.amount,
+      //amount: newSale.amount,
       seller: seller.filter((s) => s._id === newSale.seller)[0],
       products: listProducts,
-      
-      
-      //total_value: newSale.cost * newSale.amount,
+      total_value: newSale.totalVenta,
     };
 
     await postSales(
       saleInputs,
       (response) => {
-        console.log("Data enviada: ", response.data);
+        //console.log("Data enviada: ", response.data);
         const bodyAlert = "¡Guardado!";
         const mensaje = "Operación exitosa";
         Alerts.alertSucees(mensaje, bodyAlert);
@@ -64,7 +78,7 @@ const FormSales = ({
         console.error("Este es el error: ", error);
         Alerts.alertError();
       },
-      //setWiewTable(true)
+      setWiewTable(true)
     );
   };
 
@@ -179,6 +193,7 @@ const FormSales = ({
             <label htmlFor="totalVenta">TOTAL DE LA VENTA</label>
             <input
               name="totalVenta"
+              value={0}
               type="number"
               className="form-control "
               autoComplete="off"
@@ -323,7 +338,7 @@ const Productstable = ({ products, setProducts, setproductsRow }) => {
   );
 };
 
-const RowProduct = ({ prod, index, deleteRowTable, editProducts_, setproductsRow}) => {
+const RowProduct = ({ prod, index, deleteRowTable, editProducts_ }) => {
   const [product, setProduct] = useState(prod);
 
   return (
@@ -343,7 +358,6 @@ const RowProduct = ({ prod, index, deleteRowTable, editProducts_, setproductsRow
               setProduct({
                 ...product,
                 quantity: e.target.value === '' ? '0' : e.target.value,
-                
                 total:
                   parseFloat(product.value_) *
                   parseFloat(e.target.value === '' ? '0' : e.target.value),

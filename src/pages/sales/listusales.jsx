@@ -8,7 +8,7 @@ import PrivateComponent from "components/auth0/privateComponent";
 
 const FileTableSales = ({ sale, setRunQuery }) => {
 
-  console.log("sale..sale:", sale)
+  //console.log("sale..sale:", sale)
   //console.log("sale..products:", sale.products)
   //console.log("sale..customer:", sale.customer)
   const [edit, setEdit] = useState(false);
