@@ -34,7 +34,7 @@ const PublicPage = () => {
         },
         (err) => {
           console.log("Error: ", err);
-          logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" });
+          logout({ returnTo: "https://floating-oasis-22135.herokuapp.com/" });
         }
       );
     };
