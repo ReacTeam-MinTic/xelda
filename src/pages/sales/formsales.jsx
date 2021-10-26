@@ -59,8 +59,6 @@ const FormSales = ({
       date: newSale.date,
       id_customer: newSale.id_customer,
       customer: newSale.customer,
-      //cost: newSale.cost,
-      //amount: newSale.amount,
       seller: seller.filter((s) => s._id === newSale.seller)[0],
       products: listProducts,
       total_value: newSale.totalVenta,
@@ -157,12 +155,14 @@ const FormSales = ({
                 Seleccione un opción
               </option>
               {seller.map((el) => {
-                return (
-                  <option
-                    key={nanoid()}
-                    value={el._id}
-                  >{`${el.name} ${el.lastname}`}</option>
-                );
+                if(el.role === "Vendedor"){
+                  return (
+                    <option
+                      key={nanoid()}
+                      value={el._id}
+                    >{`${el.name} ${el.lastname}`}</option>
+                  );
+                }
               })}
             </select>
             <div className="invalid-feedback">

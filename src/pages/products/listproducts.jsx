@@ -8,6 +8,7 @@ import PrivateComponent from "components/auth0/privateComponent";
 
 
 const FileTableProducts = ({ product, setRunQuery}) => {
+  
   const [edit, setEdit] = useState(false);
   const [infoNewProduct, setInfoNewProduct] = useState({
     cod:product.cod,
@@ -17,6 +18,19 @@ const FileTableProducts = ({ product, setRunQuery}) => {
     inventory:product.inventory,
     status:product.status
   });
+  const[estado, setEstado] = useState("")
+  
+  useEffect(() => {
+    if(parseInt(infoNewProduct.inventory ) === 0){
+      setEstado("No disponible");
+    }
+    else if(parseInt(infoNewProduct.inventory ) > 0){
+      setEstado("Disponible")
+    }else{
+      setEstado('Vacio');
+    }
+  }, [infoNewProduct.inventory])
+
 
   const updateProduct = async () => {
     await editProducts(
@@ -148,8 +162,8 @@ const FileTableProducts = ({ product, setRunQuery}) => {
             <input
               type="text"
               className="form-control"
-              value={infoNewProduct.inventory === 0 ? infoNewProduct.status = "No disponible" : infoNewProduct.status = "Disponible" } //infoNewProduct.status
-              onChange={(e)=> setInfoNewProduct({...infoNewProduct, status: e.target.value})}
+              value={estado}
+              //onChange={(e)=> setInfoNewProduct({...infoNewProduct, status: e.target.value} )}
             />
           </td>
           
