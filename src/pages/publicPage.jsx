@@ -40,7 +40,7 @@ const PublicPage = () => {
         }
       );
     };
-    if (isAuthenticated) {
+    if (!isAuthenticated) {
       console.log("Ha entrado al fetchAuthoToken")
       fecthAuthoToken();
     }else{
