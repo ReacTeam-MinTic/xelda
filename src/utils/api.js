@@ -19,10 +19,11 @@ export const getUsersBackend = async (successCallback, errorCallback) => {
 };
 
 export const getUserLogin = async (successCallback, errorCallback) => {
-  const options = { method: "GET",
-   url: "https://floating-oasis-22135.herokuapp.com/users/self/",
-   headers: {
-    Authorization: getToken(),
+  const options = { 
+    method: "GET",
+    url: "https://floating-oasis-22135.herokuapp.com/users/self/",
+    headers: {
+      Authorization: getToken(),
     }
   }
   await axios.request(options).then(successCallback).catch(errorCallback);

@@ -12,8 +12,10 @@ import PublicPage from "pages/publicPage";
 // Un Route por cada Layouts - Ver los layouts como pages-templante (NO como componentes)
 // Agreagr otro Toute para Login
 
-const App = () => {
+function App() {
+  
   const [userData, setUserData] = useState({});
+
   return (
     <Auth0Provider
       domain="xelda.us.auth0.com"
@@ -22,45 +24,47 @@ const App = () => {
       redirectUri="https://gentle-earth-75322.herokuapp.com/dashboard"
       audience="api-autenticacion-xelda"
     >
-      <UserContext.Provider value={{ userData, setUserData }}>
-        <Router>
-          <Switch>
-            <Route path={["/users", "/products", "/sales", "/dashboard"]}>
-              <Layouts>
+      <div className="App">
+        <UserContext.Provider value={{ userData, setUserData }}>
+          <Router>
+            <Switch>
+              <Route path={["/users", "/products", "/sales", "/dashboard"]}>
+                <Layouts>
+                  <Switch>
+                    <Route path="/users">
+                      <PrivateRoute rolesList={["Admin"]}>
+                        <AppUser />
+                      </PrivateRoute>
+                    </Route>
+                    <Route path="/products">
+                      <PrivateRoute rolesList={["Admin", "Vendedor"]}>
+                        <AppProducts />
+                      </PrivateRoute>
+                    </Route>
+                    <Route path="/sales">
+                      <PrivateRoute rolesList={["Admin", "Vendedor"]}>
+                        <AppSale />
+                      </PrivateRoute>
+                    </Route>
+                    <Route path="/dashboard">
+                      <PrivateRoute rolesList={["Admin", "Vendedor"]}>
+                        <Index />
+                      </PrivateRoute>
+                    </Route>
+                  </Switch>
+                </Layouts>
+              </Route>
+              <Route path={["/"]}>
                 <Switch>
-                  <Route path="/users">
-                    <PrivateRoute rolesList={["Admin"]}>
-                      <AppUser />
-                    </PrivateRoute>
-                  </Route>
-                  <Route path="/products">
-                    <PrivateRoute rolesList={["Admin", "Vendedor"]}>
-                      <AppProducts />
-                    </PrivateRoute>
-                  </Route>
-                  <Route path="/sales">
-                    <PrivateRoute rolesList={["Admin", "Vendedor"]}>
-                      <AppSale />
-                    </PrivateRoute>
-                  </Route>
-                  <Route path="/dashboard">
-                    <PrivateRoute rolesList={["Admin", "Vendedor"]}>
-                      <Index />
-                    </PrivateRoute>
+                  <Route path="/">
+                    <PublicPage />
                   </Route>
                 </Switch>
-              </Layouts>
-            </Route>
-            <Route path={["/"]}>
-              <Switch>
-                <Route path="/">
-                  <PublicPage />
-                </Route>
-              </Switch>
-            </Route>
-          </Switch>
-        </Router>
-      </UserContext.Provider>
+              </Route>
+            </Switch>
+          </Router>
+        </UserContext.Provider>
+      </div>
     </Auth0Provider>
   );
 };

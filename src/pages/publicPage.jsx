@@ -4,23 +4,23 @@ import "../styles/styles.css";
 import Footer from "components/Footer";
 import PrivateComponent from "components/auth0/privateComponent";
 import { useUser } from "context/userContext";
-import { useEffect } from "react";
+/* import { useEffect } from "react";
 
-import { getUserLogin } from "utils/api";
+import { getUserLogin } from "utils/api"; */
 
 const PublicPage = () => {
 
-  const {loginWithRedirect, user, logout, getAccessTokenSilently, isAuthenticated } = useAuth0();
-  const { setUserData } = useUser();
-  const [infoUser, setInfoUser] = useState({});
+  const {loginWithRedirect, user, logout/* , getAccessTokenSilently, isAuthenticated  */} = useAuth0();
+/*   const { setUserData } = useUser();
+  const [infoUser, setInfoUser] = useState({}); */
 
   const logoutCloseToken = () => {
-    logout({ returnTo: "https://google.com/" });
+    logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" });
     localStorage.setItem("Token", null);
   };
 
-  useEffect(() => {
-    const fecthAuthoToken = async () => {
+/*   useEffect(() => {
+    const fetchAuth0Token = async () => {
 
       console.log("FUnción isAuthenticated #1: ", isAuthenticated)
       const accessToken = await getAccessTokenSilently({
@@ -40,7 +40,7 @@ const PublicPage = () => {
 
         (err) => {
           console.log("Error de login: ", err);
-          /* logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" }); */
+          logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" });
         }
 
       );
@@ -48,14 +48,10 @@ const PublicPage = () => {
 
     if (isAuthenticated) {
       console.log("Ha entrado al fetchAuthoToken")
-      fecthAuthoToken();
+      fetchAuth0Token();
     }
 
-  }, [isAuthenticated, getAccessTokenSilently]);
-
-  if(!isAuthenticated){
-    return loginWithRedirect()
-  }
+  }, [isAuthenticated, getAccessTokenSilently, logout, setUserData]); */
 
   return (
     <>
@@ -84,9 +80,9 @@ const PublicPage = () => {
                 </div>
               </a>
               <div className="dropdown-menu dropdown-menu-right">
-                <div className="dropdown-title">
+                {/* <div className="dropdown-title">
                   {user ? infoUser.role : "SinRol"}
-                </div>
+                </div> */}
                 <div className="dropdown-divider"></div>
                 <button
                   onClick={() => loginWithRedirect()}

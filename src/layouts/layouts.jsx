@@ -7,56 +7,58 @@ import { useEffect, useState } from "react";
 import { getUserLogin } from "utils/api";
 import ReactLoading from "react-loading"
 
-
 const Layouts = ({ children }) => {
 
-  const {loginWithRedirect, isAuthenticated,isLoading, getAccessTokenSilently, logout} = useAuth0();
-  const [loadingUserInformaction, setLoadingUserInformaction]=useState(false);
-  const {setUserData} = useUser()
+  const { isAuthenticated, isLoading, loginWithRedirect, getAccessTokenSilently, logout } = useAuth0();
+  const [loadingUserInformaction, setLoadingUserInformaction] = useState(false);
+  const { setUserData } = useUser()
 
   useEffect(() => {
-    
-    const fecthAuthoToken =  async () => {
+
+    const fetchAuth0Token = async () => {
+
       setLoadingUserInformaction(true);
-      const accessToken =  await getAccessTokenSilently({ audience: `api-autenticacion-xelda` });
+
+      const accessToken = await getAccessTokenSilently({ audience: `api-autenticacion-xelda` });
+
       localStorage.setItem("Token", accessToken);
-      //console.log("Token: ", accessToken)
+      console.log("Token: ", accessToken)
+
       await getUserLogin(
-        (response)=>{
+        (response) => {
           //console.log("Respuesta: ", response);
           setUserData(response.data);
           setLoadingUserInformaction(false);
-        }, 
-        (err)=>{
+        },
+        (err) => {
           console.log("Error: ", err);
           setLoadingUserInformaction(false);
-          logout({returnTo:'https://gentle-earth-75322.herokuapp.com/'});
-          
+          logout({ returnTo: 'https://gentle-earth-75322.herokuapp.com/' });
+
         }
-        );
+      );
     };
-    if(isAuthenticated){
-      fecthAuthoToken();
+
+    if (isAuthenticated) {
+      fetchAuth0Token();
     }
   }, [isAuthenticated, getAccessTokenSilently, logout, setUserData]);
 
   if (isLoading || loadingUserInformaction) return <ReactLoading type='cylon' color='#2C77EB' height={667} width={375} />
-  if(!isAuthenticated){
+
+  if (!isAuthenticated) {
     return loginWithRedirect();
   }
 
   return (
-
-      <>
-        <MainSidebar />
-        <NavBar />
-         <div className="main-content">
-          <section className="section">{children}</section>
-        </div>
-        <Footer />
-       
-      </>
-   
+    <>
+      <MainSidebar />
+      <NavBar />
+      <div className="main-content">
+        <section className="section">{children}</section>
+      </div>
+      <Footer />
+    </>
   );
 };
 
