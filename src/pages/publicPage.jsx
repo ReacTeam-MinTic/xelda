@@ -5,8 +5,9 @@ import Footer from "components/Footer";
 import PrivateComponent from "components/auth0/privateComponent";
 import { useUser } from "context/userContext";
 /* import { useEffect } from "react";
-
 import { getUserLogin } from "utils/api"; */
+
+/* "https://gentle-earth-75322.herokuapp.com/" */
 
 const PublicPage = () => {
 
@@ -15,7 +16,7 @@ const PublicPage = () => {
   const [infoUser, setInfoUser] = useState({}); */
 
   const logoutCloseToken = () => {
-    logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" });
+    logout({ returnTo: "https://google.com/" });
     localStorage.setItem("Token", null);
   };
 

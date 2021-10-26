@@ -47,19 +47,19 @@ function App() {
                       </PrivateRoute>
                     </Route>
                     <Route path="/dashboard">
-                      <PrivateRoute rolesList={["Admin", "Vendedor"]}>
+                      {/* <PrivateRoute rolesList={["Admin", "Vendedor"]}> */}
                         <Index />
-                      </PrivateRoute>
+                      {/* </PrivateRoute> */}
                     </Route>
                   </Switch>
                 </Layouts>
               </Route>
               <Route path={["/"]}>
-                <Switch>
+                <PublicLayout>
                   <Route path="/">
                     <PublicPage />
                   </Route>
-                </Switch>
+                </PublicLayout>
               </Route>
             </Switch>
           </Router>
