@@ -58,12 +58,11 @@ const Layouts = ({ children }) => {
 
   return (
     <>
-      <MainSidebar />
-      <NavBar />
+
       <div className="main-content">
         <section className="section">{children}</section>
       </div>
-      <Footer />
+
     </>
   );
 };
