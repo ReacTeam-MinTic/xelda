@@ -15,12 +15,14 @@ const PublicPage = () => {
   const [infoUser, setInfoUser] = useState({});
 
   const logoutCloseToken = () => {
-    logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" });
+    logout({ returnTo: "https://google.com/" });
     localStorage.setItem("Token", null);
   };
 
   useEffect(() => {
     const fecthAuthoToken = async () => {
+
+      console.log("FUnción isAuthenticated #1: ", isAuthenticated)
       const accessToken = await getAccessTokenSilently({
         audience: `api-autenticacion-xelda`,
       });
@@ -33,16 +35,18 @@ const PublicPage = () => {
           setUserData(response.data);
         },
         (err) => {
-          console.log("Error: ", err);
+          console.log("Error de login: ", err);
           /* logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" }); */
         }
       );
     };
     if (isAuthenticated) {
+      console.log("Ha entrado al fetchAuthoToken")
       fecthAuthoToken();
     }else{
       console.log("No ha sido autenticado y acá está el error")
     }
+    console.log("FUnción isAuthenticated #2: ", isAuthenticated)
   }, [isAuthenticated, getAccessTokenSilently]);
 
   return (
