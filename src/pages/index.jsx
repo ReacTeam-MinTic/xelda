@@ -115,11 +115,7 @@ const Index = () => {
         </div>
         </div>
       </section>
-<<<<<<< HEAD
   
-=======
-    </div>
->>>>>>> 55e9269a5a2b3e170ad2bba540567ec569bc125b
   
   );
 }
