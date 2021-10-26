@@ -10,6 +10,16 @@ const alertSucees = (mensaje="Operación exitosa", bodyAlert="¡Guardado!") => {
   });
 };
 
+const alertErrorMessage = (mensaje="Revise los datos", bodyAlert="¡Error!") => {
+  iziToast.show({
+    title: bodyAlert,
+    message: mensaje,
+    color: "red",
+    position: "topRight",
+    icon: "far fa-check-circle",
+  });
+};
+
 const alertError = () => {
   iziToast.show({
     title: "¡ATENCiÓN!",
@@ -71,7 +81,8 @@ const alertWarning = (d) => {
 const Alerts = {
   "alertSucees":alertSucees, 
   "alertWarning":alertWarning, 
-  "alertError": alertError
+  "alertError": alertError, 
+  "alertErrorMessage": alertErrorMessage
 };
 
 export default Alerts;

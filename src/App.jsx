@@ -8,66 +8,62 @@ import AppSale from "pages/sales/appSales";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { UserContext } from "context/userContext";
 import PrivateRoute from "components/auth0/privateRoute";
-import PublicLayout from 'layouts/publicLayout';
-import LoginUsers from "pages/LoginUsers";
+import PublicPage from "pages/publicPage";
 // Un Route por cada Layouts - Ver los layouts como pages-templante (NO como componentes)
 // Agreagr otro Toute para Login
 
-function App() {
-  
+const App = () => {
   const [userData, setUserData] = useState({});
-
   return (
     <Auth0Provider
-      domain="xelda.us.auth0.com"
-      clientId="vIWD5IdvNAKfDeUT23be8DdaJpw8JEIu"
-      /* redirectUri="http://localhost:3000/dashboard" */
-      redirectUri="https://gentle-earth-75322.herokuapp.com/dashboard"
-      audience="api-autenticacion-xelda"
+      domain="misiontic-sales2021.us.auth0.com"
+      clientId="3G27oOyaGGQ3fzLbjv7xwzZIcTQJqaGG"
+      // redirectUri={window.location.origin}
+      redirectUri="http://localhost:3000/dashboard"
+      audience="api-xelda-auth"
     >
-      <div className="App">
-        <UserContext.Provider value={{ userData, setUserData }}>
-          <Router>
-            <Switch>
-              <Route path={["/users", "/products", "/sales", "/dashboard"]}>
-                <Layouts>
-                  <Switch>
-                    <Route path="/users">
-                      <PrivateRoute rolesList={["Admin"]}>
-                        <AppUser />
-                      </PrivateRoute>
-                    </Route>
-                    <Route path="/products">
-                      <PrivateRoute rolesList={["Admin", "Vendedor"]}>
-                        <AppProducts />
-                      </PrivateRoute>
-                    </Route>
-                    <Route path="/sales">
-                      <PrivateRoute rolesList={["Admin", "Vendedor"]}>
-                        <AppSale />
-                      </PrivateRoute>
-                    </Route>
-                    <Route path="/dashboard">
-                      {/* <PrivateRoute rolesList={["Admin", "Vendedor"]}> */}
-                        <Index />
-                      {/* </PrivateRoute> */}
-                    </Route>
-                  </Switch>
-                </Layouts>
-              </Route>
-              <Route path={["/"]}>
-                <PublicLayout>
-                  <Route path="/">
-                    <LoginUsers />
+      <UserContext.Provider value={{ userData, setUserData }}>
+        <Router>
+          <Switch>
+            <Route path={["/users", "/products", "/sales", "/dashboard"]}>
+              <Layouts>
+                <Switch>
+                  <Route path="/users" exact>
+                    <PrivateRoute rolesList={["Admin"]}>
+                      <AppUser />
+                    </PrivateRoute>
                   </Route>
-                </PublicLayout>
-              </Route>
-            </Switch>
-          </Router>
-        </UserContext.Provider>
-      </div>
+                  <Route path="/products" exact>
+                    <PrivateRoute rolesList={["Admin", "Vendedor"]}>
+                      <AppProducts />
+                    </PrivateRoute>
+                  </Route>
+                  <Route path="/sales" exact>
+                    <PrivateRoute rolesList={["Admin", "Vendedor"]}>
+                      <AppSale />
+                    </PrivateRoute>
+                  </Route>
+                  <Route path="/dashboard" exact>
+                    <PrivateRoute rolesList={["Admin", "Vendedor"]}>
+                      <Index />
+                    </PrivateRoute>
+                  </Route>
+                </Switch>
+              </Layouts>
+            </Route>
+            <Route path={["/"]}>
+              <Switch>
+                <Route path="/" exact>
+                  <PublicPage />
+                </Route>
+              </Switch>
+            </Route>
+          </Switch>
+        </Router>
+      </UserContext.Provider>
     </Auth0Provider>
   );
 };
 
 export default App;
+

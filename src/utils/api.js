@@ -1,8 +1,6 @@
 import axios from "axios";
 
 /* const baseURL = "https://floating-oasis-22135.herokuapp.com" */
-
-
 //Módulo de usuarios
 
 const getToken = () => {
@@ -95,6 +93,16 @@ export const editProducts = async (id, data, successCallback, errorCallback) => 
   const options = {
     method: "PATCH",
     url: `https://floating-oasis-22135.herokuapp.com/products/${id}/`,
+    headers: { "Content-Type": "application/json", Authorization: getToken() },
+    data,
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
+export const editProductsFromSales = async (id, data, successCallback, errorCallback) => {
+  const options = {
+    method: "PATCH",
+    url: `http://localhost:5000/psales/${id}/`,
     headers: { "Content-Type": "application/json", Authorization: getToken() },
     data,
   };

@@ -1,7 +1,6 @@
 
 const Index = () => {
   return (
-
     <section className="section">
       <div className="row">
         <div className="col-lg-4 col-md-4 col-sm-12">

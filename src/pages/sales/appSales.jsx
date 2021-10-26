@@ -32,7 +32,7 @@ const AppSale = () => {
     const getProducts = async () => {
       await getProductsBackend(
         (response)=>{
-          console.log("response.data____________" , response.data)
+          //console.log("response.data____________" , response.data)
           setProducts(response.data)
         }, 
         (error)=>{console.error("Ha ocurrido un error: ", error)}

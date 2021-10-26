@@ -24,3 +24,4 @@ const PrivateRoute = ({ rolesList, children }) => {
 };
 
 export default PrivateRoute;
+

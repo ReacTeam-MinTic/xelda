@@ -1,3 +1,4 @@
+
 import Footer from "components/Footer";
 import MainSidebar from "components/MainSidebar";
 import NavBar from "components/NavBar";
@@ -57,13 +58,17 @@ const Layouts = ({ children }) => {
   }
 
   return (
-    <>
 
-      <div className="main-content">
-        <section className="section">{children}</section>
-      </div>
-
-    </>
+      <>
+        <MainSidebar />
+        <NavBar />
+         <div class="main-content">
+          <section class="section">{children}</section>
+        </div>
+        <Footer />
+       
+      </>
+   
   );
 };
 
