@@ -9,8 +9,8 @@ import { useEffect } from "react";
 import { getUserLogin } from "utils/api";
 
 const PublicPage = () => {
-  const { loginWithRedirect } = useAuth0();
-  const { user, logout, getAccessTokenSilently, isAuthenticated } = useAuth0();
+
+  const {loginWithRedirect, user, logout, getAccessTokenSilently, isAuthenticated } = useAuth0();
   const { setUserData } = useUser();
   const [infoUser, setInfoUser] = useState({});
 
@@ -28,20 +28,22 @@ const PublicPage = () => {
       await getUserLogin(
         (response) => {
           setInfoUser(response["data"]);
-          //console.log("aqui: ", infoUser)
-          //console.log("Respuesta: ", response);
+          console.log("aqui: ", infoUser)
+          console.log("Respuesta: ", response);
           setUserData(response.data);
         },
         (err) => {
           console.log("Error: ", err);
-          logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" });
+          /* logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" }); */
         }
       );
     };
     if (isAuthenticated) {
       fecthAuthoToken();
+    }else{
+      console.log("No ha sido autenticado y acá está el error")
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, getAccessTokenSilently]);
 
   return (
     <>
