@@ -28,22 +28,22 @@ const App = () => {
             <Route path={["/users", "/products", "/sales", "/dashboard"]}>
               <Layouts>
                 <Switch>
-                  <Route path="/users" exact>
+                  <Route path="/users">
                     <PrivateRoute rolesList={["Admin"]}>
                       <AppUser />
                     </PrivateRoute>
                   </Route>
-                  <Route path="/products" exact>
+                  <Route path="/products">
                     <PrivateRoute rolesList={["Admin", "Vendedor"]}>
                       <AppProducts />
                     </PrivateRoute>
                   </Route>
-                  <Route path="/sales" exact>
+                  <Route path="/sales">
                     <PrivateRoute rolesList={["Admin", "Vendedor"]}>
                       <AppSale />
                     </PrivateRoute>
                   </Route>
-                  <Route path="/dashboard" exact>
+                  <Route path="/dashboard">
                     <PrivateRoute rolesList={["Admin", "Vendedor"]}>
                       <Index />
                     </PrivateRoute>
@@ -53,7 +53,7 @@ const App = () => {
             </Route>
             <Route path={["/"]}>
               <Switch>
-                <Route path="/" exact>
+                <Route path="/">
                   <PublicPage />
                 </Route>
               </Switch>
