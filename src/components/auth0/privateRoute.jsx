@@ -1,9 +1,10 @@
-import { useAuth0 } from "@auth0/auth0-react";
 import { useUser } from "context/userContext";
+import React from "react";
 import { useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { getUserLogin } from "utils/api";
 
-const PrivateRoute = ({ children }) => {
+const PrivateRoute = ({ rolesList, children }) => {
   const {
     loginWithRedirect,
     isAuthenticated,
@@ -11,7 +12,10 @@ const PrivateRoute = ({ children }) => {
     getAccessTokenSilently,
   } = useAuth0();
 
-  const {setUserData} = useUser();
+  const { userData } = useUser();
+  if (rolesList.includes(userData.role)) {
+    return children;
+  }
 
 
   useEffect(() => {
@@ -36,6 +40,7 @@ const PrivateRoute = ({ children }) => {
 
   if (isLoading) return <div>is loading.....</div>;
   return isAuthenticated ? <>{children}</> : loginWithRedirect();
+  
 };
 
 export default PrivateRoute;

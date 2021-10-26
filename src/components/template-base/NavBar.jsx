@@ -1,6 +1,5 @@
 import React from 'react'
 import { useAuth0 } from "@auth0/auth0-react";
-import { Link } from 'react-router-dom';
 
 
 const NavBar = () => {
@@ -18,18 +17,18 @@ const NavBar = () => {
         <form className="form-inline mr-auto">
           <ul className="navbar-nav mr-3">
             <li>
-              <Link   data-toggle="sidebar" className="nav-link nav-link-lg">
+              <a href="#" data-toggle="sidebar" className="nav-link nav-link-lg">
                 <i className="fas fa-bars"></i>
-              </Link>
+              </a>
             </li>
             <li>
-              <Link
-                 
+              <a
+                 href="#"
                 data-toggle="search"
                 className="nav-link nav-link-lg d-sm-none"
               >
                 <i className="fas fa-search"></i>
-              </Link>
+              </a>
             </li>
           </ul>
         </form>
@@ -43,7 +42,7 @@ const NavBar = () => {
             >
               <img
                 alt="image"
-                src={user.picture}
+                src={user ? user.picture : "" }
                 className="rounded-circle mr-1"
               />
               <div className="d-sm-none d-lg-inline-block">Hola, {user ? user.name : "invitado"}</div>

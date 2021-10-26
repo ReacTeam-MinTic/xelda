@@ -95,6 +95,16 @@ export const editProducts = async (id, data, successCallback, errorCallback) => 
   await axios.request(options).then(successCallback).catch(errorCallback);
 };
 
+export const editProductsFromSales = async (id, data, successCallback, errorCallback) => {
+  const options = {
+    method: "PATCH",
+    url: `http://localhost:5000/psales/${id}/`,
+    headers: { "Content-Type": "application/json", Authorization: getToken() },
+    data,
+  };
+  await axios.request(options).then(successCallback).catch(errorCallback);
+};
+
 export const deleteProducts_ = async (id, successCallback, errorCallback) => {
   const options = {
     method: "DELETE",

@@ -32,6 +32,7 @@ const AppSale = () => {
     const getProducts = async () => {
       await getProductsBackend(
         (response)=>{
+          //console.log("response.data____________" , response.data)
           setProducts(response.data)
         }, 
         (error)=>{console.error("Ha ocurrido un error: ", error)}
@@ -69,11 +70,11 @@ const AppSale = () => {
 
   useEffect(() => {
     if (viewTable) {
-      setTextButton("Nuevo Usuario");
+      setTextButton("Nueva venta");
       setSubTitle("Listado de ventas");
       setSubTitleTag("Busque, edite o elimine los registros")
     } else {
-      setTextButton("Ver Todos");
+      setTextButton("Ver Todo");
       setSubTitle("Registro de ventas");
       setSubTitleTag("Agregue nuevas ventas")
     }

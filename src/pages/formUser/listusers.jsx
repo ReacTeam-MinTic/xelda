@@ -127,8 +127,12 @@ const FileTableUsers = ({ user, setRunQuery }) => {
                 setInfoNewUser({ ...infoNewUser, status: e.target.value })
               }
             >
-              <option value="Activo">Activo</option>
-              <option value="Inactivo">Inactivo</option>
+              <option value="" disabled>
+                Seleccione una opción
+              </option>
+              <option value="Autorizado">Autorizado</option>
+              <option value="Rechazado">Rechazado</option>
+              <option value="Pendiente">Pendiente</option>
             </select>
           </td>
           <td>
@@ -139,9 +143,10 @@ const FileTableUsers = ({ user, setRunQuery }) => {
                 setInfoNewUser({ ...infoNewUser, role: e.target.value })
               }
             >
+              <option value="">Seleccione una opción</option>
               <option value="Admin">Admin</option>
               <option value="Vendedor">Vendedor</option>
-              <option value="Pendiente">Pendiente</option>
+              <option value="SinRol">Sin rol</option>
             </select>
           </td>
           <td>
@@ -160,17 +165,21 @@ const FileTableUsers = ({ user, setRunQuery }) => {
           <td>{user.name}</td>
           <td>{user.family_name}</td>
           <td>
-            {user.status === "Activo" ? (
+            {user.status === "Autorizado" ? (
               <div class="badge badge-success">{user.status}</div>
+            ) : user.status === "Rechazado" ? (
+              <div class="badge badge-danger">{user.status} </div>
             ) : (
-              <div class="badge badge-danger">{user.status}</div>
+              <div class="badge badge-secondary">{user.status}</div>
             )}
           </td>
           <td>
-            {user.role === "Admin" || user.role === "Pendiente" ? (
+            {user.role === "Admin" ? (
+              <div class="badge badge-info">{user.role}</div>
+            ) : user.role === "Vendedor" ? (
               <div class="badge badge-warning">{user.role}</div>
             ) : (
-              <div class="badge badge-info">{user.role}</div>
+              <div class="badge badge-secondary">{user.role}</div>
             )}
           </td>
           <td>{user.email}</td>
@@ -276,34 +285,3 @@ const ListUsers = ({ loading, usersDb, setRunQuery }) => {
 };
 
 export default ListUsers;
-
-// const StatusUser = ({ user }) => {
-//   const [status, setStatus] = useState(user.status);
-//   useEffect(() => {
-//     const editUser = async () => {
-//       await editUsers(
-//         user._id,
-//         { status },
-//         (response) => {
-//           console.log(response);
-//         },
-//         (err) => {
-//           console.log(err);
-//         }
-//       );
-//     };
-//     if(user.status !== status){
-//       editUser();
-//     }
-//   }, [status, user]);
-//   return (
-//     <select
-//       value={status}
-//       className="form-control"
-//       onChange={(e) => setStatus(e.target.value)}
-//     >
-//       <option value="Activo">Activo</option>
-//       <option value="Inactivo">Inactivo</option>
-//     </select>
-//   );
-// };

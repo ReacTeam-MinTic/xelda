@@ -1,21 +1,36 @@
 import { nanoid } from "nanoid";
-import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import iziToast from "izitoast";
 import Alerts from "styles/js/alerts";
 import ButtonSerarch from "components/utilsComponent/buttonSerarch";
 import { editProducts, deleteProducts_ } from "utils/api";
+import PrivateComponent from "components/auth0/privateComponent";
 
 
 const FileTableProducts = ({ product, setRunQuery}) => {
+  
   const [edit, setEdit] = useState(false);
   const [infoNewProduct, setInfoNewProduct] = useState({
     cod:product.cod,
     name:product.name,
     description:product.description,
     value_:product.value_,
+    inventory:product.inventory,
     status:product.status
   });
+  const[estado, setEstado] = useState("")
+  
+  useEffect(() => {
+    if(parseInt(infoNewProduct.inventory ) === 0){
+      setEstado("No disponible");
+    }
+    else if(parseInt(infoNewProduct.inventory ) > 0){
+      setEstado("Disponible")
+    }else{
+      setEstado('Vacio');
+    }
+  }, [infoNewProduct.inventory])
+
 
   const updateProduct = async () => {
     await editProducts(
@@ -137,10 +152,18 @@ const FileTableProducts = ({ product, setRunQuery}) => {
           </td>
           <td>
             <input
+              type="number"
+              className="form-control"
+              value={infoNewProduct.inventory}
+              onChange={(e)=> setInfoNewProduct({...infoNewProduct, inventory: e.target.value})}
+            />
+          </td>
+          <td>
+            <input
               type="text"
               className="form-control"
-              value={infoNewProduct.status}
-              onChange={(e)=> setInfoNewProduct({...infoNewProduct, status: e.target.value})}
+              value={estado}
+              //onChange={(e)=> setInfoNewProduct({...infoNewProduct, status: e.target.value} )}
             />
           </td>
           
@@ -151,6 +174,7 @@ const FileTableProducts = ({ product, setRunQuery}) => {
           <td>{product.name}</td>
           <td>{product.description}</td>
           <td>${product.value_}</td>
+          <td>{product.inventory}</td>
           <td>
             {product.status.toLowerCase() === "disponible" ? <div class="badge badge-success">{product.status}</div> : <div class="badge badge-danger">{product.status}</div>}
             
@@ -159,7 +183,7 @@ const FileTableProducts = ({ product, setRunQuery}) => {
           
         </>
       )}
-
+      <PrivateComponent rolesList={["Admin"]}>
       <td>
         <div class="row justify-content-md-center">
           {edit ? (
@@ -183,6 +207,7 @@ const FileTableProducts = ({ product, setRunQuery}) => {
           )}
         </div> 
       </td>
+      </PrivateComponent>
     </tr>
   );
 };
@@ -214,8 +239,11 @@ const ListProducts = ({ productsDb, setRunQuery}) => {
             <th>Name</th>
             <th>Descropción</th>
             <th>Valor</th>
+            <th>Inventario</th>
             <th>Estado</th>
+            <PrivateComponent rolesList={["Admin"]}>
             <th>Opciones</th>
+            </PrivateComponent>
           </tr>
         </thead>
         <tbody>

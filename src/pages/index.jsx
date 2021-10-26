@@ -1,7 +1,7 @@
 
 const Index = () => {
   return (
-    <div className="main-content" style={{minHeight: 581}}>
+    
     <section className="section">
       <div className="row">
         <div className="col-lg-4 col-md-4 col-sm-12">
@@ -115,7 +115,7 @@ const Index = () => {
         </div>
         </div>
       </section>
-  </div>
+  
   
   );
 }

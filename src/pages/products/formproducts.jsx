@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Alerts from "styles/js/alerts";
 import { useRef } from "react";
 import { postProducts } from "utils/api";
 
 const FormProducts = ({ setWiewTable }) => {
+  const [estado, setEstado] = useState("");
+  const [inventario, setInventario] = useState(0);
+  console.log("inventario", inventario)
+  console.log("estado", estado)
+
+  useEffect(() => {
+    if(inventario > 0){
+      setEstado("Disponible")
+    }else{
+      setEstado("No disponible")
+    }
+  }, [inventario])
+
   const form = useRef(null);
   const submitForm = async (e) => {
     e.preventDefault();
@@ -18,6 +31,7 @@ const FormProducts = ({ setWiewTable }) => {
         name: newProduct.name,
         description: newProduct.description,
         value_: newProduct.value_,
+        inventory: newProduct.inventory,
         status: newProduct.status,
       },
       (response) => {
@@ -97,19 +111,31 @@ const FormProducts = ({ setWiewTable }) => {
               El campo no puede quedar vacío.
             </div>
           </div>
+          <div className="form-group">
+            <label htmlFor="value_">Inventario</label>
+            <input
+              name="inventory"
+              type="number"
+              className="form-control "
+              onChange={(e)=>{setInventario(e.target.value)}}
+              value={inventario}
+              required
+              autoComplete="off"
+              placeholder=""
+            />
+            <div className="invalid-feedback">
+              El campo no puede quedar vacío.
+            </div>
+          </div>
 
           <div className="form-group">
             <label htmlFor="status">Estado</label>
             <select
               className="form-control select2"
               name="status"
-              defaultValue={0}
+              value={estado}
             >
-              <option disabled value={0}>
-                Seleccione un opción
-              </option>
-              <option>Disponible</option>
-              <option>No Disponible</option>
+              <option>{estado}</option>
             </select>
             <div className="invalid-feedback">
               El campo no puede quedar vacío.
