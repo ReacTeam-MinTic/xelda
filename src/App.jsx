@@ -8,6 +8,7 @@ import AppSale from "pages/sales/appSales";
 import { Auth0Provider } from "@auth0/auth0-react";
 import { UserContext } from "context/userContext";
 import PrivateRoute from "components/auth0/privateRoute";
+import PublicLayout from 'layouts/publicLayout';
 import PublicPage from "pages/publicPage";
 // Un Route por cada Layouts - Ver los layouts como pages-templante (NO como componentes)
 // Agreagr otro Toute para Login
