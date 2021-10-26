@@ -1,59 +1,47 @@
-
-import Footer from "components/Footer";
-import MainSidebar from "components/MainSidebar";
-import NavBar from "components/NavBar";
+import Footer from "components/template-base/Footer";
+import MainSidebar from "components/template-base/MainSidebar";
+import NavBar from "components/template-base/NavBar";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useUser } from "context/userContext";
 import { useEffect, useState } from "react";
 import { getUserLogin } from "utils/api";
 import ReactLoading from "react-loading"
 
+
 const Layouts = ({ children }) => {
 
-  const { isAuthenticated, isLoading, loginWithRedirect, getAccessTokenSilently, logout } = useAuth0();
-  const [loadingUserInformation, setLoadingUserInformation] = useState(false);
-  const { setUserData } = useUser();
+  const {loginWithRedirect, isAuthenticated,isLoading, getAccessTokenSilently, logout} = useAuth0();
+  const [loadingUserInformaction, setLoadingUserInformaction]=useState(false);
+  const {setUserData} = useUser()
 
   useEffect(() => {
-    const fetchAuth0Token = async () => {
-      // si se quieren hacer validaciones con el token:
-      // if (localStorage.getItem('token')) {
-      //   // validar fecha de expiracion del token
-      // } else {
-      //   // pedir token
-      // }
-
-      // 1. pedir token a auth0
-      setLoadingUserInformation(true);
-      const accessToken = await getAccessTokenSilently({
-        audience: `api-autenticacion-xelda`,
-      });
-      // 2. recibir token de auth0
-      localStorage.setItem('Token', accessToken);
-      console.log(accessToken);
-      // 3. enviarle el token a el backend
+    
+    const fecthAuthoToken =  async () => {
+      setLoadingUserInformaction(true);
+      const accessToken =  await getAccessTokenSilently({ audience: `api-xelda-auth` });
+      localStorage.setItem("Token", accessToken);
+      //console.log("Token: ", accessToken)
       await getUserLogin(
-        (response) => {
-          console.log('response con datos del usuario', response);
+        (response)=>{
+          //console.log("Respuesta: ", response);
           setUserData(response.data);
-          setLoadingUserInformation(false);
-        },
-        (err) => {
-          console.log('err', err);
-          setLoadingUserInformation(false);
-          logout({ returnTo: 'https://gentle-earth-75322.herokuapp.com/' });
+          setLoadingUserInformaction(false);
+        }, 
+        (err)=>{
+          console.log("Error: ", err);
+          setLoadingUserInformaction(false);
+          logout({returnTo:'http://localhost:3000/'});
+          
         }
-      );
+        );
     };
-    if (isAuthenticated) {
-      fetchAuth0Token();
+    if(isAuthenticated){
+      fecthAuthoToken();
     }
   }, [isAuthenticated, getAccessTokenSilently, logout, setUserData]);
 
-  if (isLoading || loadingUserInformation)
-    return <ReactLoading type='cylon' color='#2C77EB' height={667} width={375} />;
-
-  if (!isAuthenticated) {
+  if (isLoading || loadingUserInformaction) return <ReactLoading type='cylon' color='#abc123' height={667} width={375} />
+  if(!isAuthenticated){
     return loginWithRedirect();
   }
 
@@ -73,3 +61,4 @@ const Layouts = ({ children }) => {
 };
 
 export default Layouts;
+
