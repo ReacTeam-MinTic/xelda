@@ -9,7 +9,7 @@ import { Auth0Provider } from "@auth0/auth0-react";
 import { UserContext } from "context/userContext";
 import PrivateRoute from "components/auth0/privateRoute";
 import PublicLayout from 'layouts/publicLayout';
-import PublicPage from "pages/publicPage";
+import LoginUsers from "pages/LoginUsers";
 // Un Route por cada Layouts - Ver los layouts como pages-templante (NO como componentes)
 // Agreagr otro Toute para Login
 
@@ -58,7 +58,7 @@ function App() {
               <Route path={["/"]}>
                 <PublicLayout>
                   <Route path="/">
-                    <PublicPage />
+                    <LoginUsers />
                   </Route>
                 </PublicLayout>
               </Route>
