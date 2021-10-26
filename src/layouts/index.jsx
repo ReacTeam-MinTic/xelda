@@ -8,7 +8,7 @@ const IndexSup = ({ children }) => {
       <>
         <MainSidebar />
         <NavBar />
-        {children}
+          {children}
         <Footer />
       </>
   

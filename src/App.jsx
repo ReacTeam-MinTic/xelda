@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Index from "pages/index";
 import Layouts from "layouts/layouts";
+<<<<<<< HEAD
+=======
+import Login from "layouts/login";
+>>>>>>> 55e9269a5a2b3e170ad2bba540567ec569bc125b
 import AppUser from "pages/formUser/appUser";
 import AppProducts from "pages/products/appProducts";
 import AppSale from "pages/sales/appSales";
