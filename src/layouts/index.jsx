@@ -6,12 +6,10 @@ const IndexSup = ({ children }) => {
   return (
     
       <>
-      <PrivateRoute>
         <MainSidebar />
         <NavBar />
         {children}
         <Footer />
-        </PrivateRoute>
       </>
   
   );
