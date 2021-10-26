@@ -7,7 +7,7 @@ import { editSales, deleteSales_ } from "utils/api";
 import PrivateComponent from "components/auth0/privateComponent";
 
 const FileTableSales = ({ sale, setRunQuery }) => {
-  console.log("sale..sale:", sale);
+  //console.log("sale..sale:", sale);
   //console.log("sale..products:", sale.products)
   //console.log("sale..customer:", sale.customer)
   const [edit, setEdit] = useState(false);
@@ -150,8 +150,8 @@ const FileTableSales = ({ sale, setRunQuery }) => {
           <td>
             {infoNewSale.products.map((e) => {
               for (var i = 0; i < infoNewSale.products.length; i++) {
-                console.log("dd", infoNewSale.products)
-                console.log("e", e)
+                //console.log("dd", infoNewSale.products)
+                //console.log("e", e)
                 return (
                   <input
                     type="text"
@@ -202,9 +202,9 @@ const FileTableSales = ({ sale, setRunQuery }) => {
           <td>
             {sale.products.map((e) => {
               return (
-                <ol>
+                <ul>
                   <li>{e.name}</li>
-                </ol>
+                </ul>
               );
             })}
           </td>
