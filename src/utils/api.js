@@ -29,7 +29,7 @@ export const getUserLogin = async (successCallback, errorCallback) => {
   await axios.request(options).then(successCallback).catch(errorCallback);
 }
 
-export const postUsers = async (data, successCallback, errorCallback) => {
+export const postUsers = async ( data, successCallback, errorCallback) => {
   const options = {
     method: "POST",
     url: "https://floating-oasis-22135.herokuapp.com/users/",
