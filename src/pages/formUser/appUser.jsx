@@ -1,9 +1,9 @@
 import FormUsers from "./formusers";
 import ListUsers from "./listusers";
 import { useState, useEffect } from "react";
-import SectionTitle from "components/content/SectionTitle";
-import CardHeader from "components/content/CardHeader";
-import SectionHeader from "components/content/SectionHeader";
+import SectionTitle from "components/template-base/content/SectionTitle";
+import CardHeader from "components/template-base/content/CardHeader";
+import SectionHeader from "components/template-base/content/SectionHeader";
 import { getUsersBackend } from "utils/api";
 
 const AppUser = () => {

@@ -1,9 +1,9 @@
 import FormProducts from "./formproducts";
 import ListProducts from "./listproducts";
 import { useState, useEffect } from "react";
-import SectionTitle from "components/content/SectionTitle";
-import CardHeader from "components/content/CardHeader";
-import SectionHeader from "components/content/SectionHeader";
+import SectionTitle from "components/template-base/content/SectionTitle";
+import CardHeader from "components/template-base/content/CardHeader";
+import SectionHeader from "components/template-base/content/SectionHeader";
 import { getProductsBackend } from "utils/api";
 
 const AppProducts = () => {

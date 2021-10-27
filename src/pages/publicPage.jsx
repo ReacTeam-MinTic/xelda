@@ -1,58 +1,47 @@
 import React, { useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import "../styles/styles.css";
-import Footer from "components/Footer";
+import Footer from "components/template-base/Footer";
 import PrivateComponent from "components/auth0/privateComponent";
 import { useUser } from "context/userContext";
-/* import { useEffect } from "react";
-import { getUserLogin } from "utils/api"; */
+import { useEffect } from "react";
 
-/* "https://gentle-earth-75322.herokuapp.com/" */
+import { getUserLogin } from "utils/api";
 
 const PublicPage = () => {
-
-  const {loginWithRedirect, user, logout/* , getAccessTokenSilently, isAuthenticated  */} = useAuth0();
-/*   const { setUserData } = useUser();
-  const [infoUser, setInfoUser] = useState({}); */
+  const { loginWithRedirect } = useAuth0();
+  const { user, logout, getAccessTokenSilently, isAuthenticated } = useAuth0();
+  const { setUserData } = useUser();
+  const [infoUser, setInfoUser] = useState({});
 
   const logoutCloseToken = () => {
-    logout({ returnTo: "https://google.com/" });
+    logout({ returnTo: window.location.origin });
     localStorage.setItem("Token", null);
   };
 
-/*   useEffect(() => {
-    const fetchAuth0Token = async () => {
-
-      console.log("FUnción isAuthenticated #1: ", isAuthenticated)
+  useEffect(() => {
+    const fecthAuthoToken = async () => {
       const accessToken = await getAccessTokenSilently({
-        audience: `api-autenticacion-xelda`,
+        audience: `api-xelda-auth`,
       });
-
       localStorage.setItem("Token", accessToken);
-
       await getUserLogin(
-
         (response) => {
           setInfoUser(response["data"]);
-          console.log("aqui: ", infoUser)
-          console.log("Respuesta: ", response);
+          //console.log("aqui: ", infoUser)
+          //console.log("Respuesta: ", response);
           setUserData(response.data);
         },
-
         (err) => {
-          console.log("Error de login: ", err);
-          logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" });
+          console.log("Error: ", err);
+          logout({ returnTo: "http://localhost:3000/" });
         }
-
       );
     };
-
     if (isAuthenticated) {
-      console.log("Ha entrado al fetchAuthoToken")
-      fetchAuth0Token();
+      fecthAuthoToken();
     }
-
-  }, [isAuthenticated, getAccessTokenSilently, logout, setUserData]); */
+  }, [isAuthenticated]);
 
   return (
     <>
@@ -72,7 +61,7 @@ const PublicPage = () => {
                 className="nav-link dropdown-toggle nav-link-lg nav-link-user"
               >
                 <img
-                  alt="Usuario"
+                  alt="image"
                   src={user ? user.picture : ""}
                   className="rounded-circle mr-1"
                 />
@@ -81,9 +70,9 @@ const PublicPage = () => {
                 </div>
               </a>
               <div className="dropdown-menu dropdown-menu-right">
-                {/* <div className="dropdown-title">
+                <div className="dropdown-title">
                   {user ? infoUser.role : "SinRol"}
-                </div> */}
+                </div>
                 <div className="dropdown-divider"></div>
                 <button
                   onClick={() => loginWithRedirect()}
@@ -113,16 +102,16 @@ const PublicPage = () => {
                   <h4>Módulo de ingreso</h4>
                 </div>
                 <div className="card-body">
-                  <div className="row">
-                    <div className="col-12">
-                      <div className="card card-statistic-1">
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="card card-statistic-1">
                         <a href="/dashboard">
-                          <div className="card-icon bg-primary">
-                            <i className="far fa-user"></i>
+                          <div class="card-icon bg-primary">
+                            <i class="far fa-user"></i>
                           </div>
                         </a>
-                        <div className="card-wrap">
-                          <div className="card-header">
+                        <div class="card-wrap">
+                          <div class="card-header">
                             <a href="#">
                               <h4 style={{ marginTop: 15 }}>Perfil</h4>
                             </a>
@@ -131,15 +120,15 @@ const PublicPage = () => {
                       </div>
                     </div>
                     <PrivateComponent rolesList={["Admin"]}>
-                      <div className="col-12">
-                        <div className="card card-statistic-1">
+                      <div class="col-12">
+                        <div class="card card-statistic-1">
                           <a href="/users">
-                            <div className="card-icon bg-primary">
-                              <i className="far fa-user"></i>
+                            <div class="card-icon bg-primary">
+                              <i class="far fa-user"></i>
                             </div>
                           </a>
-                          <div className="card-wrap">
-                            <div className="card-header">
+                          <div class="card-wrap">
+                            <div class="card-header">
                               <a href="/users">
                                 <h4 style={{ marginTop: 15 }}>Usuarios</h4>
                               </a>
@@ -149,15 +138,15 @@ const PublicPage = () => {
                       </div>
                     </PrivateComponent>
                     <PrivateComponent rolesList={["Admin", "Vendedor"]}>
-                      <div className="col-12">
-                        <div className="card card-statistic-1">
+                      <div class="col-12">
+                        <div class="card card-statistic-1">
                           <a href="/products">
-                            <div className="card-icon bg-danger">
-                              <i className="far fa-newspaper"></i>
+                            <div class="card-icon bg-danger">
+                              <i class="far fa-newspaper"></i>
                             </div>
                           </a>
-                          <div className="card-wrap">
-                            <div className="card-header">
+                          <div class="card-wrap">
+                            <div class="card-header">
                               <a href="/products">
                                 <h4 style={{ marginTop: 15 }}>Productos</h4>
                               </a>
@@ -167,15 +156,15 @@ const PublicPage = () => {
                       </div>
                     </PrivateComponent>
                     <PrivateComponent rolesList={["Admin", "Vendedor"]}>
-                      <div className="col-12">
-                        <div className="card card-statistic-1">
+                      <div class="col-12">
+                        <div class="card card-statistic-1">
                           <a href="/sales">
-                            <div className="card-icon bg-warning">
-                              <i className="far fa-file"></i>
+                            <div class="card-icon bg-warning">
+                              <i class="far fa-file"></i>
                             </div>
                           </a>
-                          <div className="card-wrap">
-                            <div className="card-header">
+                          <div class="card-wrap">
+                            <div class="card-header">
                               <a href="/sales">
                                 <h4 style={{ marginTop: 15 }}>Ventas</h4>
                               </a>
@@ -197,6 +186,7 @@ const PublicPage = () => {
 };
 
 export default PublicPage;
+
 
 
 
