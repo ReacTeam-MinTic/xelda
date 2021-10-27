@@ -19,7 +19,7 @@ const App = () => {
       domain="misiontic-sales2021.us.auth0.com"
       clientId="3G27oOyaGGQ3fzLbjv7xwzZIcTQJqaGG"
       // redirectUri={window.location.origin}
-      redirectUri="http://localhost:3000/dashboard"
+      redirectUri="https://secret-refuge-48972.herokuapp.com/dashboard"
       audience="api-xelda-auth"
     >
       <UserContext.Provider value={{ userData, setUserData }}>
