@@ -30,7 +30,7 @@ const Layouts = ({ children }) => {
         (err)=>{
           console.log("Error: ", err);
           setLoadingUserInformaction(false);
-          logout({returnTo:'http://localhost:3000/'});
+          logout({returnTo:'https://secret-refuge-48972.herokuapp.com/'});
           
         }
         );
