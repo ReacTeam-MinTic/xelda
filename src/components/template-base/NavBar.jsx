@@ -7,7 +7,7 @@ const NavBar = () => {
   const { user, logout } = useAuth0();
 
   const logoutCloseToken = () => {
-    logout({ returnTo: "https://gentle-earth-75322.herokuapp.com/" });
+    logout({ returnTo: window.location.origin });
     localStorage.setItem("Token", null);
   }
     return (
@@ -19,6 +19,15 @@ const NavBar = () => {
             <li>
               <a href="#" data-toggle="sidebar" className="nav-link nav-link-lg">
                 <i className="fas fa-bars"></i>
+              </a>
+            </li>
+            <li>
+              <a
+                 href="#"
+                data-toggle="search"
+                className="nav-link nav-link-lg d-sm-none"
+              >
+                <i className="fas fa-search"></i>
               </a>
             </li>
           </ul>

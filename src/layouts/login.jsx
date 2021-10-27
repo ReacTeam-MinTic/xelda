@@ -1,7 +1,5 @@
 import React from 'react'
 
-//comentario
-
 const Login = ({children}) => {
     return (
         <>

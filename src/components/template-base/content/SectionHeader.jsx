@@ -7,10 +7,10 @@ const SectionHeader = ({subtitle, title}) => {
       <h1>{title}</h1>
       <div className="section-header-breadcrumb">
         <div className="breadcrumb-item active">
-          <Link to='/dashboard'>Inicio</Link>
+          <Link >Inicio</Link>
         </div>
         <div className="breadcrumb-item">
-          <Link to='/dashboard'>{subtitle}</Link>
+          <Link >{subtitle}</Link>
         </div>
         
       </div>
