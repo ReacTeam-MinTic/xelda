@@ -14,18 +14,7 @@ export const getUsersBackend = async (successCallback, errorCallback) => {
   await axios.request(options).then(successCallback).catch(errorCallback);
 };
 
-export const getUserLogin = async (successCallback, errorCallback) => {
-  const options = { 
-    method: "GET",
-    url: "https://floating-oasis-22135.herokuapp.com/users/self/",
-    headers: {
-      Authorization: getToken(),
-    }
-  }
-  await axios.request(options).then(successCallback).catch(errorCallback);
-}
-
-export const postUsers = async ( data, successCallback, errorCallback) => {
+export const postUsers = async (data, successCallback, errorCallback) => {
   const options = {
     method: "POST",
     url: "http://localhost:5000/users/",
