@@ -23,12 +23,13 @@ const Layouts = ({ children }) => {
       //console.log("Token: ", accessToken)
       await getUserLogin(
         (response)=>{
-          //console.log("Respuesta: ", response);
+          console.log("Respuesta: ", response);
           setUserData(response.data);
           setLoadingUserInformaction(false);
         }, 
         (err)=>{
           console.log("Error: ", err);
+          console.log("este es el error. ", err)
           setLoadingUserInformaction(false);
           logout({returnTo:'https://secret-refuge-48972.herokuapp.com/'});
           
@@ -43,7 +44,7 @@ const Layouts = ({ children }) => {
   if (isLoading || loadingUserInformaction) return <ReactLoading type='cylon' color='#abc123' height={667} width={375} />
 
   if(!isAuthenticated){
-    {console.log("estoy en layputs linea 46 y este es un error")}
+    console.log("estoy en layputs linea 46 y este es un error")
     return loginWithRedirect();
   }
 

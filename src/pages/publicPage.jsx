@@ -41,7 +41,7 @@ const PublicPage = () => {
     if (isAuthenticated) {
       fecthAuthoToken();
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, getAccessTokenSilently, logout, setUserData]);
 
   return (
     <>
