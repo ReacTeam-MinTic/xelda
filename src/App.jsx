@@ -20,9 +20,12 @@ const App = () => {
       clientId="3G27oOyaGGQ3fzLbjv7xwzZIcTQJqaGG"
       // redirectUri={window.location.origin}
       redirectUri="https://secret-refuge-48972.herokuapp.com/dashboard"
+      
       audience="api-xelda-auth"
     >
+      {console.log("estoy en app.jsx linea 26")}
       <UserContext.Provider value={{ userData, setUserData }}>
+      {console.log("estoy en app.jsx linea 28 e imprimmo userData", userData)}
         <Router>
           <Switch>
             <Route path={["/users", "/products", "/sales", "/dashboard"]}>
@@ -44,9 +47,10 @@ const App = () => {
                     </PrivateRoute>
                   </Route>
                   <Route path="/dashboard" exact>
-                    <PrivateRoute rolesList={["Admin", "Vendedor"]}>
+                  {console.log("estoy en app.jsx linea 50")}
+                    {/* <PrivateRoute rolesList={["Admin", "Vendedor"]}> */}
                       <Index />
-                    </PrivateRoute>
+                    {/* </PrivateRoute> */}
                   </Route>
                 </Switch>
               </Layouts>

@@ -41,7 +41,9 @@ const Layouts = ({ children }) => {
   }, [isAuthenticated, getAccessTokenSilently, logout, setUserData]);
 
   if (isLoading || loadingUserInformaction) return <ReactLoading type='cylon' color='#abc123' height={667} width={375} />
+
   if(!isAuthenticated){
+    {console.log("estoy en layputs linea 46 y este es un error")}
     return loginWithRedirect();
   }
 
