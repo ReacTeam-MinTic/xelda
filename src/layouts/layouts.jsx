@@ -20,7 +20,7 @@ const Layouts = ({ children }) => {
       setLoadingUserInformaction(true);
       const accessToken =  await getAccessTokenSilently({ audience: `api-xelda-auth` });
       localStorage.setItem("Token", accessToken);
-      //console.log("Token: ", accessToken)
+      console.log("Token: ", accessToken)
       await getUserLogin(
         (response)=>{
           console.log("Respuesta: ", response);
