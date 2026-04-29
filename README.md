@@ -28,7 +28,7 @@ class innovacion:
 
     def __init__(self):
         self.team_name = "ReacTeam"
-        self.roles = ["Analista", "Product Owner", "Scrum Master", "Desarroladores", "Admon BD"]
+        self.roles = ["Analista", "Product Owner", "Scrum Master", "Desarrolladores", "Admon BD"]
         self.project_name = "Xelda"
         self.tecnologies = ["React", "nodejs", "html5", "css", "express", "mongoDB", "y más"]
         self.team = ["Gustavo de Armas", "Andrés Pérez"]
